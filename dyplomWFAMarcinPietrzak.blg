@@ -2,52 +2,56 @@ This is BibTeX, Version 0.99d
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: dyplomWFAMarcinPietrzak.aux
 Reallocating 'name_of_file' (item size: 1) to 6 items.
-The style file: plain.bst
+The style file: unsrt.bst
 Reallocating 'name_of_file' (item size: 1) to 13 items.
 Database file #1: bibliografia.bib
-Warning--entry type for "watki_jak_pisac" isn't style-file defined
+Warning--entry type for "popularnosc_gogli" isn't style-file defined
 --line 2 of file bibliografia.bib
-Warning--entry type for "bworld" isn't style-file defined
---line 11 of file bibliografia.bib
-You've used 2 entries,
-            2118 wiz_defined-function locations,
-            506 strings with 4305 characters,
-and the built_in function-call counts, 434 in all, are:
-= -- 39
-> -- 14
+Warning--entry type for "PlayStation_VR2" isn't style-file defined
+--line 10 of file bibliografia.bib
+Warning--entry type for "porownanie_gogli" isn't style-file defined
+--line 18 of file bibliografia.bib
+Warning--entry type for "sprzedasz_gogli_VR" isn't style-file defined
+--line 26 of file bibliografia.bib
+You've used 4 entries,
+            1791 wiz_defined-function locations,
+            464 strings with 4087 characters,
+and the built_in function-call counts, 556 in all, are:
+= -- 48
+> -- 16
 < -- 0
-+ -- 6
++ -- 8
 - -- 4
-* -- 14
-:= -- 78
-add.period$ -- 6
-call.type$ -- 2
-change.case$ -- 8
+* -- 2
+:= -- 93
+add.period$ -- 16
+call.type$ -- 4
+change.case$ -- 4
 chr.to.int$ -- 0
-cite$ -- 2
-duplicate$ -- 14
-empty$ -- 45
+cite$ -- 4
+duplicate$ -- 20
+empty$ -- 73
 format.name$ -- 4
-if$ -- 92
+if$ -- 129
 int.to.chr$ -- 0
-int.to.str$ -- 2
+int.to.str$ -- 4
 missing$ -- 0
-newline$ -- 13
+newline$ -- 27
 num.names$ -- 4
-pop$ -- 17
+pop$ -- 28
 preamble$ -- 1
-purify$ -- 6
+purify$ -- 0
 quote$ -- 0
-skip$ -- 14
+skip$ -- 8
 stack$ -- 0
-substring$ -- 10
-swap$ -- 2
+substring$ -- 0
+swap$ -- 4
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 8
+type$ -- 0
 warning$ -- 0
 while$ -- 4
-width$ -- 3
-write$ -- 22
-(There were 2 warnings)
+width$ -- 5
+write$ -- 46
+(There were 4 warnings)

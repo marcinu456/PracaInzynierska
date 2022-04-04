@@ -89,7 +89,7 @@ Computer models gallery
 \end{center}
 \vspace{3.7cm}
 \begin{flushright}
-\large{ Praca magisterska na kierunku \\Fizyka Komputerowa \\}
+
 \large{ Praca inżynierska na kierunku \\Informatyka Stosowana i Systemy Pomiarowe \\}
 \vspace{0.5cm}
 \large{ Opiekun \\ dr hab. Maciej Matyka, prof. UWr}
@@ -135,17 +135,17 @@ programem komputerowym. Pewnie nie poznamy odpowiedzi na te wszystkie
 pytania, jeszcze przez jakiś czas, ale dzisiaj jedno jest pewne. VR na pewno jeszcze
 nie umarł i ma się całkiem dobrze. W ciągu ostatnich kilku lat rynek gogli VR zaczął
 na nowo się rozwijać, powstało wiele gogli, a do najpopularniejszych z nich należą:
-PlayStation VR, Valve Index, HTC Vive Pro. Każde z tych gogli ma jednak wady, a
+PlayStation VR, Valve Index, HTC Vive Pro \cite{popularnosc_gogli}. Każde z tych gogli ma jednak wady, a
 do najważniejszych należy to, że nie są to sprzęty typu plug and play. Trzeba się nie
 tylko męczyć z splątaniną przewodów, ale także gogle jak np. Valve Index wymagają
 stacji, dzięki którym gogle wiedzą gdzie znajdujesz się przestrzeni 3D. Kolejnym
 problemem jest oczywiście cena samego sprzętu który w większości przekracza
 ponad 3000 PLN za całość. Jedynie co się z tego zestawu różni to PlayStation VR,
 same są jednak przestarzałe, a Sony zapowiedziało ich następcę którego premiera
-nastąpi pod koniec 2022 roku. Same gogle Sony nie rozwiązały dla mnie
+nastąpi pod koniec 2022 roku \cite{PlayStation_VR2}. Same gogle Sony nie rozwiązały dla mnie
 największego problemu, czyli obowiązek podłączenia przewodem, jednakże ten
 problem na szczęście rozwiązała już inna firma, mowa oczywiście o Oculus znaną
-obecnie jako Reality Labs, jedna z podfirm Facebooka obecnie Meta. Firma zaczęła
+obecnie jako Reality Labs, jedna z podfirm Facebooka obecnie znana jako Meta. Firma zaczęła
 sprzedawać w 2019 gogle Oculus Quest, które były rewolucyjne z jednego ważnego
 powodu, były autonomiczne, tzn. nie potrzebowały komputera do obsługi gogli,
 ponieważ wystarczą do tego same gogle z kontrolerami ruchowymi. Same gogle nie
@@ -158,9 +158,31 @@ rozstawu soczewek dla oczu, gorszej jakości pasek na głowę, brak magnetyczneg
 zabezpieczenia pojemnika na baterię. To nie znaczy oczywiścię, że gogle były
 gorszę a do najważniejszych należą: Zwiększona roździelość obrazu dla jednego
 oka, zmiana procesora na wydajniejszy, wydłużony czas pracy kontrolerów na jednej
-baterii. Quest 2 wśród gogli VR okazał się dużym sukcesem, w roku 2021
-sprzedanych zostało 11,2 miliona sztuk urządzeń z czego 78% to były Oculus Quest
-2. Rynek aplikacji też się rozwinął w ciągu ostatnich lat. Na samego Oculusa Questa
+baterii \cite{porownanie_gogli}. 
+
+\begin{figure}[!ht]%
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics/oculusquest.png}
+		\caption{Oculus Quest 1}	
+		\label{ref:subref_a}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics/oculusquest2.png}
+		\caption{Oculus Quest 2}
+		\label{ref:subref_b}
+	\end{subfigure}%
+	
+
+\caption{Gogle VR od Oculusa}
+\label{ref:ref}
+\end{figure}
+
+Quest 2 wśród gogli VR okazał się dużym sukcesem, w roku 2021
+sprzedanych zostało 11,2 miliona sztuk urządzeń z czego 78\% to były Oculus Quest
+2 \cite{Sprzedasz_gogli_VR}. Rynek aplikacji też się rozwinął w ciągu ostatnich lat. Na samego Oculusa Questa
 w oficjalnym sklepie jest obecnie dostępnych ponad 300 aplikacji, na Steam jest ich
 już ponad 2000. Oczywiście wśród nich nie znajdują się same gry, ponieważ gogle
 mogą być wykorzystane też np. do zaprezentowania ciała człowieka, być platformą
@@ -168,6 +190,15 @@ do rysowania obrazów, lub sprzętem do relaksu czy oglądania filmów. Ja chcia
 spróbować swoich sił w stworzeniu małego projektu, który mógłby być wykorzystany
 do pokazywania co ciekawego można robić w komputerze, czyli galerii modelów
 komputerowych.
+
+\begin{figure}[!ht]%
+\centering
+\includegraphics[width=0.8\columnwidth]{graphics/OpenBrush.png}
+\caption{OpenBrush
+\label{OpenBrush}}%
+%
+\qquad
+\end{figure}  
 
 \subsection{Cel i zakres pracy}
 
@@ -184,106 +215,11 @@ nie musiałem się aż tak obawiać o ograniczenia które stawia sprzęt w wersj
 androidowej np. brak wsparcia dla Unrealowych postprocesów obrazu. Projekt ten
 pokazuję, że w dzisiejszych czasach dzięki dostępnym narzędziom typu UE4 i gogle
 VR, człowiek jest w stanie stworzyć program w mało wymagający sposób który nie
-byłby możliwy do zrealizowania jeszcze 10 lat temu
-
-
-
-Wcięcia tworzy się za pomocą linijki przerwy. W wypadku kiedy tylko pierwszy akapit nie ma wcięcia upewnij się że dodałeś "\textbackslash usepackage\{indentfirst\}" w nagłówku pliku.
-
-W swojej pracy możesz odnosić się do równań np. do równania (\ref{rownanie}) lub do rysunków, zarówno wektorowych, patrz rys. (\ref{logotyp}) jak i bitmapowych (\ref{wahadla}).
-
-Możliwe jest też wstawienie większej ilości obraów w jednej linijce. w takim przypadku cytuje się za pomocą \textbackslash ref\{ref:ref\} (\ref{ref:ref}), oraz \textbackslash subref\{ref:subref\} (\ref{ref:ref}\subref{ref:subref_a}, \ref{ref:ref}\subref{ref:subref_b}, \ref{ref:ref}\subref{ref:subref_c}, \ref{ref:ref}\subref{ref:subref_d}).
-
-\begin{figure}[!ht]%
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=0.8\linewidth]{pendulums.png}
-		\caption{Lorem}	
-		\label{ref:subref_a}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=0.8\linewidth]{pendulums.png}
-		\caption{ipsum}
-		\label{ref:subref_b}
-	\end{subfigure}%
-	
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=0.8\linewidth]{pendulums.png}
-		\caption{dolor}	
-		\label{ref:subref_c}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=0.8\linewidth]{pendulums.png}
-		\caption{Wzlotów}
-		\label{ref:subref_d}
-	\end{subfigure}%
-\caption{Wykresy}
-\label{ref:ref}
-\end{figure}
-
-Możesz też z powodzeniem cytować literaturę pojedynczo
-\cite{watki_jak_pisac} lub kilka pozycji na raz
-\cite{bworld,watki_jak_pisac}. Jeśli chcesz to robić wygodniej załóż tzw, plik bibtex, ale możesz też pracować tak, jak w tym dokumencie.
-
-\subsection{Praca dyplomowa - poprawki}
-
-Przy poprawianiu tekstu pracy pracuję z (luźno stosowanymi) znakami
-korektorskimi, proszę o zapoznanie się z nimi (dokument z opisem w repozytorium).
-
-\newpage
-\subsection{Lorem ipsum}
-\subsubsection{Lorem ipsum}
- 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-
-
-\begin{equation} 
-\rho\left(\frac{\partial\vec v}{\partial t}+(\vec v\cdot\nabla)\vec v\right) =\rho\vec f - \nabla p + \mu\triangle\vec v, \label{rownanie}
-\end{equation} 
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-
-
-
-
-\begin{figure}[!ht]%
-\centering
-\includegraphics[scale=0.85]{logo.eps}
-\caption{Podpis rysunku, który jest obrazem wektorowym (EPS). \label{logotyp}}
-\qquad
-\end{figure}   
-
-
-
-
-\begin{figure}[!ht]%
-\centering
-\includegraphics[width=0.8\columnwidth]{pendulums.png}
-\caption{To jest rysunek drugi, kilkadziesiąt wahadeł podwójnych z syntezą dźwięku.\label{wahadla}}%
-%
-\qquad
-\end{figure}   
-
-
-
-\subsection{Lorem ipsum}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-.. in the figure \ref{Rysunek14}.
-W swojej pracy możesz odnosić się do równań np. do równania (\ref{rownanie}) lub do rysunków, zarówno wektorowych, patrz rys. (\ref{logotyp}) jak i bitmapowych (\ref{wahadla}).
-Możesz też z powodzeniem cytować literaturę pojedynczo
-\cite{watki_jak_pisac} lub kilka pozycji na raz
-\cite{watki_jak_pisac,watki_jak_pisac}. Jeśli chcesz to robić wygodniej załóż tzw, plik bibtex, ale możesz też pracować tak, jak w tym dokumencies .
+byłby możliwy do zrealizowania jeszcze 10 lat temu.
 
 \newpage
 
-\bibliographystyle{plain}
+\bibliographystyle{unsrt}
 \bibliography{bibliografia}
 
 

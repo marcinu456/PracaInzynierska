@@ -1,16 +1,29 @@
 \begin{thebibliography}{1}
 
-\bibitem{watki_jak_pisac}
-brak danych.
-\newblock title,
-  http://robsraspberrypi.blogspot.com/2016/01/raspberry-pi-python-threading.html.
+\bibitem{popularnosc_gogli}
+Steam.
+\newblock {Ankieta używanego sprzętu na steam}.
+\newblock \newline \url{https://store.steampowered.com/hwsurvey}.
+\newblock [].
 
-\bibitem{bworld}
-Ingo Lütkebohle.
-\newblock {BWorld Robot Control Software}.
-\newblock
-  \url{http://aiweb.techfak.uni-bielefeld.de/content/bworld-robot-control-software/},
-  2008.
-\newblock [Online; accessed 19-July-2008].
+\bibitem{PlayStation_VR2}
+Sony.
+\newblock {Zapowiedź PlayStation VR2}.
+\newblock \newline \url{https://www.playstation.com/pl-pl/ps-vr2/}.
+\newblock [].
+
+\bibitem{porownanie_gogli}
+VRcompare.
+\newblock {Compare Oculus Quest and Oculus Quest 2}.
+\newblock \newline
+  \url{https://vr-compare.com/compare?h1=pDTZ02PkT&h2=GeZ01ojF8}.
+\newblock [].
+
+\bibitem{Sprzedasz_gogli_VR}
+IDC.
+\newblock {AR/VR Headset Shipments Grew Dramatically in 2021}.
+\newblock \newline
+  \url{https://www.idc.com/getdoc.jsp?containerId=prUS48969722}.
+\newblock [].
 
 \end{thebibliography}
