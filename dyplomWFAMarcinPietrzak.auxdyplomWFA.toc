@@ -1,0 +1,7 @@
+\contentsline {section}{\numberline {1}Wstęp}{5}{}%
+\contentsline {subsection}{\numberline {1.1}Wprowadzenie}{5}{}%
+\contentsline {subsection}{\numberline {1.2}Cel i zakres pracy}{5}{}%
+\contentsline {subsection}{\numberline {1.3}Praca dyplomowa - poprawki}{6}{}%
+\contentsline {subsection}{\numberline {1.4}Lorem ipsum}{7}{}%
+\contentsline {subsubsection}{\numberline {1.4.1}Lorem ipsum}{7}{}%
+\contentsline {subsection}{\numberline {1.5}Lorem ipsum}{7}{}%
