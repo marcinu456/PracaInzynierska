@@ -6,15 +6,15 @@ The style file: unsrt.bst
 Reallocating 'name_of_file' (item size: 1) to 13 items.
 Database file #1: bibliografia.bib
 Warning--entry type for "popularnosc_gogli" isn't style-file defined
---line 2 of file bibliografia.bib
+--line 3 of file bibliografia.bib
 Warning--entry type for "PlayStation_VR2" isn't style-file defined
---line 10 of file bibliografia.bib
+--line 19 of file bibliografia.bib
 Warning--entry type for "porownanie_gogli" isn't style-file defined
---line 18 of file bibliografia.bib
+--line 35 of file bibliografia.bib
 Warning--entry type for "sprzedasz_gogli_VR" isn't style-file defined
---line 26 of file bibliografia.bib
+--line 51 of file bibliografia.bib
 Warning--entry type for "choroba_vr" isn't style-file defined
---line 34 of file bibliografia.bib
+--line 67 of file bibliografia.bib
 You've used 5 entries,
             1791 wiz_defined-function locations,
             467 strings with 4191 characters,
