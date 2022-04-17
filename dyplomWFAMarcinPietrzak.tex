@@ -8,7 +8,7 @@
 \usepackage{amsfonts}
 \usepackage{graphicx}
 \usepackage{geometry}
-\usepackage{color}
+\usepackage{xcolor}
 \usepackage{amssymb,amsmath}
 \usepackage{polski}
 \usepackage[T1]{fontenc}
@@ -221,7 +221,7 @@ byłby możliwy do zrealizowania jeszcze 10 lat temu.
 \section{Warstwa Użytkowa}
 
 \subsection{Wygląd i Obsługa programu}
-
+{\color{blue}
 Program do uruchomienia wymaga gogli VR np. Oculus Quest i kontrolerów ruchowych. Można poruszać się po planszy na dwa sposoby. Pierwszy polega na użyciu lewego thumbsticka dzięki czemu można poruszać się płynnie po planszy, podczas poruszania się po planszy zmniejsza się obraz aby osoby które mają chorobę symulatorową\cite{choroba_vr} lepiej znosiły takie poruszanie się po poziomie. Drugi natomiast polega na teleportacji, po naciśnięciu przycisku B na prawy kontrolerze i wybraniu miejsca planszy gdzie chcemy się teleportować, jest to sposób poruszania się bardziej przyjazny dla osób z chorobą symulatorową.
 
 \begin{figure}[!ht]%
@@ -242,40 +242,66 @@ Program do uruchomienia wymaga gogli VR np. Oculus Quest i kontrolerów ruchowyc
 \caption{Różny rodzaj poruszania się w programie}
 \label{ref:ref}
 \end{figure}
-
+}
 \subsection{Cześć Galerii Programu}
-
+{\color{blue}
 W tej części można poczytać i dowiedzieć się trochę o danym modelu. Swoim wyglądem przypomina to galerię obrazów, gdzie osoba podchodzi do danej ciekawostki i może ją przeczytać.
+}
 \subsection{Część pokazowa modeli programu programu}
-
+{\color{blue}
 Ta część galerii ma pokazać użytkownikowi programu w jaki sposób wygląda dany model w działaniu. Modele obsługuję się za pomocą kontrolerów ruchowych. W zależności od modelu interakcja wygląda trochę inaczej, szczegółowo każda zostanie omówiona w sekcji dotyczącej danego modelu. 
-
+}
 \section{Warstwa Programistyczna}
 
 \subsection{Unreal Engine 4}
+{\color{red}
+Program był pisany w silniku Unreal Engine 4, z powodu że korzystam z tego silnika na codzień w swojej pracy. Sam silnik wspiera też bez większym problemów gogle VR, dzięki pluginowi stworzonemu przez twórców silnika. UE4 jest silnikiem wszechstronnym, czyli nie musi byc wykorzystywany tylko do tworzenia gier. Sam silnik jest dość popularny wśród ludzi co oznacza, że w  i nie tylko można znaleźć ogrom materiałów do pomocy przy projekcie. UE4 posiada wbudowany język skryptowy zwany BluePrint, opiera się głównie bloczkach które łączą się miedzy sobą. Głównym celem BP jest chęć zdobycia widowni wśród ludzi którzy na codzień nie programują i wolą patrzeć na coś milszego dla oka. Nody są podobne do tych wykorzystywanych w blenderze. Projekt w UE4 nie musi się opierać tylko na nodach, można też większość rzeczy pisać w C++.
+\begin{figure}[!ht]%
+\centering
+\includegraphics[width=0.8\columnwidth]{graphics/BPExample.png}
+\caption{Przykładowy BluePrint w UE4
+\label{BPExample}}%
+%
+\qquad
+\end{figure}  
 
-Program był pisany w silniku Unreal Engine 4, z powodu że korzystam z tego silnika na codzień w swojej pracy. Sam silnik wspiera też bez większym problemów gogle VR, dzięki pluginowi stworzonemu przez twórców silnika. UE4 jest silnikiem wszechstronnym, czyli nie musi byc wykorzystywany tylko do tworzenia gier. Sam silnik jest dość popularny wsród ludzi co oznacza, że w  i nie tylko można znaleźć ogrom materiałów do pomocy przy projekcie. UE4 posiada wpudowany język skryptowy zwany BluePrint, opiera się głównie bloczkach które łączą się miedzy sobą. Głównym celem BP jest chęć zdobycia widowni wśród ludzi którzy na codzień nie programują i wolą patrzeć na coś milszego dla oka. Nody są podobne do tych wykorzystywanych w blenderze. Projekt w UE4 nie musi się opierać tylko na nodach, można też większość rzeczy pisać w C++.
-
+ Sam w silnik pozwala też na tworzenie poziomów w prosty i intuicyjny sposób, poprzez przeciąganie interesującego nas obiektu bezpośrednio na ekran a następnie, na jego obracanie czy nachylenie. W edytorze możemy też uruchomić interesujący na poziom i zobaczyć czy wszystko działa tak jak należy. Możemy też edytować materiał dla meshy na poziomię w podobny sposób jak tworzymy klasy aktorów, czyli poprzez nody. 
+}
 \subsection{Język C++}
+{\color{red}
+ UE4 pozwala też pisać klasy i funkcję w języku C++, a nie tylko w BP. Pisanie rzeczy C++ w UE4 nie różni się wiele od pisania w czystym C++, zaleca się oczywiście pisania rzeczy odwołujących się do biblioteki unrelea, co nie znaczy, że nie można niektóre pisać czysto w C++. Można oczywiście daną zmienną w klasie trzymać tylko w kodzie źródłowym, jeśli chcemy się odwołać do edytora UE4 i tam też coś robić musimy użyć specyfikator UPROPERTY przed zmienną i UFUNCTION przed funckja. Specyfikatory mają też dostępne opcję dzięki którym możemy np. edytować daną zmienna w edytorze lub podczas działania aplikacji. Najważniejszymi funckjami które dziedziczymi po klasach z biblioteki UE4 to Begin Play, Tick i EndPlay. BeginPlay uruchamia się kiedy dany aktor zostaję wywołany w czasię gry podsczas spawnu. Tick jest wywowyłany w każdym ticku życia aktora na poziomię. EndPlay jest wywoływany kiedy aktor kończy swój żywot. Danego aktora możemy zrobić czysto w C++ i tak samo go spawnować na levelu, ale lepiej jest stworzyć klasę dziedziczącą po nim w edytorze, staję się wtedy ona klasą BP którą możemy rozbudować o nowę funckje. Jeśli w klasię C++ stworzymy odwołonie do actor componenta, specjalna fuckcje (rozpisać co to), w klasię bp będzie widoczna jako odziedzicona po klasię C++.
 
+\begin{figure}[!ht]%
+\centering
+\includegraphics[width=0.8\columnwidth]{graphics/CppInherited.png}
+\caption{W nawiasie informacja, że odziedziczone z po klasie bazowej
+\label{CppInherited}}%
+%
+\qquad
+\end{figure}   
  
+  C++ pod względem działania funkcji jest szybszy od funkcji BP, więc z doświadczenia zalecam pisania głównie w nim i dopiero w mniejszym stopniu tworzyć jakieś małe funkcje pomocnicze w BP.
+  }
 
 \subsection{Oculus Quest}
-
-
+{\color{green} Warstwa sprzętu bardziej, potem napiszę co i jak}\\
+{\color{red}
+ Gogle VR z których korzystam to Oculus Quest 1. Aby komunikować się z nimy korzystam z obrogramowania storzonym przez firmę Oculus, dzięki niemu mogę obsługiwać gogle na komputerzę przez sieć WiFi, a nie przez podłączenie gogli po kablu do komputera. Gogle te nie potrzebują do pracy komputera, poniewasz są w pełni autonomiczne, cała technologia skrywa się w samych goglach, dzięki czemu nie są potrzebne stacje bazowe. Aby tworzyć programy na goglach nie trzeba się specjalnie męczyć, trzeba oczywiście stowrzyć sterowania i komunikajcę ze światem wirtualnym przystosowanym specjalnie pod sterowanie ruchowe, oraz dostosawnie grafiki, aby ilośc FPS nie spadała poniżej 72 i utrzymywała je stale na tej wartości, dzięki temu nie ma większych problemów z chorobą symulatorową dla większości osób
+}
 
 \section{Jakie modele się znajdują}
 
-\subsection{Gra w życie}
-\subsubsection{Gra w życie - kod}
 \subsection{Wahadło Podwójne}
 \subsubsection{Wahadło Podwójne - kod}
+\subsection{Gra w życie}
+\subsubsection{Gra w życie - kod}
 \subsection{Motyl}
 \subsubsection{Motyl - kod}
-\subsection{Model Agentowy}
-\subsubsection{Model Agentowy - kod}
 \subsection{Boids}
 \subsubsection{Boids - kod}
+\subsection{Model Agentowy}
+\subsubsection{Model Agentowy - kod}
+
 
 
 
@@ -289,6 +315,9 @@ Program był pisany w silniku Unreal Engine 4, z powodu że korzystam z tego sil
 \bibliographystyle{unsrt}
 \bibliography{bibliografia}
 
+{\color{blue} kolor blue: rozpisać}\\
+{\color{red} kolor red: edytować i może dodać}\\
+{\color{green} kolor green: wymyślić co dodać}
 
 \end{document}
 
