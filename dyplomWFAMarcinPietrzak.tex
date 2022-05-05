@@ -292,15 +292,41 @@ Program był pisany w silniku Unreal Engine 4, z powodu że korzystam z tego sil
 \section{Jakie modele się znajdują}
 
 \subsection{Wahadło Podwójne}
-\subsubsection{Wahadło Podwójne - kod}
+
+\begin{figure}[!ht]%
+\centering
+\includegraphics[width=0.5\columnwidth]{graphics/DoublePendulum.png}
+\caption{$\theta$ 1-2 kąty swobodne, m1 m2 masy obiektów, l1 l2 długości pręta
+\label{BPExample}}%
+%
+\qquad
+\end{figure}  
+
+
+Pierwszy model który umieściłem jest model wahadła podwójnego. Wahadło podwójne, jest wahadłem które ma przymocowane drugie wahadło na jego końcu. W wahadle tym punkty masy są na końcu każdego pręta o danej długości. Wahadła obracają się swobodnie w płaszczyźnie pionowej. Energię potencjalną wahadła podwójnego oblicza się jako odniesienie uniesionego wahadła do stanu zerowej energii potencjalnej w położeniu równowagi, Dlatego równanie ma następującą postać: V=m1gl1(1-costheta1)+m2g[l1-cos01)+l2(1-cos02)] Dużo pitu pitu potem dodaj
+
+W programie wahadło wygląda następująco:
+
+\begin{figure}[!ht]%
+\centering
+\includegraphics[width=0.5\columnwidth]{graphics/DoublePendulum.png}
+\caption{Wygląd w programie
+\label{BPExample}}%
+%
+\qquad
+\end{figure}  
+
+W programie została użyta metoda Eulera do ruchu wahadła. Za pomocą kontrolera ruchowego możemy ustawić ilość wahadeł oraz wystartować sam program
+
 \subsection{Gra w życie}
 \subsubsection{Gra w życie - kod}
 \subsection{Motyl}
 \subsubsection{Motyl - kod}
-\subsection{Boids}
-\subsubsection{Boids - kod}
 \subsection{Model Agentowy}
 \subsubsection{Model Agentowy - kod}
+\subsection{Boids}
+\subsubsection{Boids - kod}
+
 
 
 
