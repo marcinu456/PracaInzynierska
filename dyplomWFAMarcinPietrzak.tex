@@ -20,6 +20,8 @@
 \usepackage{listings}
 \usepackage[toc,page]{appendix}
 \usepackage{url}
+\usepackage{float}
+\usepackage{amsmath}
 \usepackage{indentfirst} % pierwszy akapit zawsze z wcięciem
 \usepackage{subcaption}	% kilka zdjęc w jednej lini
 \definecolor{codegreen}{rgb}{0.5, 0.09, 0.09}
@@ -191,7 +193,7 @@ spróbować swoich sił w stworzeniu małego projektu, który mógłby być wyko
 do pokazywania co ciekawego można robić w komputerze, czyli galerii modelów
 komputerowych.
 
-\begin{figure}[!ht]%
+\begin{figure}[H]%
 \centering
 \includegraphics[width=0.8\columnwidth]{graphics/OpenBrush.png}
 \caption{OpenBrush
@@ -256,7 +258,7 @@ Ta część galerii ma pokazać użytkownikowi programu w jaki sposób wygląda 
 \subsection{Unreal Engine 4}
 {\color{red}
 Program był pisany w silniku Unreal Engine 4, z powodu że korzystam z tego silnika na codzień w swojej pracy. Sam silnik wspiera też bez większym problemów gogle VR, dzięki pluginowi stworzonemu przez twórców silnika. UE4 jest silnikiem wszechstronnym, czyli nie musi byc wykorzystywany tylko do tworzenia gier. Sam silnik jest dość popularny wśród ludzi co oznacza, że w  i nie tylko można znaleźć ogrom materiałów do pomocy przy projekcie. UE4 posiada wbudowany język skryptowy zwany BluePrint, opiera się głównie bloczkach które łączą się miedzy sobą. Głównym celem BP jest chęć zdobycia widowni wśród ludzi którzy na codzień nie programują i wolą patrzeć na coś milszego dla oka. Nody są podobne do tych wykorzystywanych w blenderze. Projekt w UE4 nie musi się opierać tylko na nodach, można też większość rzeczy pisać w C++.
-\begin{figure}[!ht]%
+\begin{figure}[H]%
 \centering
 \includegraphics[width=0.8\columnwidth]{graphics/BPExample.png}
 \caption{Przykładowy BluePrint w UE4
@@ -271,7 +273,7 @@ Program był pisany w silniku Unreal Engine 4, z powodu że korzystam z tego sil
 {\color{red}
  UE4 pozwala też pisać klasy i funkcję w języku C++, a nie tylko w BP. Pisanie rzeczy C++ w UE4 nie różni się wiele od pisania w czystym C++, zaleca się oczywiście pisania rzeczy odwołujących się do biblioteki unrelea, co nie znaczy, że nie można niektóre pisać czysto w C++. Można oczywiście daną zmienną w klasie trzymać tylko w kodzie źródłowym, jeśli chcemy się odwołać do edytora UE4 i tam też coś robić musimy użyć specyfikator UPROPERTY przed zmienną i UFUNCTION przed funckja. Specyfikatory mają też dostępne opcję dzięki którym możemy np. edytować daną zmienna w edytorze lub podczas działania aplikacji. Najważniejszymi funckjami które dziedziczymi po klasach z biblioteki UE4 to Begin Play, Tick i EndPlay. BeginPlay uruchamia się kiedy dany aktor zostaję wywołany w czasię gry podsczas spawnu. Tick jest wywowyłany w każdym ticku życia aktora na poziomię. EndPlay jest wywoływany kiedy aktor kończy swój żywot. Danego aktora możemy zrobić czysto w C++ i tak samo go spawnować na levelu, ale lepiej jest stworzyć klasę dziedziczącą po nim w edytorze, staję się wtedy ona klasą BP którą możemy rozbudować o nowę funckje. Jeśli w klasię C++ stworzymy odwołonie do actor componenta, specjalna fuckcje (rozpisać co to), w klasię bp będzie widoczna jako odziedzicona po klasię C++.
 
-\begin{figure}[!ht]%
+\begin{figure}[H]%
 \centering
 \includegraphics[width=0.8\columnwidth]{graphics/CppInherited.png}
 \caption{W nawiasie informacja, że odziedziczone z po klasie bazowej
@@ -293,7 +295,7 @@ Program był pisany w silniku Unreal Engine 4, z powodu że korzystam z tego sil
 
 \subsection{Wahadło Podwójne}
 
-\begin{figure}[!ht]%
+\begin{figure}[H]%
 \centering
 \includegraphics[width=0.5\columnwidth]{graphics/DoublePendulum.png}
 \caption{$\theta$ 1-2 kąty swobodne, m1 m2 masy obiektów, l1 l2 długości pręta
@@ -303,11 +305,90 @@ Program był pisany w silniku Unreal Engine 4, z powodu że korzystam z tego sil
 \end{figure}  
 
 
-Pierwszy model który umieściłem jest model wahadła podwójnego. Wahadło podwójne, jest wahadłem które ma przymocowane drugie wahadło na jego końcu. W wahadle tym punkty masy są na końcu każdego pręta o danej długości. Wahadła obracają się swobodnie w płaszczyźnie pionowej. Energię potencjalną wahadła podwójnego oblicza się jako odniesienie uniesionego wahadła do stanu zerowej energii potencjalnej w położeniu równowagi, Dlatego równanie ma następującą postać: V=m1gl1(1-costheta1)+m2g[l1-cos01)+l2(1-cos02)] Dużo pitu pitu potem dodaj
+Pierwszy model który umieściłem jest model wahadła podwójnego. Wahadło podwójne, jest wahadłem które ma przymocowane drugie wahadło na jego końcu. W wahadle tym punkty masy są na końcu każdego pręta o danej długości. Wahadła obracają się swobodnie w płaszczyźnie pionowej. Energię potencjalną wahadła podwójnego oblicza się jako odniesienie uniesionego wahadła do stanu zerowej energii potencjalnej w położeniu równowagi, Dlatego równanie ma następującą postać: 
+
+\begin{equation} 
+V=m_1gl_1(1-\cos\theta_1)+m_2g[l_1(1-\cos\theta_1)+l_2(1-\cos\theta_2)]
+\end{equation}
+
+W celu sformułowania równania energii kinetycznej wykorzystamy wyprowadzenie współrzędnych x i y układu, które przedstawiono poniżej:
+
+\begin{equation}
+\begin{split} 
+x_2=l_1\sin\theta_1+l_2\sin\theta_2\\
+y_2=l_1\cos\theta_1-l_2\cos\theta_2
+\end{split}
+\end{equation}
+
+Po wyprowadzeniu i zsumowaniu wyrażeń możemy określić ostateczną postać energii kinetycznej:
+
+\begin{equation}
+\begin{split} 
+K=\frac{1}{2}m_1l_1^2\dot{\theta_1^2}+\frac{1}{2}m_2l_1^2\dot{\theta_1^2}+\frac{1}{2}m_2l_2^2\dot{\theta_2^2}+m_2l_1l_2\cos(\theta_1-\theta_2)\dot{\theta_1}\dot{\theta_2}
+\end{split}
+\end{equation}
+
+
+Najprostsze równanie Lagrange ma postać:
+
+\begin{equation}
+\begin{split} 
+\frac{d}{dt}(\frac{\partial L}{d\dot{\theta_i}})-(\frac{\partial L}{d\theta_i})=0
+\end{split}
+\end{equation}
+
+Korzystając z równań Lagrange i dokonując odpowiednich podstawień, możemy sformułować sprzężone równanie ruchu dla podanego układu:
+
+\begin{equation}
+\begin{split} 
+\ddot{\theta_1}=-\frac{l_2}{\mu l_1} \ddot{\theta_2}\cos(\theta_1-\theta_2)-\frac{l_2}{\mu l_1}\dot{\theta_2^2} sin(\theta_1-\theta_2)-\frac{g}{l_1}\sin\theta_1\\
+\ddot{\theta_2}=-\frac{l_1}{l_2} \ddot{\theta_1}\cos(\theta_1-\theta_2)-\frac{l_1}{l_2}\dot{\theta_1^2} sin(\theta_1-\theta_2)-\frac{g}{l_2}\sin\theta_2\\
+\end{split}
+\end{equation}
+
+gdzie:
+\begin{equation}
+\begin{split} 
+\mu=1+(m_1+m_2)
+\end{split}
+\end{equation}
+
+Aby zdekomponować pojęcia przyspieszenia kątowego, podstawiamy je, wstawiając drugie równanie do pierwszego i odwrotnie, otrzymujemy: 
+
+\begin{equation}
+\begin{split} 
+\ddot{\theta_1}=\frac{g(\sin\theta_2\cos(\theta_1-\theta_2)-\mu\sin\theta_1)
+-(l_2\dot{\theta_2^2}+l_1\dot{\theta_1^2}\cos(\theta_1-\theta_2))\sin(\theta_1-\theta_2)}{l_1(\mu-\cos^2(\theta_1-\theta_2))}
+\\
+\ddot{\theta_1}=\frac{g\mu(\sin\theta_1\cos(\theta_1-\theta_2)-\sin\theta_2)
+-(\mu l_1\dot{\theta_1^2}+l_2\dot{\theta_2^2}\cos(\theta_1-\theta_2))\sin(\theta_1-\theta_2)}
+{l_2(\mu-\cos^2(\theta_1-\theta_2))}
+\\
+\end{split}
+\end{equation}
+
+
+ nowych zmienny w1 i w2 pozwala na sformułowanie czterech równań co ułatwia rozwiązanie numeryczne:
+ 
+ 
+\begin{equation}
+\begin{split} 
+\dot{\theta_1}=\omega_1\\\\
+\omega_1=\frac{g(\sin\theta_2\cos(\theta_1-\theta_2)-\mu\sin\theta_1)
+-(l_2\dot{\theta_2^2}+l_1\dot{\theta_1^2}\cos(\theta_1-\theta_2))\sin(\theta_1-\theta_2)}{l_1(\mu-\cos^2(\theta_1-\theta_2))}
+\\
+\dot{\theta_1}=\omega_2\\\\
+\omega_2=\frac{g\mu(\sin\theta_1\cos(\theta_1-\theta_2)-\sin\theta_2)
+-(\mu l_1\dot{\theta_1^2}+l_2\dot{\theta_2^2}\cos(\theta_1-\theta_2))\sin(\theta_1-\theta_2)}
+{l_2(\mu-\cos^2(\theta_1-\theta_2))}
+\\
+\end{split}
+\end{equation}
+
 
 W programie wahadło wygląda następująco:
 
-\begin{figure}[!ht]%
+\begin{figure}[H]%
 \centering
 \includegraphics[width=0.5\columnwidth]{graphics/DoublePendulum.png}
 \caption{Wygląd w programie
