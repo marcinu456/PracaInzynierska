@@ -63,6 +63,11 @@
     {8}{{{\color{gray}8}}}1
     {9}{{{\color{gray}9}}}1
 }
+\lstset { %
+    language=C++,
+    backgroundcolor=\color{black!5}, % set backgroundcolor
+    basicstyle=\footnotesize,% basic font setting
+}
 %------------------------------------------------------------
 \begin{document}
 
@@ -286,7 +291,7 @@ Program był pisany w silniku Unreal Engine 4, z powodu że korzystam z tego sil
   }
 
 \subsection{Oculus Quest}
-{\color{green} Warstwa sprzętu bardziej, potem napiszę co i jak}\\
+
 {\color{red}
  Gogle VR z których korzystam to Oculus Quest 1. Aby komunikować się z nimy korzystam z obrogramowania storzonym przez firmę Oculus, dzięki niemu mogę obsługiwać gogle na komputerzę przez sieć WiFi, a nie przez podłączenie gogli po kablu do komputera. Gogle te nie potrzebują do pracy komputera, poniewasz są w pełni autonomiczne, cała technologia skrywa się w samych goglach, dzięki czemu nie są potrzebne stacje bazowe. Aby tworzyć programy na goglach nie trzeba się specjalnie męczyć, trzeba oczywiście stowrzyć sterowania i komunikajcę ze światem wirtualnym przystosowanym specjalnie pod sterowanie ruchowe, oraz dostosawnie grafiki, aby ilośc FPS nie spadała poniżej 72 i utrzymywała je stale na tej wartości, dzięki temu nie ma większych problemów z chorobą symulatorową dla większości osób
 }
@@ -383,21 +388,168 @@ Aby zdekomponować pojęcia przyspieszenia kątowego, podstawiamy je, wstawiają
 {l_2(\mu-\cos^2(\theta_1-\theta_2))}
 \\
 \end{split}
+\label{computeAnglesEuler}
 \end{equation}
 
 
-W programie wahadło wygląda następująco:
+\subsubsection{Wahadło podwójne - kod}
+
+
+W C++ kod wahadła składa się z trzech klas: Pendulum, PendulumSpawn, PendulumControl
+
+W klasie Pendulum, wahadło podwójne jest stworzone z Spline, na podstawie danych pozycji X i Y jest aktualizowany co klatkę. Na początku wahadło podwójne jest tworzone na podstawie otrzymanych wartości w metodzie SetParameters
+
+\begin{lstlisting}
+void SetParameters(double _theta0, double _length0, double _mass0, double _theta1, double _length1, double _mass1);
+\end{lstlisting}
+
+Na podstawie tych równań (\ref{computeAnglesEuler}) stworzyłem metodę która obliczą theta wahadeł do obliczenia ich obecnej pozycji w programie:
+
+\begin{lstlisting}
+void APendulum::computeAnglesEuler(float dt)
+{
+	double u = 1 + mass0 + mass1;
+	theta0bis =
+		(g * (sin(theta1) * cos(theta0 - theta1) - u * sin(theta0))
+			- (length1 * pow(theta1prim, 2) + length0 * pow(theta0prim, 2) * cos(theta0 - theta1)) * sin(theta0 - theta1))
+		/ (length0 * (u - pow(cos(theta0 - theta1), 2)));
+	theta1bis =
+		(g * u * (sin(theta0) * cos(theta0 - theta1) - sin(theta1)) + (u * length0 * pow(theta0prim, 2)
+			+ length1 * pow(theta1prim, 2) * cos(theta0 - theta1)) * sin(theta0 - theta1))
+		/ (length1 * (u - pow(cos(theta0 - theta1), 2)));
+
+
+	theta0prim = theta0prim + theta0bis * dt;
+	theta1prim = theta1prim + theta1bis * dt;
+
+	theta0 = theta0 + theta0prim * dt;
+	theta1 = theta1 + theta1prim * dt;
+}
+\end{lstlisting}
+
+
+Następnie wyliczone wartości są wykorzystywane do obliczania pozycji wahadła w metodzie computePosition i aktualizowana jest w nim pozycja Spline:
+
+\begin{lstlisting}
+void APendulum::computePosition()
+{
+	x0 = px + length0 * FMath::Sin(theta0);
+	y0 = py + length0 * FMath::Cos(theta0);
+
+	x1 = x0 + length1 * FMath::Sin(theta1);
+	y1 = y0 + length1 * FMath::Cos(theta1);
+	auto Frector = GetActorLocation();
+	FVector StarPos1 = { Frector.X, px,py, };
+	FVector EndPos1 = { Frector.X, x0, y0, };
+
+	//FVector StarPos2 = { x0, y0,Frector.Z+150 };
+	FVector EndPos2 = { Frector.X,x1, y1, };
+
+	TArray<FVector> Path;
+	Path.Add(StarPos1);
+	Path.Add(EndPos1);
+	Path.Add(EndPos2);
+
+	FirstColumn->ClearSplinePoints(false);
+	int32 index = 0;
+	for (auto& Point : Path)
+	{
+		FVector LocalPosition = FirstColumn->GetComponentTransform().InverseTransformPosition(Point);
+		FirstColumn->AddPoint(FSplinePoint(index, LocalPosition, ESplinePointType::Constant), false);
+		index++;
+	}
+
+	FirstColumn->UpdateSpline();
+
+	int32 SegmentNum = Path.Num() - 1;
+	for (int32 i = 0; i < SegmentNum; ++i)
+	{
+		if (ColumnsPathMeshPool.Num() <= i)
+		{
+			USplineMeshComponent* SplineMesh = NewObject<USplineMeshComponent>(this);
+			SplineMesh->SetMobility(EComponentMobility::Movable);
+			SplineMesh->AttachToComponent(FirstColumn, FAttachmentTransformRules::KeepRelativeTransform);
+			SplineMesh->SetStaticMesh(FirstColumnArchMesh);
+			SplineMesh->SetMaterial(0, FirstColumnArchMaterial);
+			SplineMesh->RegisterComponent();
+
+			ColumnsPathMeshPool.Add(SplineMesh);
+		}
+
+		USplineMeshComponent* SplineMesh = ColumnsPathMeshPool[i];
+		SplineMesh->SetVisibility(true);
+
+		FVector StarPos, StartTangent, EndPos, EndTangent;
+		FVector Tangent = { 0,0,0 };
+		FirstColumn->GetLocalLocationAndTangentAtSplinePoint(i, StarPos, StartTangent);
+		FirstColumn->GetLocalLocationAndTangentAtSplinePoint(i + 1, EndPos, EndTangent);
+		SplineMesh->SetStartAndEnd(StarPos, Tangent, EndPos, Tangent);
+
+	}
+
+}
+\end{lstlisting}
+
+Klasa PendulumSpawn jest odpowiedzialna za dodawanie i usuwanie wahadeł oraz jest odpowiedzialna za uruchamianie i resetowanie wszystkich aktualnych wahadeł na scenie
+Klasa ma też wskaźnik na klasę PendulumControl która ta jest odpowiedzialna za stworzenie UI dzięki któremu użytkownik może obsługiwać wahadła.
+
+\subsubsection{Wahadło podwójne UE4}
+Na podstawie powyższych klas zostały stworzone klasy BluePrintowe które można potem umieścić w na poziomie w programie. BP-Pendulum ma tylko informację o tym jak Spline ma wyglądać w świecie gry:
 
 \begin{figure}[H]%
 \centering
-\includegraphics[width=0.5\columnwidth]{graphics/DoublePendulum.png}
-\caption{Wygląd w programie
+\includegraphics[width=0.7\columnwidth]{graphics/PendulumBP.png}
+\caption{Ustawiony mesh i tekstura dla wahadła 
 \label{BPExample}}%
 %
 \qquad
 \end{figure}  
 
-W programie została użyta metoda Eulera do ruchu wahadła. Za pomocą kontrolera ruchowego możemy ustawić ilość wahadeł oraz wystartować sam program
+BP-PendulumSpawn jest aktorem który zostaje umieszczony na poziomie, trzeba tylko ustawić w nim informację o wahadle które chcemy stworzyć na poziomie oraz jaki widget chcemy umieścić by można za jego pomocą sterować wahadłami.
+
+\begin{figure}[H]%
+\centering
+\includegraphics[width=0.7\columnwidth]{graphics/PendulumSpawnerBP.png}
+\caption{Ustawione wahadło do stworzenia i widget 
+\label{BPExample}}%
+%
+\qquad
+\end{figure}  
+
+Klasa WBP-PendulumControl jest odpowiedzialna kontakt miedzy użytkownikiem a programem, klasa ta jest widgetem dzięki któremu poprzez najechanie kontrolerem ruchowym na odpowiednie opcje możemy dodać lub usunąć wahadło oraz włączyć lub zresetować wszystkie wahadła podpięte pod dany spawner 
+
+\begin{figure}[H]%
+\centering
+\includegraphics[width=0.7\columnwidth]{graphics/PendulumControlBP.png}
+\caption{Wygląd widgetu w programie
+\label{BPExample}}%
+%
+\qquad
+\end{figure}  
+
+\subsubsection{Wygląd w programie}
+W programie wahadło wygląda następująco:
+
+
+\begin{figure}[H]%
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics/PendulumInUE_1.png}
+		\caption{Wahadła na początku symulacji}	
+		\label{ref:subref_a}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics/PendulumInUE_2.png}
+		\caption{Wahadła na końcu symulacji}
+		\label{ref:subref_b}
+	\end{subfigure}%
+	
+
+\caption{Działanie programu}
+\label{ref:ref}
+\end{figure}
 
 \subsection{Gra w życie}
 \subsubsection{Gra w życie - kod}
