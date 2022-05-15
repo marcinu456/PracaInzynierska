@@ -552,7 +552,76 @@ W programie wahadło wygląda następująco:
 \end{figure}
 
 \subsection{Gra w życie}
+
+Gra w życie została wymyślona w 1970 przez Johna Conwaya zainpirowany pracami Stanisława Ulmana. Gra w życie jest automatem komórkowym, czyli jest to system składający się z pojedynczych komórek działający według określonych reguł. W przypadku gry w życie, dana komórka, ma ośmiu sąsiadów przylegających do niej bokami i rogami w jednej chwili może być żywa lub martwa, a to czy żyje określają 4 zasady:\\
+1.Żywa komórka, która ma mniej niż dwóch sąsiadów, w kolejnym kroku umiera. \\
+2.Żywa komórka, która ma więcej niż trzech sąsiadów, umiera.\\
+3.Żywa komórka, która ma dwóch lub trzech sąsiadów – przeżywa.\\
+4.Martwa komórka, która ma trzech żywych sąsiadów – ożywa.\\
+
+Gra w życię nie jest do końca grą, rola "gracza" ogranicza się ustawienia stanu początkowego planszy, poprzez ożywianie lub uśmiercanie danej komórki.
+
+
 \subsubsection{Gra w życie - kod}
+
+W C++ kod gry w życie składa się z trzech klas: CellActor, GridActor, GameOfLifeControl
+
+CellActor jest klasą w której znajdują się informację o jednej komórce znajdującej w siatce. Sama w sobie ma informację o swoim położeniu X i Y na siatce 2D, o swoim obecnym stanie życia oraz o stanie życia w następnej klatce trwania programu. 
+Kiedy użytkownik najedzie na daną komórkę i kliknie spust w metodzie Clicked zmieni stan początkowy komórki z martwą na żywą i vice versa.
+\begin{lstlisting}
+void ACellActor::Clicked()
+{
+		if (Alive) {
+			StaticMeshComponent->SetMaterial(0, BeginCursorOverMaterial);
+			Alive = false;
+		}
+		else {
+			StaticMeshComponent->SetMaterial(0, ClickedMaterial);
+			Alive = true;
+		}
+}
+\end{lstlisting}
+
+W metodzie Update która jest wykorzystywana przez GridActora podbnie jak w metodzie Clicked na podstawie zmiennej AliveNext używia, pozostawia przy życiu lub uśmierca daną komórkę
+
+\begin{lstlisting} 
+void ACellActor::Update()
+{
+	if (AliveNext) {
+		StaticMeshComponent->SetMaterial(0, ClickedMaterial);
+		Alive = true;
+		SetActorHiddenInGame(false);
+	}
+	else {
+		SetActorHiddenInGame(true);
+		StaticMeshComponent->SetMaterial(0, EndCursorOverMaterial);
+		Alive = false;
+	}
+}
+\end{lstlisting}
+
+
+Klasa ma też Gettery i Settery odpowiedzialne, za branie informacji o obebcnym stanie komórki jak i o jej stanie w następnej klatce
+\begin{lstlisting}
+	bool GetAlive() const {
+		return Alive;
+	}
+	void SetAlive(const bool IsAlive) {
+		this->Alive = IsAlive;
+	}
+
+	bool GetAliveNext() const {
+		return AliveNext;
+	}
+	void SetAliveNext(const bool IsAliveNext)
+	{
+		this->AliveNext = IsAliveNext;
+	}
+\end{lstlisting}
+
+Klasa GridActor
+
+
 \subsection{Motyl}
 \subsubsection{Motyl - kod}
 \subsection{Model Agentowy}
