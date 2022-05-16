@@ -493,8 +493,8 @@ void APendulum::computePosition()
 Klasa PendulumSpawn jest odpowiedzialna za dodawanie i usuwanie wahadeł oraz jest odpowiedzialna za uruchamianie i resetowanie wszystkich aktualnych wahadeł na scenie
 Klasa ma też wskaźnik na klasę PendulumControl która ta jest odpowiedzialna za stworzenie UI dzięki któremu użytkownik może obsługiwać wahadła.
 
-\subsubsection{Wahadło podwójne UE4}
-Na podstawie powyższych klas zostały stworzone klasy BluePrintowe które można potem umieścić w na poziomie w programie. BP-Pendulum ma tylko informację o tym jak Spline ma wyglądać w świecie gry:
+\subsubsection{Wahadło podwójne - UE4}
+Na podstawie powyższych klas zostały stworzone klasy BluePrintowe które można potem umieścić w na poziomie w programie. BP\_Pendulum ma tylko informację o tym jak Spline ma wyglądać w świecie gry:
 
 \begin{figure}[H]%
 \centering
@@ -516,7 +516,7 @@ BP\_PendulumSpawn jest aktorem który zostaje umieszczony na poziomie, trzeba ty
 \qquad
 \end{figure}  
 
-Klasa WBP-PendulumControl jest odpowiedzialna kontakt miedzy użytkownikiem a programem, klasa ta jest widgetem dzięki któremu poprzez najechanie kontrolerem ruchowym na odpowiednie opcje możemy dodać lub usunąć wahadło oraz włączyć lub zresetować wszystkie wahadła podpięte pod dany spawner 
+Klasa WBP\_PendulumControl jest odpowiedzialna kontakt miedzy użytkownikiem a programem, klasa ta jest widgetem dzięki któremu poprzez najechanie kontrolerem ruchowym na odpowiednie opcje możemy dodać lub usunąć wahadło oraz włączyć lub zresetować wszystkie wahadła podpięte pod dany spawner 
 
 \begin{figure}[H]%
 \centering
@@ -527,7 +527,7 @@ Klasa WBP-PendulumControl jest odpowiedzialna kontakt miedzy użytkownikiem a pr
 \qquad
 \end{figure}  
 
-\subsubsection{Wygląd w programie}
+\subsubsection{Wahadło podwójne - Wygląd w programie}
 W programie wahadło wygląda następująco:
 
 
@@ -619,8 +619,131 @@ Klasa ma też Gettery i Settery odpowiedzialne, za branie informacji o obebcnym 
 	}
 \end{lstlisting}
 
-Klasa GridActor
+Klasa GridActor jest odpowiedzialna za tworzenie siatki 2D z klasy CellActor o podanej wielkości. W samej klasie dzieją się też wszystkie obliczenia związane z działaniem gry w życie od obliczania obecnie żyjących sąsiadów danej komórki w metodzie CountAliveNeighbors(const int i, const int j)
 
+\begin{lstlisting}
+int AGridActor::CountAliveNeighbors(const int i, const int j) {
+	int NumAliveNeighbors = 0;
+	for (int k = -1; k <= 1; k++) {
+		for (int l = -1; l <= 1; l++) {
+			if (!(l == 0 && k == 0)) {
+				const int effective_i = i + k;
+				const int effective_j = j + l;
+				if ((effective_i >= 0 && effective_i < Height) && (effective_j >= 0 && effective_j < Width)) {
+					if (CellActors[effective_j + effective_i * Width]->GetAlive()) {
+						NumAliveNeighbors++;
+					}
+				}
+			}
+		}
+	}
+	return NumAliveNeighbors;
+}
+\end{lstlisting}
+
+Następnie na podstawie obecnie żyjących sąsiadów i reguł jakie zostały ustawione w metodzie UpdateAliveNext(const int Index, const int NumAliveNeighbors) ustawiamy czy dana komórka w następnej klatce będzie żywa lub martwa
+
+\begin{lstlisting}
+void AGridActor::UpdateAliveNext(const int Index, const int NumAliveNeighbors) {
+	const bool IsAlive = CellActors[Index]->GetAlive();
+	if (IsAlive && (NumAliveNeighbors < 2))
+	{
+		CellActors[Index]->SetAliveNext(false);
+	}
+	else if (IsAlive && ((NumAliveNeighbors == 2) || (NumAliveNeighbors == 3)))
+	{
+		CellActors[Index]->SetAliveNext(true);
+	}
+	else if (IsAlive && (NumAliveNeighbors > 3))
+	{
+		CellActors[Index]->SetAliveNext(false);
+	}
+	else if (!IsAlive && (NumAliveNeighbors == 3))
+	{
+		CellActors[Index]->SetAliveNext(true);
+	}
+	else {
+		CellActors[Index]->SetAliveNext(CellActors[Index]->GetAlive());
+	}
+}
+\end{lstlisting}
+
+Stworzona została jeszcze wersja 3D GridActora którego jedyną różnicą jest to, że na została dodana też głębokość.
+
+Ostatnią klasą jest GameOfLifeControll która jest odpowiedzialna
+za stworzenie UI dzięki któremu użytkownik może włączyć grę w życie, zmienać szybkość działania symulacji oraz resetowania jej do stanu początkowego.
+
+\subsubsection{Gra w życie - UE4}
+
+Na podstawie powyższych klas zostały stworzone klasy BluePrintowe które można potem umieścić w na poziomie w programie. W BP\_CellActor ustawiamy jak dana komórka ma wyglądać w świecie gry i jak się zachować kiedy najedziemy na nią kontrolerem ruchowym:
+
+\begin{figure}[H]%
+	\centering
+	\begin{subfigure}{.45\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics/CellActorInUE_1.png}
+		\caption{Ustawiony mesh w programie dla komórki}	
+		\label{ref:subref_a}
+	\end{subfigure}%
+	\begin{subfigure}{.45\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics/CellActorInUE_2.png}
+		\caption{Ustawiony wygląd w programie podczas akcji}
+		\label{ref:subref_b}
+	\end{subfigure}%
+	
+
+\caption{Ustawienia dla CellActora w UE4}
+\label{ref:ref}
+\end{figure}
+
+BP\_GridActor2D jest klasą BluePrint która znajdzie się na poziomie gry. W klasie ustawiamy na jaką szerokość i wysokość ma zostać stworzona siatka składająca się z BP\_CellActor oraz dodajemy widget, dzięki któremu możemy sterować symulacją:
+
+\begin{figure}[H]%
+\centering
+\includegraphics[width=0.7\columnwidth]{graphics/GridActor2DInUE_1.png}
+\caption{Ustawienia BP\_GridActor2D 
+\label{BPExample}}%
+%
+\qquad
+\end{figure}  
+
+Na podobnej zasadzie działa BP\_GridActor3D w którym dochodzi jeszcze głębokość na którą możemy ustawić siatkę.\\
+
+Klasa WBP\_GameOfLifeControll jest odpowiedzialna kontakt miedzy użytkownikiem a programem, klasa ta jest widgetem dzięki któremu poprzez najechanie kontrolerem ruchowym na odpowiednie opcje możemy włączyć symulację, przyśpieszyć lub ją spowolnić oraz ją zresetować do stanu początkowego:
+
+\begin{figure}[H]%
+\centering
+\includegraphics[width=0.7\columnwidth]{graphics/GameOfLifeControllInUE_1.png}
+\caption{Wygląd widgetu w programie
+\label{BPExample}}%
+%
+\qquad
+\end{figure}  
+
+\subsubsection{Gra w życie - Wygląd w programie}
+W programie Gra w życie wygląda następująco:
+
+
+\begin{figure}[H]%
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics/GOLInUE_1.png}
+		\caption{Gra w życie podczas ustawia stanu początkowego}	
+		\label{ref:subref_a}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics/GOLInUE_2.png}
+		\caption{Gra w życie w trakcie trwania symulacji}
+		\label{ref:subref_b}
+	\end{subfigure}%
+	
+
+\caption{Działanie programu}
+\label{ref:ref}
+\end{figure}
 
 \subsection{Motyl}
 \subsubsection{Motyl - kod}
