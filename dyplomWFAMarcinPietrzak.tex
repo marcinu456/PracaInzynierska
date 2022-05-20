@@ -310,7 +310,7 @@ Program był pisany w silniku Unreal Engine 4, z powodu że korzystam z tego sil
 \end{figure}  
 
 
-Pierwszy model który umieściłem jest model wahadła podwójnego. Wahadło podwójne, jest wahadłem które ma przymocowane drugie wahadło na jego końcu. W wahadle tym punkty masy są na końcu każdego pręta o danej długości. Wahadła obracają się swobodnie w płaszczyźnie pionowej. Energię potencjalną wahadła podwójnego oblicza się jako odniesienie uniesionego wahadła do stanu zerowej energii potencjalnej w położeniu równowagi, Dlatego równanie ma następującą postać: 
+Pierwszy model który umieściłem jest model wahadła podwójnego. Wahadło podwójne, jest wahadłem które ma przymocowane drugie wahadło na jego końcu. \cite{double_pendulum} W wahadle tym punkty masy są na końcu każdego pręta o danej długości. Wahadła obracają się swobodnie w płaszczyźnie pionowej. Energię potencjalną wahadła podwójnego oblicza się jako odniesienie uniesionego wahadła do stanu zerowej energii potencjalnej w położeniu równowagi, Dlatego równanie ma następującą postać: 
 
 \begin{equation} 
 V=m_1gl_1(1-\cos\theta_1)+m_2g[l_1(1-\cos\theta_1)+l_2(1-\cos\theta_2)]
@@ -553,13 +553,13 @@ W programie wahadło wygląda następująco:
 
 \subsection{Gra w życie}
 
-Gra w życie została wymyślona w 1970 przez Johna Conwaya zainpirowany pracami Stanisława Ulmana. Gra w życie jest automatem komórkowym, czyli jest to system składający się z pojedynczych komórek działający według określonych reguł. W przypadku gry w życie, dana komórka, ma ośmiu sąsiadów przylegających do niej bokami i rogami w jednej chwili może być żywa lub martwa, a to czy żyje określają 4 zasady:\\
+Gra w życie została wymyślona w 1970 przez Johna Conwaya zainpirowany pracami Stanisława Ulmana. Gra w życie jest automatem komórkowym, czyli jest to system składający się z pojedynczych komórek działający według określonych reguł.\cite{game_of_life} W przypadku gry w życie, dana komórka, ma ośmiu sąsiadów przylegających do niej bokami i rogami w jednej chwili może być żywa lub martwa, a to czy żyje określają 4 zasady:\\
 1.Żywa komórka, która ma mniej niż dwóch sąsiadów, w kolejnym kroku umiera. \\
 2.Żywa komórka, która ma więcej niż trzech sąsiadów, umiera.\\
 3.Żywa komórka, która ma dwóch lub trzech sąsiadów – przeżywa.\\
 4.Martwa komórka, która ma trzech żywych sąsiadów – ożywa.\\
 
-Gra w życię nie jest do końca grą, rola "gracza" ogranicza się ustawienia stanu początkowego planszy, poprzez ożywianie lub uśmiercanie danej komórki.
+Gra w życię nie jest do końca grą, rola "gracza" ogranicza się ustawienia stanu początkowego planszy, poprzez ożywianie lub uśmiercanie danej komórki.\cite{game_of_life_wiki}
 
 
 \subsubsection{Gra w życie - kod}
@@ -745,8 +745,110 @@ W programie Gra w życie wygląda następująco:
 \label{ref:ref}
 \end{figure}
 
-\subsection{Motyl}
-\subsubsection{Motyl - kod}
+\subsection{Efekt Motyla}
+
+"Dowolny układ fizyczny, który zachowuje się nieokresowo, jest nieprzewidywalny." Są to słowa Edwarda Lorenza, meteorologa który jako pierwszy odkrył, że nie można zrobić dobrej prognozy pogody na dłużej niż kilka dni do przodu. W 1960 roku pracował on nad programem komputerowym który miał prognozować pogodę, na podstawie zbioru równań określających zależności między prędkością wiatru, temperaturą, ciśnieniem i wilgotnością. Gdy Lorenz testował swój program po wprowadzeniu danych i po wydrukowaniu wyniku w formie wykresu. Rozkład maksimów i minimów na wykresie wyglądał tak, jak się tego spodziewał Edward. Postanowił jednak ponownie zbadać wyniki, dlatego uruchomił program ponownie, wprowadzając jak myślał takie same wyniki. Okazało się jednak, że wyniki wyszły na odwrót. Po sprawdzeniu danych zauważył, że podał je w postaci przybliżonej z mniejszą liczbą cyfr po przecinku. Było to dla niego tak ciekawe, że spróbował to samo z innymi zbiorami danych i zaobserwował identyczne zjawisko. Lorenz w ten sposób odkrył "efekt motyla", gdzie dla pewnych układów deterministycznych nawet minimalne zmiany wartości danych początkowych zostają bardzo szybko wzmocnione i powodują ogromne zmiany w ewolucji układu\cite{burze_motyle}.
+
+\begin{figure}[H]%
+\centering
+\includegraphics[width=0.4\columnwidth]{graphics/Edward_lorenz.jpg}
+\caption{Edward Norton Lorenz 1917-2008 
+\label{BPExample}}%
+%
+\qquad
+\end{figure} 
+
+Obecnie układ Lorenza jest bardziej znany jako układ 3 nieliniowych
+równań różniczkowych:
+
+\begin{equation}
+\begin{split}
+\dot{x}=\sigma(y-x)\\
+\dot{y}=x(\rho-z)-y\\
+\dot{z}=xy-\beta z\\
+\end{split}
+\end{equation}
+
+gdzie:\\
+sigma - stała Prandtla,\\
+rho - stała Rayleigha,\\
+beta - obszar obejmujący równania\\
+sigma,rho,beta>0,\\
+Jednakże zwykle podaje się:\\
+sigma = 10, rho =8/3, beta jest zmienne.\\
+
+\subsubsection{Efekt Motyla - kod}
+
+Kod C++ składa się z dwóch klas ButterflyActor i ButterflySpawner.
+
+W ButterflyActor najważnejszą metodą jest Tick(float DeltaTime) w której poprzez rozwązanie wczęśniej pokazanych równań różniczkowych po przecałkowaniu. Następnie odpowiednio ustawiamy te równania dla pozycji X, Y i Z danego aktora\cite{motyle_cpp}
+
+\begin{lstlisting}
+void AButterflyActor::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	DeltaTime = ButterflyChange;
+	auto position = GetActorLocation();
+
+	position.X = (position.X + sigma * (position.Y - position.X) * DeltaTime);
+	position.Y = (position.Y + (-position.X * position.Z + rho * position.X - position.Y) * DeltaTime);
+	position.Z = (position.Z + (position.X * position.Y - beta * position.Z) * DeltaTime);
+
+	SetActorLocation(position);
+}
+\end{lstlisting}
+
+Jedyną rolą ButterflySpawner jest utworzenie tyle ButterflyActor ile zostanie mu zadane na początku, z drobną zmianą odległości dla każdego kolejnego aktora.
+
+
+\begin{lstlisting}
+	for (size_t i = 0; i < numberOfButterfly; i++)
+	{
+		const FVector Loc(Origin.X + i * 15, Origin.Y, Origin.Z);
+		AButterflyActor* const SpawnedActorRef = GetWorld()->SpawnActor<AButterflyActor>(ButterflyActor, Loc, GetActorRotation());
+		ButterflyActors.Add(SpawnedActorRef);
+	}
+\end{lstlisting}
+
+\subsubsection{Efekt Motyla - UE4}
+
+Na podstawie powyższych klas zostały stworzone klasy BluePrintowe które można potem umieścić w na poziomie w programie. W BP\_ButterflyActor dla którego stworzyłem efekt cząsteczkowy który zostawia ścieżką jaką poruszał się dany aktor.
+
+\begin{figure}[H]%
+\centering
+\includegraphics[width=0.7\columnwidth]{graphics/ButterflyParticleSystem.png}
+\caption{Wygląd menu do tworzenia efektów cząsteczkowych w UE4 
+\label{BPExample}}%
+%
+\qquad
+\end{figure} 
+
+
+W BP\_ButterflySpawner ustawiamy jakiego aktora chcemy ustawić na scenie, oraz ile motyli chcemy stworzyć.
+
+\begin{figure}[H]%
+\centering
+\includegraphics[width=0.7\columnwidth]{graphics/ButterflySpawner.png}
+\caption{Wygląd menu do tworzenia efektów cząsteczkowych w UE4 
+\label{BPExample}}%
+%
+\qquad
+\end{figure} 
+
+
+
+\subsubsection{Efekt Motyla - Wygląd w programie}
+W programie Efekt Motyla wygląda następująco:
+
+\begin{figure}[H]%
+\centering
+\includegraphics[width=0.7\columnwidth]{graphics/ButterflyInUE_1.png}
+\caption{Wygląd widgetu w programie
+\label{BPExample}}%
+%
+\qquad
+\end{figure}  
+
 \subsection{Model Agentowy}
 \subsubsection{Model Agentowy - kod}
 \subsection{Boids}

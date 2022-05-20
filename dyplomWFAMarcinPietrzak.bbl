@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{popularnosc_gogli}
 Steam.
@@ -31,6 +31,39 @@ IDC.
 \newblock {Choroba Symulatorowa}.
 \newblock \newline
   \url{https://vrpolska.eu/skad-sie-bierze-choroba-symulatorowa/}.
+\newblock [].
+
+\bibitem{double_pendulum}
+IDC.
+\newblock {Wahadło podwójne}.
+\newblock \newline
+  \url{https://web.archive.org/web/*/http://www.team.kdm.p.lodz.pl/master/Jankowski.pdf/}.
+\newblock [].
+
+\bibitem{game_of_life}
+IDC.
+\newblock {Gra w życie }.
+\newblock \newline
+  \url{https://www.sztucznainteligencja.org.pl/sztuczna-inteligencja-gra-w-zycie/}.
+\newblock [].
+
+\bibitem{game_of_life_wiki}
+IDC.
+\newblock {Gra w życie }.
+\newblock \newline \url{https://en.wikipedia.org/wiki/Conway's_Game_of_Life/}.
+\newblock [].
+
+\bibitem{burze_motyle}
+Paul Halpern.
+\newblock {O motylach i burzach}.
+\newblock \newline
+  \url{https://web.archive.org/web/20100909161235/http://czytelnia.onet.pl/0,1161316,do_czytania.html/}.
+\newblock [].
+
+\bibitem{motyle_cpp}
+Maciej Matyka.
+\newblock {Jak narysować Motyle Lorenza }.
+\newblock \newline \url{https://www.youtube.com/watch?v=XZ5QKKxHTXQ/}.
 \newblock [].
 
 \end{thebibliography}
