@@ -6,6 +6,7 @@
 \documentclass[a4paper,12pt,reqno]{article}
 %----------------------------------------------------------
 \usepackage{amsfonts}
+\usepackage{listings}
 \usepackage{graphicx}
 \usepackage{geometry}
 \usepackage{xcolor}
@@ -36,11 +37,11 @@
     keywordstyle=\color{blue},
     numberstyle=\tiny\color{codegray},
     stringstyle=\color{codepurple},
-		basicstyle=\footnotesize\fontfamily{cmtt}\selectfont,
+	basicstyle=\footnotesize\fontfamily{cmtt}\selectfont,
     breakatwhitespace=false,         
     breaklines=true,
     captionpos=b,
-		language=C++,
+	language=C++,
     keepspaces=true,                 
     numbers=left,                    
     numbersep=5pt,                  
@@ -49,7 +50,7 @@
     showtabs=false,                  
     tabsize=2
 }
- 
+
 \lstset{style=mystyle}
 \lstset{literate=%
     *{0}{{{\color{gray}0}}}1
@@ -602,7 +603,7 @@ void ACellActor::Update()
 
 
 Klasa ma też Gettery i Settery odpowiedzialne, za branie informacji o obebcnym stanie komórki jak i o jej stanie w następnej klatce
-\begin{lstlisting}
+\begin{lstlisting}[frame=single]  % Start your code-block
 	bool GetAlive() const {
 		return Alive;
 	}
@@ -617,6 +618,7 @@ Klasa ma też Gettery i Settery odpowiedzialne, za branie informacji o obebcnym 
 	{
 		this->AliveNext = IsAliveNext;
 	}
+
 \end{lstlisting}
 
 Klasa GridActor jest odpowiedzialna za tworzenie siatki 2D z klasy CellActor o podanej wielkości. W samej klasie dzieją się też wszystkie obliczenia związane z działaniem gry w życie od obliczania obecnie żyjących sąsiadów danej komórki w metodzie CountAliveNeighbors(const int i, const int j)
