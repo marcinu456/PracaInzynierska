@@ -25,45 +25,47 @@ Warning--entry type for "burze_motyle" isn't style-file defined
 --line 74 of file bibliografia.bib
 Warning--entry type for "motyle_cpp" isn't style-file defined
 --line 82 of file bibliografia.bib
-You've used 10 entries,
+Warning--entry type for "agent_examples" isn't style-file defined
+--line 90 of file bibliografia.bib
+You've used 11 entries,
             1791 wiz_defined-function locations,
-            483 strings with 4792 characters,
-and the built_in function-call counts, 1362 in all, are:
-= -- 120
-> -- 40
+            487 strings with 4938 characters,
+and the built_in function-call counts, 1496 in all, are:
+= -- 132
+> -- 44
 < -- 0
-+ -- 20
-- -- 10
++ -- 22
+- -- 11
 * -- 2
-:= -- 221
-add.period$ -- 40
-call.type$ -- 10
-change.case$ -- 10
+:= -- 242
+add.period$ -- 44
+call.type$ -- 11
+change.case$ -- 11
 chr.to.int$ -- 0
-cite$ -- 10
-duplicate$ -- 50
-empty$ -- 181
-format.name$ -- 10
-if$ -- 321
+cite$ -- 11
+duplicate$ -- 55
+empty$ -- 199
+format.name$ -- 11
+if$ -- 353
 int.to.chr$ -- 0
-int.to.str$ -- 10
+int.to.str$ -- 11
 missing$ -- 0
-newline$ -- 63
-num.names$ -- 10
-pop$ -- 70
+newline$ -- 69
+num.names$ -- 11
+pop$ -- 77
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 19
+skip$ -- 21
 stack$ -- 0
 substring$ -- 0
-swap$ -- 10
+swap$ -- 11
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 10
-width$ -- 12
-write$ -- 112
-(There were 10 warnings)
+while$ -- 11
+width$ -- 13
+write$ -- 123
+(There were 11 warnings)

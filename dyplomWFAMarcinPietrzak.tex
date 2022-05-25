@@ -398,98 +398,14 @@ Aby zdekomponować pojęcia przyspieszenia kątowego, podstawiamy je, wstawiają
 
 W C++ kod wahadła składa się z trzech klas: Pendulum, PendulumSpawn, PendulumControl
 
-W klasie Pendulum, wahadło podwójne jest stworzone z Spline, na podstawie danych pozycji X i Y jest aktualizowany co klatkę. Na początku wahadło podwójne jest tworzone na podstawie otrzymanych wartości w metodzie SetParameters
+W klasie Pendulum, wahadło podwójne jest stworzone z Spline, na podstawie danych pozycji X i Y jest aktualizowany co klatkę. Na podstawie tych równań (\ref{computeAnglesEuler}) stworzyłem metodę która obliczą theta wahadeł do obliczenia ich obecnej pozycji w programie:
 
-\begin{lstlisting}
-void SetParameters(double _theta0, double _length0, double _mass0, double _theta1, double _length1, double _mass1);
-\end{lstlisting}
-
-Na podstawie tych równań (\ref{computeAnglesEuler}) stworzyłem metodę która obliczą theta wahadeł do obliczenia ich obecnej pozycji w programie:
-
-\begin{lstlisting}
-void APendulum::computeAnglesEuler(float dt)
-{
-	double u = 1 + mass0 + mass1;
-	theta0bis =
-		(g * (sin(theta1) * cos(theta0 - theta1) - u * sin(theta0))
-			- (length1 * pow(theta1prim, 2) + length0 * pow(theta0prim, 2) * cos(theta0 - theta1)) * sin(theta0 - theta1))
-		/ (length0 * (u - pow(cos(theta0 - theta1), 2)));
-	theta1bis =
-		(g * u * (sin(theta0) * cos(theta0 - theta1) - sin(theta1)) + (u * length0 * pow(theta0prim, 2)
-			+ length1 * pow(theta1prim, 2) * cos(theta0 - theta1)) * sin(theta0 - theta1))
-		/ (length1 * (u - pow(cos(theta0 - theta1), 2)));
-
-
-	theta0prim = theta0prim + theta0bis * dt;
-	theta1prim = theta1prim + theta1bis * dt;
-
-	theta0 = theta0 + theta0prim * dt;
-	theta1 = theta1 + theta1prim * dt;
-}
-\end{lstlisting}
+\lstinputlisting[caption=Obliczanie wartości theta, label={lst:listing-cpp}, language=C++]{code/doublependulum/ComputeAnglesEuler.cpp}
 
 
 Następnie wyliczone wartości są wykorzystywane do obliczania pozycji wahadła w metodzie computePosition i aktualizowana jest w nim pozycja Spline:
 
-\begin{lstlisting}
-void APendulum::computePosition()
-{
-	x0 = px + length0 * FMath::Sin(theta0);
-	y0 = py + length0 * FMath::Cos(theta0);
-
-	x1 = x0 + length1 * FMath::Sin(theta1);
-	y1 = y0 + length1 * FMath::Cos(theta1);
-	auto Frector = GetActorLocation();
-	FVector StarPos1 = { Frector.X, px,py, };
-	FVector EndPos1 = { Frector.X, x0, y0, };
-
-	//FVector StarPos2 = { x0, y0,Frector.Z+150 };
-	FVector EndPos2 = { Frector.X,x1, y1, };
-
-	TArray<FVector> Path;
-	Path.Add(StarPos1);
-	Path.Add(EndPos1);
-	Path.Add(EndPos2);
-
-	FirstColumn->ClearSplinePoints(false);
-	int32 index = 0;
-	for (auto& Point : Path)
-	{
-		FVector LocalPosition = FirstColumn->GetComponentTransform().InverseTransformPosition(Point);
-		FirstColumn->AddPoint(FSplinePoint(index, LocalPosition, ESplinePointType::Constant), false);
-		index++;
-	}
-
-	FirstColumn->UpdateSpline();
-
-	int32 SegmentNum = Path.Num() - 1;
-	for (int32 i = 0; i < SegmentNum; ++i)
-	{
-		if (ColumnsPathMeshPool.Num() <= i)
-		{
-			USplineMeshComponent* SplineMesh = NewObject<USplineMeshComponent>(this);
-			SplineMesh->SetMobility(EComponentMobility::Movable);
-			SplineMesh->AttachToComponent(FirstColumn, FAttachmentTransformRules::KeepRelativeTransform);
-			SplineMesh->SetStaticMesh(FirstColumnArchMesh);
-			SplineMesh->SetMaterial(0, FirstColumnArchMaterial);
-			SplineMesh->RegisterComponent();
-
-			ColumnsPathMeshPool.Add(SplineMesh);
-		}
-
-		USplineMeshComponent* SplineMesh = ColumnsPathMeshPool[i];
-		SplineMesh->SetVisibility(true);
-
-		FVector StarPos, StartTangent, EndPos, EndTangent;
-		FVector Tangent = { 0,0,0 };
-		FirstColumn->GetLocalLocationAndTangentAtSplinePoint(i, StarPos, StartTangent);
-		FirstColumn->GetLocalLocationAndTangentAtSplinePoint(i + 1, EndPos, EndTangent);
-		SplineMesh->SetStartAndEnd(StarPos, Tangent, EndPos, Tangent);
-
-	}
-
-}
-\end{lstlisting}
+\lstinputlisting[caption=Aktualizacja pozycji wahadła, label={lst:listing-cpp}, language=C++]{code/doublependulum/ComputePosition.cpp}
 
 Klasa PendulumSpawn jest odpowiedzialna za dodawanie i usuwanie wahadeł oraz jest odpowiedzialna za uruchamianie i resetowanie wszystkich aktualnych wahadeł na scenie
 Klasa ma też wskaźnik na klasę PendulumControl która ta jest odpowiedzialna za stworzenie UI dzięki któremu użytkownik może obsługiwać wahadła.
@@ -569,106 +485,25 @@ W C++ kod gry w życie składa się z trzech klas: CellActor, GridActor, GameOfL
 
 CellActor jest klasą w której znajdują się informację o jednej komórce znajdującej w siatce. Sama w sobie ma informację o swoim położeniu X i Y na siatce 2D, o swoim obecnym stanie życia oraz o stanie życia w następnej klatce trwania programu. 
 Kiedy użytkownik najedzie na daną komórkę i kliknie spust w metodzie Clicked zmieni stan początkowy komórki z martwą na żywą i vice versa.
-\begin{lstlisting}
-void ACellActor::Clicked()
-{
-		if (Alive) {
-			StaticMeshComponent->SetMaterial(0, BeginCursorOverMaterial);
-			Alive = false;
-		}
-		else {
-			StaticMeshComponent->SetMaterial(0, ClickedMaterial);
-			Alive = true;
-		}
-}
-\end{lstlisting}
 
-W metodzie Update która jest wykorzystywana przez GridActora podbnie jak w metodzie Clicked na podstawie zmiennej AliveNext używia, pozostawia przy życiu lub uśmierca daną komórkę
+\lstinputlisting[caption=Aktualizacja stanu danej komórki przez użytkownika, label={lst:listing-cpp}, language=C++]{code/gameoflife/CellActorClicked.cpp}
 
-\begin{lstlisting} 
-void ACellActor::Update()
-{
-	if (AliveNext) {
-		StaticMeshComponent->SetMaterial(0, ClickedMaterial);
-		Alive = true;
-		SetActorHiddenInGame(false);
-	}
-	else {
-		SetActorHiddenInGame(true);
-		StaticMeshComponent->SetMaterial(0, EndCursorOverMaterial);
-		Alive = false;
-	}
-}
-\end{lstlisting}
+W metodzie Update która jest wykorzystywana przez GridActora podobnie jak w metodzie Clicked na podstawie zmiennej AliveNext, pozostawia przy życiu lub uśmierca daną komórkę
 
+\lstinputlisting[caption=Aktualizacja stanu danej komórki, label={lst:listing-cpp}, language=C++]{code/gameoflife/CellActorUpdate.cpp}
 
-Klasa ma też Gettery i Settery odpowiedzialne, za branie informacji o obebcnym stanie komórki jak i o jej stanie w następnej klatce
-\begin{lstlisting}[frame=single]  % Start your code-block
-	bool GetAlive() const {
-		return Alive;
-	}
-	void SetAlive(const bool IsAlive) {
-		this->Alive = IsAlive;
-	}
+Klasa ma też Gettery i Settery odpowiedzialne, za branie informacji o obecnym stanie komórki jak i o jej stanie w następnej klatce
 
-	bool GetAliveNext() const {
-		return AliveNext;
-	}
-	void SetAliveNext(const bool IsAliveNext)
-	{
-		this->AliveNext = IsAliveNext;
-	}
-
-\end{lstlisting}
+\lstinputlisting[caption=Aktualizacja stanu danej komórki, label={lst:listing-cpp}, language=C++]{code/gameoflife/CellActorGetSet.cpp}
 
 Klasa GridActor jest odpowiedzialna za tworzenie siatki 2D z klasy CellActor o podanej wielkości. W samej klasie dzieją się też wszystkie obliczenia związane z działaniem gry w życie od obliczania obecnie żyjących sąsiadów danej komórki w metodzie CountAliveNeighbors(const int i, const int j)
 
-\begin{lstlisting}
-int AGridActor::CountAliveNeighbors(const int i, const int j) {
-	int NumAliveNeighbors = 0;
-	for (int k = -1; k <= 1; k++) {
-		for (int l = -1; l <= 1; l++) {
-			if (!(l == 0 && k == 0)) {
-				const int effective_i = i + k;
-				const int effective_j = j + l;
-				if ((effective_i >= 0 && effective_i < Height) && (effective_j >= 0 && effective_j < Width)) {
-					if (CellActors[effective_j + effective_i * Width]->GetAlive()) {
-						NumAliveNeighbors++;
-					}
-				}
-			}
-		}
-	}
-	return NumAliveNeighbors;
-}
-\end{lstlisting}
+\lstinputlisting[caption=Zliczanie żyjących sąsiadów danej komórki, label={lst:listing-cpp}, language=C++]{code/gameoflife/GridActorCount.cpp}
 
 Następnie na podstawie obecnie żyjących sąsiadów i reguł jakie zostały ustawione w metodzie UpdateAliveNext(const int Index, const int NumAliveNeighbors) ustawiamy czy dana komórka w następnej klatce będzie żywa lub martwa
 
-\begin{lstlisting}
-void AGridActor::UpdateAliveNext(const int Index, const int NumAliveNeighbors) {
-	const bool IsAlive = CellActors[Index]->GetAlive();
-	if (IsAlive && (NumAliveNeighbors < 2))
-	{
-		CellActors[Index]->SetAliveNext(false);
-	}
-	else if (IsAlive && ((NumAliveNeighbors == 2) || (NumAliveNeighbors == 3)))
-	{
-		CellActors[Index]->SetAliveNext(true);
-	}
-	else if (IsAlive && (NumAliveNeighbors > 3))
-	{
-		CellActors[Index]->SetAliveNext(false);
-	}
-	else if (!IsAlive && (NumAliveNeighbors == 3))
-	{
-		CellActors[Index]->SetAliveNext(true);
-	}
-	else {
-		CellActors[Index]->SetAliveNext(CellActors[Index]->GetAlive());
-	}
-}
-\end{lstlisting}
+\lstinputlisting[caption=Aktualizacja stanu komórki w następnej klatce, label={lst:listing-cpp}, language=C++]{code/gameoflife/GridActorAlive.cpp}
+
 
 Stworzona została jeszcze wersja 3D GridActora którego jedyną różnicą jest to, że na została dodana też głębokość.
 
@@ -782,35 +617,14 @@ sigma = 10, rho =8/3, beta jest zmienne.\\
 \subsubsection{Efekt Motyla - kod}
 
 Kod C++ składa się z dwóch klas ButterflyActor i ButterflySpawner.
-
 W ButterflyActor najważnejszą metodą jest Tick(float DeltaTime) w której poprzez rozwązanie wczęśniej pokazanych równań różniczkowych po przecałkowaniu. Następnie odpowiednio ustawiamy te równania dla pozycji X, Y i Z danego aktora\cite{motyle_cpp}
 
-\begin{lstlisting}
-void AButterflyActor::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-	DeltaTime = ButterflyChange;
-	auto position = GetActorLocation();
-
-	position.X = (position.X + sigma * (position.Y - position.X) * DeltaTime);
-	position.Y = (position.Y + (-position.X * position.Z + rho * position.X - position.Y) * DeltaTime);
-	position.Z = (position.Z + (position.X * position.Y - beta * position.Z) * DeltaTime);
-
-	SetActorLocation(position);
-}
-\end{lstlisting}
+\lstinputlisting[caption=Metoda Tick(), label={lst:listing-cpp}, language=C++]{code/butterfly/ButterflyActorTick.cpp}
 
 Jedyną rolą ButterflySpawner jest utworzenie tyle ButterflyActor ile zostanie mu zadane na początku, z drobną zmianą odległości dla każdego kolejnego aktora.
 
 
-\begin{lstlisting}
-	for (size_t i = 0; i < numberOfButterfly; i++)
-	{
-		const FVector Loc(Origin.X + i * 15, Origin.Y, Origin.Z);
-		AButterflyActor* const SpawnedActorRef = GetWorld()->SpawnActor<AButterflyActor>(ButterflyActor, Loc, GetActorRotation());
-		ButterflyActors.Add(SpawnedActorRef);
-	}
-\end{lstlisting}
+\lstinputlisting[caption=Tworzenie nowych atraktorów, label={lst:listing-cpp}, language=C++]{code/butterfly/ButterflySpawner.cpp}
 
 \subsubsection{Efekt Motyla - UE4}
 
@@ -845,14 +659,41 @@ W programie Efekt Motyla wygląda następująco:
 \begin{figure}[H]%
 \centering
 \includegraphics[width=0.7\columnwidth]{graphics/ButterflyInUE_1.png}
-\caption{Wygląd widgetu w programie
+\caption{Wygląd motyli w programie
 \label{BPExample}}%
 %
 \qquad
 \end{figure}  
 
 \subsection{Model Agentowy}
+
+Model agentowy jest typem modelu gdzie analizujemy wpływ agenta na dane środowisko i vice versa. Agentem może być np. komórka, człowiek, zwierzę itd. W modelu agentowym ustawiamy zachowanie poszczególnego lub grup agentów i obserwujemy jak wpływają na resztę w danym środowisku testowym. Główną ideą jest sprawdzenie w jaki sposób czynniki w mikro skali wpływają na czynniki w środowisku makro. Dzięki temu możemy wykorzystać tak zdobytą wiedzę do różnych celów np. Sprawdzenie roznoszenia się epidemii, badać zachowania konsumenckie u ludzi czy tworzyć proste środowiska  by zobaczyć jak populacja danych agentów zmieniała się w czasie.\cite{agent_examples} 
+
+Ten ostatni wykorzystałem do pokazania działania agentów w UE4. Stworzyłem prosty model środowiska, gdzie mamy 3 rodzaje agentów: Rośliny, Króliki i Lisy. Celem królików jest rozmnożenie się poprzez znalezienie najbliższego królika do tego zdolnego. Jeśli trakcie trwania symulacji zdrowie królika spadnie poniżej danego poziomu, ponieważ w trakcie trwania symulacji każdy agent nieustannie traci zdrowie lub w trakcie rozmnażania, jego celem wtedy jest znalezienie najbliższej rośliny i skonsumowanie jej. Po zjedzeniu rośliny może ponownie szukać partnera do rozmnażania.  Celem lisa podobnie jak królika jest znalezienie partnera do reprodukcji. Podobnie jak królik w wyniki rozmnażania lub czasu traci zdrowie, wtedy jego celem jest znalezienie najbliższego królika i zjedzenie go. Aby każdy miał jakieś szansę na przeżycie wartości prędkości danej grupy agentów różnią się. W obecnym modelu króliki są szybsze od lisów, ale mają też mniej od nich mniej zdrowia. Króliki mają też wyższy licznik reprodukcji. Model też jest bardzo prosty dlatego np. króliki nie uciekają od lisów.
 \subsubsection{Model Agentowy - kod}
+
+Kod C++ składa się z następujących klas: AgentBase, PlantAgent, RabbitAgent, WolfAgent, AgentSpawner, AgentSpawnBox, AgentTable i AgentControl. AgentBase jest klasą bazową dla kolejnych trzech rodzajów agentów. W jego skład wchodzi informacja jaki mesh ma dany agent, prosty system kolizji wykorzystywany do interakcji z innymi agentami i użytkownikiem, stan zdrowia oraz informacja o spawnerze na mapie. Każdy agent ma odpowiednio własny zakres zachowań, takich jak: początkowy stan zdrowia czy prędkość. Każdy agent ma też funkcję które odziedziczyli po klasie bazowej, odpowiedzialne za inne zachowania. Do najważniejszych należą funkcja Move() w której dzieje się ruch danego agenta. Przykładowa w RabbitAgent, w zależności od jego stanu zdrowia albo szuka pożywienia albo partnera do kopulacji w pewnej odległości od niego by następnie się do niego zbliżać z zadaną mu prędkością. Jeśli jego zdrowie jest równe 0 dany agent się niszczy.
+
+\lstinputlisting[caption=Metoda Move(), label={lst:listing-cpp}, language=C++]{code/agent/AgentActorMove.cpp}
+
+Kolejną ważną metodą w każdym agencie jest OnOverlapBegin(), jest to metoda która poprzez napisanie jej w taki sposób ma możliwość generowanie eventów kiedy jakiś inny obiekt wejdzie w obszar jego interakcji.Dla RabbitAgent, w zależności od aktora i obecnych potrzeb ma inne zastosowania. Jeśli królik obecnie poszukuję rośliny i wejdzie z nią w obszar interakcji, roślinę usuwa, a sam zyskuję zdrowie. Jeśli obecnie poszukuję partnera i wejdzie w jego obszar interakcji, dany agent jak i jego partner tracą zdrowie do danego poziomu, a następnie tworzą nowych agentów.
+	
+\lstinputlisting[caption=Interacja agenta z innymi agentami, label={lst:listing-cpp}, language=C++]{code/agent/AgentActorOverlap.cpp}
+
+Kolejną klasą jest AgentSpawner którego głównym zadaniem jest kontrola populacji, aby nie przekroczyła zadanej ilości oraz by w razie potrzeby dodał nowych agentów danego rodzaju, jeśli ci się skończą na planszy. Na przykład kiedy na planszy nie ma już AgentRabbit, spawner generuję nowe króliki w danej ilości i umieszcza je w losowych miejscach na planszy
+
+\lstinputlisting[caption=Dodawanie nowych agentów metodzie Tick(float DeltaTime), label={lst:listing-cpp}, language=C++]{code/agent/SpawnerActorReproduction.cpp}
+Drugim zadaniem jest też włączanie i wyłączanie wszystkich agentów na planszy.
+
+Kolejną klasą jest AgentSpawnBox. Podobnie jak AgentSpawner tworzy nowych agentów, ale z tą róźnicą, że do pomocy potrzebuję gracza. W klasie tej nowy agent danego rodzaju jest tworzony, kiedy gracz wejdzie w interakcję z tym obiektem za pomocą kontrolera ruchowego. Dzięki temu, gracz może "wyciągnąć" nowego agenta i postawić go na planszy w takim miejscu jakim chce. 
+
+Kolejną klasą jest AgentTable. Ustawia on jedynie tych agentów których gracz postawi na planszy.
+
+Ostatnia klasą jest AgentControl, który odpowiada za tworzenie UI i komunikację pomiędzy graczem, a klasą odpowiedzialną za działanie agentów, czyli AgentSpawner. 
+
+\subsubsection{Model Agentowy - UE4}
+
+
 \subsection{Boids}
 \subsubsection{Boids - kod}
 
