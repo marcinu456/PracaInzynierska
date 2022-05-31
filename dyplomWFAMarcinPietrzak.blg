@@ -8,64 +8,72 @@ Database file #1: bibliografia.bib
 Warning--entry type for "popularnosc_gogli" isn't style-file defined
 --line 2 of file bibliografia.bib
 Warning--entry type for "PlayStation_VR2" isn't style-file defined
---line 10 of file bibliografia.bib
+--line 9 of file bibliografia.bib
 Warning--entry type for "porownanie_gogli" isn't style-file defined
---line 18 of file bibliografia.bib
+--line 16 of file bibliografia.bib
 Warning--entry type for "sprzedasz_gogli_VR" isn't style-file defined
---line 26 of file bibliografia.bib
+--line 23 of file bibliografia.bib
 Warning--entry type for "choroba_vr" isn't style-file defined
---line 34 of file bibliografia.bib
+--line 30 of file bibliografia.bib
 Warning--entry type for "double_pendulum" isn't style-file defined
---line 42 of file bibliografia.bib
+--line 37 of file bibliografia.bib
 Warning--entry type for "game_of_life" isn't style-file defined
---line 50 of file bibliografia.bib
+--line 44 of file bibliografia.bib
 Warning--entry type for "game_of_life_wiki" isn't style-file defined
---line 58 of file bibliografia.bib
+--line 51 of file bibliografia.bib
 Warning--entry type for "burze_motyle" isn't style-file defined
---line 74 of file bibliografia.bib
+--line 65 of file bibliografia.bib
 Warning--entry type for "motyle_cpp" isn't style-file defined
---line 82 of file bibliografia.bib
+--line 72 of file bibliografia.bib
 Warning--entry type for "agent_examples" isn't style-file defined
---line 90 of file bibliografia.bib
-You've used 11 entries,
+--line 79 of file bibliografia.bib
+Warning--entry type for "flocking_system" isn't style-file defined
+--line 86 of file bibliografia.bib
+Warning--entry type for "boids_reynolds" isn't style-file defined
+--line 93 of file bibliografia.bib
+Warning--entry type for "boids_name" isn't style-file defined
+--line 100 of file bibliografia.bib
+Warning--entry type for "code_boids" isn't style-file defined
+--line 107 of file bibliografia.bib
+You've used 15 entries,
             1791 wiz_defined-function locations,
-            487 strings with 4938 characters,
-and the built_in function-call counts, 1496 in all, are:
-= -- 132
-> -- 44
+            502 strings with 5333 characters,
+and the built_in function-call counts, 1897 in all, are:
+= -- 150
+> -- 60
 < -- 0
-+ -- 22
-- -- 11
++ -- 30
+- -- 15
 * -- 2
-:= -- 242
-add.period$ -- 44
-call.type$ -- 11
-change.case$ -- 11
+:= -- 296
+add.period$ -- 45
+call.type$ -- 15
+change.case$ -- 15
 chr.to.int$ -- 0
-cite$ -- 11
-duplicate$ -- 55
-empty$ -- 199
-format.name$ -- 11
-if$ -- 353
+cite$ -- 15
+duplicate$ -- 75
+empty$ -- 271
+format.name$ -- 15
+if$ -- 451
 int.to.chr$ -- 0
-int.to.str$ -- 11
+int.to.str$ -- 15
 missing$ -- 0
-newline$ -- 69
-num.names$ -- 11
-pop$ -- 77
+newline$ -- 78
+num.names$ -- 15
+pop$ -- 75
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 21
+skip$ -- 74
 stack$ -- 0
 substring$ -- 0
-swap$ -- 11
+swap$ -- 15
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 11
-width$ -- 13
-write$ -- 123
-(There were 11 warnings)
+while$ -- 15
+width$ -- 17
+write$ -- 137
+(There were 15 warnings)

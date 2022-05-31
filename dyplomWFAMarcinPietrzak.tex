@@ -25,6 +25,8 @@
 \usepackage{amsmath}
 \usepackage{indentfirst} % pierwszy akapit zawsze z wcięciem
 \usepackage{subcaption}	% kilka zdjęc w jednej lini
+\usepackage{blindtext}
+\usepackage[hidelinks]{hyperref}
 \definecolor{codegreen}{rgb}{0.5, 0.09, 0.09}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
@@ -470,15 +472,18 @@ W programie wahadło wygląda następująco:
 
 \subsection{Gra w życie}
 
-Gra w życie została wymyślona w 1970 przez Johna Conwaya zainpirowany pracami Stanisława Ulmana. Gra w życie jest automatem komórkowym, czyli jest to system składający się z pojedynczych komórek działający według określonych reguł.\cite{game_of_life} W przypadku gry w życie, dana komórka, ma ośmiu sąsiadów przylegających do niej bokami i rogami w jednej chwili może być żywa lub martwa, a to czy żyje określają 4 zasady:\\
-1.Żywa komórka, która ma mniej niż dwóch sąsiadów, w kolejnym kroku umiera. \\
-2.Żywa komórka, która ma więcej niż trzech sąsiadów, umiera.\\
-3.Żywa komórka, która ma dwóch lub trzech sąsiadów – przeżywa.\\
-4.Martwa komórka, która ma trzech żywych sąsiadów – ożywa.\\
+{\color{blue}
+Gra w życie została wymyślona w 1970 przez Johna Conwaya zainpirowany pracami Stanisława Ulmana. Gra w życie jest automatem komórkowym, czyli jest to system składający się z pojedynczych komórek działający według określonych reguł.\cite{game_of_life} W przypadku gry w życie, dana komórka, ma ośmiu sąsiadów przylegających do niej bokami i rogami w jednej chwili może być żywa lub martwa, a to czy żyje określają 4 zasady:
 
-Gra w życię nie jest do końca grą, rola "gracza" ogranicza się ustawienia stanu początkowego planszy, poprzez ożywianie lub uśmiercanie danej komórki.\cite{game_of_life_wiki}
+\begin{itemize}
+\item Żywa komórka, która ma mniej niż dwóch sąsiadów, w kolejnym kroku umiera
+\item Żywa komórka, która ma więcej niż trzech sąsiadów, umiera
+\item Żywa komórka, która ma dwóch lub trzech sąsiadów – przeżywa
+\item Martwa komórka, która ma trzech żywych sąsiadów – ożywa
+\end{itemize}
 
-
+Gra w życie nie jest do końca grą, rola "gracza" ogranicza się ustawienia stanu początkowego planszy, poprzez ożywianie lub uśmiercanie danej komórki.\cite{game_of_life_wiki}
+}
 \subsubsection{Gra w życie - kod}
 
 W C++ kod gry w życie składa się z trzech klas: CellActor, GridActor, GameOfLifeControl
@@ -760,6 +765,40 @@ W programie Model Agentowy wygląda następująco:
 \end{figure}  
 
 \subsection{Boids}
+
+W roku 1986 w ciągu dwóch miesięcy, Craig Raynolds pracujący wtedy w firmie "Symbolics" stworzył model komputerowy skoordynowanego ruchu zwierząt takich, jak ławica ryb czy stado ptaków. Model ten był oparty na trójwymiarowej geometrii, którą zwykle używa się animacji komputerowej. Stworzenia wchodzące w skład modelu nazwał "boid", które w dialekcie Nowo Jorskim oznaczają również ptaki, a samą nazwę podobno zainspirował się z filmu "The Producers" Mela Brooksa\cite{boids_name}. Sam podstawowy model stada opiera się na 3 prostych zasadach\cite{flocking_system}:
+
+\begin{itemize}
+\item Separacja(a): Odpowiedzialne za unikanie kolizji pobliskich członków stada poprzez unikanie nagromadzenia ich w pobliżu
+\item Wyrównanie(b): Odpowiedzialne aby przemieszanie było uśrednione do innych pobliskich członków stada
+\item Spójność(c): Odpowiedzialne za utrzymanie bliskości członków stada, poprzez poruszanie się obiektu w kierunku średniej pozycji pobliskich członków
+\end{itemize}
+
+\begin{figure}[H]%
+	\centering
+	\begin{subfigure}{.3\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics/boids/separation.png}
+		\caption{Separacja}	
+		\label{ref:subref_a}
+	\end{subfigure}%
+	\begin{subfigure}{.3\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics/boids/alignment.png}
+		\caption{Wyrównanie}
+		\label{ref:subref_b}
+	\end{subfigure}%
+		\begin{subfigure}{.3\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics/boids/cohesion.png}
+		\caption{Spójność}
+		\label{ref:subref_c}
+	\end{subfigure}%
+\label{ref:ref}
+\end{figure}
+
+Każdy z boidów reaguję tylko na inne boidy w jego bliskim otoczeniu od niego, a każdy boid z poza tego otoczenia jest ignorowany. W początkowych eksperymentach, model był trochę bardziej rozbudowany, dzięki czemu boidy, mogły omijać obiekty i poszukiwać celu\cite{boids_reynolds}. Na podstawie kodu\cite{code_boids} zrobiłem prostą wersję która działa z kontrolerami ruchów VR do możliwości sterowania ruchami stada, stado porusza się za obiektem.
+
 \subsubsection{Boids - kod}
 
 
