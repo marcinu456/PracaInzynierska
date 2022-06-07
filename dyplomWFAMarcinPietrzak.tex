@@ -470,19 +470,20 @@ W programie wahadło wygląda następująco:
 \label{ref:ref}
 \end{figure}
 
+\newpage
 \subsection{Gra w życie}
 
 {\color{blue}
-Gra w życie została wymyślona w 1970 przez Johna Conwaya zainpirowany pracami Stanisława Ulmana. Gra w życie jest automatem komórkowym, czyli jest to system składający się z pojedynczych komórek działający według określonych reguł.\cite{game_of_life} W przypadku gry w życie, dana komórka, ma ośmiu sąsiadów przylegających do niej bokami i rogami w jednej chwili może być żywa lub martwa, a to czy żyje określają 4 zasady:
+Gra w życie została wymyślona w 1970 przez Johna Conwaya zainpirowany pracami Stanisława Ulmana. Gra w życie jest automatem komórkowym, czyli jest to system składający się z pojedynczych komórek działający według określonych reguł.\cite{game_of_life} W przypadku gry w życie, dana komórka, ma ośmiu sąsiadów przylegających do niej bokami i rogami w jednej chwili może być żywa lub martwa, a to czy żyje określają 3 zasady:
 
 \begin{itemize}
-\item Żywa komórka, która ma mniej niż dwóch sąsiadów, w kolejnym kroku umiera
-\item Żywa komórka, która ma więcej niż trzech sąsiadów, umiera
-\item Żywa komórka, która ma dwóch lub trzech sąsiadów – przeżywa
+\item Żywa komórka, która ma dwóch lub trzech sąsiadów przeżywa
 \item Martwa komórka, która ma trzech żywych sąsiadów – ożywa
+\item Wszystkie inne żywe komórki w kolejnym cyklu umierają, a martwe komórki pozostają martwe
 \end{itemize}
 
-Gra w życie nie jest do końca grą, rola "gracza" ogranicza się ustawienia stanu początkowego planszy, poprzez ożywianie lub uśmiercanie danej komórki.\cite{game_of_life_wiki}
+Gra w życie nie jest do końca grą, rola "gracza" ogranicza się ustawienia stanu początkowego planszy, poprzez ożywianie lub uśmiercanie danej komórki.\cite{game_of_life_wiki}. Sama gra trawiła do większego grona odbiorów dzięki ukazaniu się magazynie Scientific American. Od czasu publikacji Gra w Życie wzbudziła duże zainteresowanie z powodu prostych zasad i zaskakujących wyników w jakie może ewoluować.
+
 }
 \subsubsection{Gra w życie - kod}
 
@@ -587,6 +588,7 @@ W programie Gra w życie wygląda następująco:
 \label{ref:ref}
 \end{figure}
 
+\newpage
 \subsection{Efekt Motyla}
 
 "Dowolny układ fizyczny, który zachowuje się nieokresowo, jest nieprzewidywalny." Są to słowa Edwarda Lorenza, meteorologa który jako pierwszy odkrył, że nie można zrobić dobrej prognozy pogody na dłużej niż kilka dni do przodu. W 1960 roku pracował on nad programem komputerowym który miał prognozować pogodę, na podstawie zbioru równań określających zależności między prędkością wiatru, temperaturą, ciśnieniem i wilgotnością. Gdy Lorenz testował swój program po wprowadzeniu danych i po wydrukowaniu wyniku w formie wykresu. Rozkład maksimów i minimów na wykresie wyglądał tak, jak się tego spodziewał Edward. Postanowił jednak ponownie zbadać wyniki, dlatego uruchomił program ponownie, wprowadzając jak myślał takie same wyniki. Okazało się jednak, że wyniki wyszły na odwrót. Po sprawdzeniu danych zauważył, że podał je w postaci przybliżonej z mniejszą liczbą cyfr po przecinku. Było to dla niego tak ciekawe, że spróbował to samo z innymi zbiorami danych i zaobserwował identyczne zjawisko. Lorenz w ten sposób odkrył "efekt motyla", gdzie dla pewnych układów deterministycznych nawet minimalne zmiany wartości danych początkowych zostają bardzo szybko wzmocnione i powodują ogromne zmiany w ewolucji układu\cite{burze_motyle}.
@@ -670,6 +672,7 @@ W programie Efekt Motyla wygląda następująco:
 \qquad
 \end{figure}  
 
+\newpage
 \subsection{Model Agentowy}
 
 Model agentowy jest typem modelu gdzie analizujemy wpływ agenta na dane środowisko i vice versa. Agentem może być np. komórka, człowiek, zwierzę itd. W modelu agentowym ustawiamy zachowanie poszczególnego lub grup agentów i obserwujemy jak wpływają na resztę w danym środowisku testowym. Główną ideą jest sprawdzenie w jaki sposób czynniki w mikro skali wpływają na czynniki w środowisku makro. Dzięki temu możemy wykorzystać tak zdobytą wiedzę do różnych celów np. Sprawdzenie roznoszenia się epidemii, badać zachowania konsumenckie u ludzi czy tworzyć proste środowiska  by zobaczyć jak populacja danych agentów zmieniała się w czasie.\cite{agent_examples} 
@@ -677,7 +680,8 @@ Model agentowy jest typem modelu gdzie analizujemy wpływ agenta na dane środow
 Ten ostatni wykorzystałem do pokazania działania agentów w UE4. Stworzyłem prosty model środowiska, gdzie mamy 3 rodzaje agentów: Rośliny, Króliki i Lisy. Celem królików jest rozmnożenie się poprzez znalezienie najbliższego królika do tego zdolnego. Jeśli trakcie trwania symulacji zdrowie królika spadnie poniżej danego poziomu, ponieważ w trakcie trwania symulacji każdy agent nieustannie traci zdrowie lub w trakcie rozmnażania, jego celem wtedy jest znalezienie najbliższej rośliny i skonsumowanie jej. Po zjedzeniu rośliny może ponownie szukać partnera do rozmnażania.  Celem lisa podobnie jak królika jest znalezienie partnera do reprodukcji. Podobnie jak królik w wyniki rozmnażania lub czasu traci zdrowie, wtedy jego celem jest znalezienie najbliższego królika i zjedzenie go. Aby każdy miał jakieś szansę na przeżycie wartości prędkości danej grupy agentów różnią się. W obecnym modelu króliki są szybsze od lisów, ale mają też mniej od nich mniej zdrowia. Króliki mają też wyższy licznik reprodukcji. Model też jest bardzo prosty dlatego np. króliki nie uciekają od lisów.
 \subsubsection{Model Agentowy - kod}
 
-Kod C++ składa się z następujących klas: AgentBase, PlantAgent, RabbitAgent, WolfAgent, AgentSpawner, AgentSpawnBox, AgentTable i AgentControl. AgentBase jest klasą bazową dla kolejnych trzech rodzajów agentów. W jego skład wchodzi informacja jaki mesh ma dany agent, prosty system kolizji wykorzystywany do interakcji z innymi agentami i użytkownikiem, stan zdrowia oraz informacja o spawnerze na mapie. Każdy agent ma odpowiednio własny zakres zachowań, takich jak: początkowy stan zdrowia czy prędkość. Każdy agent ma też funkcję które odziedziczyli po klasie bazowej, odpowiedzialne za inne zachowania. Do najważniejszych należą funkcja Move() w której dzieje się ruch danego agenta. Przykładowa w RabbitAgent, w zależności od jego stanu zdrowia albo szuka pożywienia albo partnera do kopulacji w pewnej odległości od niego by następnie się do niego zbliżać z zadaną mu prędkością. Jeśli jego zdrowie jest równe 0 dany agent się niszczy.
+Kod C++ składa się z następujących klas: AgentBase, PlantAgent, RabbitAgent, WolfAgent, AgentSpawner, AgentSpawnBox, AgentTable i AgentControl. 
+AgentBase jest klasą bazową dla kolejnych trzech rodzajów agentów. W jego skład wchodzi informacja jaki mesh ma dany agent, prosty system kolizji wykorzystywany do interakcji z innymi agentami i użytkownikiem, stan zdrowia oraz informacja o spawnerze na mapie. Każdy agent ma odpowiednio własny zakres zachowań, takich jak: początkowy stan zdrowia czy prędkość. Każdy agent ma też funkcję które odziedziczyli po klasie bazowej, odpowiedzialne za inne zachowania. Do najważniejszych należą funkcja Move() w której dzieje się ruch danego agenta. Przykładowa w RabbitAgent, w zależności od jego stanu zdrowia albo szuka pożywienia albo partnera do kopulacji w pewnej odległości od niego by następnie się do niego zbliżać z zadaną mu prędkością. Jeśli jego zdrowie jest równe 0 dany agent się niszczy.
 
 \lstinputlisting[caption=Metoda Move(), label={lst:listing-cpp}, language=C++]{code/agent/AgentActorMove.cpp}
 
@@ -726,7 +730,7 @@ Kolejną klasą jest BP\_AgentSpawnBox. Podobnie jak BP\_Spawner tworzy nowych a
 
 \begin{figure}[H]%
 \centering
-\includegraphics[width=0.6\columnwidth]{graphics//agent/BP_AgentSpawnBox.png}
+\includegraphics[width=0.50\columnwidth]{graphics//agent/BP_AgentSpawnBox.png}
 \caption{Ustawienia SpawnBox w UE4 
 \label{BPExample}}%
 %
@@ -764,6 +768,7 @@ W programie Model Agentowy wygląda następująco:
 \qquad
 \end{figure}  
 
+\newpage
 \subsection{Boids}
 
 W roku 1986 w ciągu dwóch miesięcy, Craig Raynolds pracujący wtedy w firmie "Symbolics" stworzył model komputerowy skoordynowanego ruchu zwierząt takich, jak ławica ryb czy stado ptaków. Model ten był oparty na trójwymiarowej geometrii, którą zwykle używa się animacji komputerowej. Stworzenia wchodzące w skład modelu nazwał "boid", które w dialekcie Nowo Jorskim oznaczają również ptaki, a samą nazwę podobno zainspirował się z filmu "The Producers" Mela Brooksa\cite{boids_name}. Sam podstawowy model stada opiera się na 3 prostych zasadach\cite{flocking_system}:
@@ -778,19 +783,19 @@ W roku 1986 w ciągu dwóch miesięcy, Craig Raynolds pracujący wtedy w firmie 
 	\centering
 	\begin{subfigure}{.3\textwidth}
 		\centering
-		\includegraphics[width=0.8\linewidth]{graphics/boids/separation.png}
+		\includegraphics[width=0.8\linewidth]{graphics/boids/Separation.png}
 		\caption{Separacja}	
 		\label{ref:subref_a}
 	\end{subfigure}%
 	\begin{subfigure}{.3\textwidth}
 		\centering
-		\includegraphics[width=0.8\linewidth]{graphics/boids/alignment.png}
+		\includegraphics[width=0.8\linewidth]{graphics/boids/Alignment.png}
 		\caption{Wyrównanie}
 		\label{ref:subref_b}
 	\end{subfigure}%
 		\begin{subfigure}{.3\textwidth}
 		\centering
-		\includegraphics[width=0.8\linewidth]{graphics/boids/cohesion.png}
+		\includegraphics[width=0.8\linewidth]{graphics/boids/Cohesion.png}
 		\caption{Spójność}
 		\label{ref:subref_c}
 	\end{subfigure}%
@@ -801,9 +806,92 @@ Każdy z boidów reaguję tylko na inne boidy w jego bliskim otoczeniu od niego,
 
 \subsubsection{Boids - kod}
 
+Kod C++ składa się z następujących klas: BoidTarget, BoidManager, BoidSpawner Boid,  i BoidsMenu. 
+
+BoidTarget jest z nich najmniej rozbudowany, ponieważ jest tylko aktor z ustawionym meshem i materiałem. Jego jedynym celem jest ustawienie miejsca do którego mają zmierzać boidy, kiedy będziemy tego chcieli.
+
+BoidManager jest klasą odpowiedzialną za zarządzaniem wszystkimi boidami na poziomie. W każdej klatce dla każdego boida odpalanie jego obliczanie rotacji oraz ją aktualizuję, tak samo robi z pozycją każdego boida.
+
+\lstinputlisting[caption=Metoda Tick(), label={lst:listing-cpp}, language=C++]{code/boids/BoidManagerTick.cpp}
+
+W BoidManager są też informacje o tym, czy boidy mają udać się w stronę wyznaczonego celu. Znajduję się równiesz informację z jaką siłą mają działać trzy zasady dotyczące boidsów. Siłę działania zasad oraz podążanie za celem ustawiamy potem w widgecie, który jest dzieckiem klasy BoidsMenu.
+
+BoidSpawner jest odpowiedzialny za tworzenie nowych boidów, w takiej ilości jaką mu zadamy oraz w danej mu odległości.
+
+W klasie Boid odbywają się wszystkie obliczenia dotyczące 3 zasad. Dla każdej zasady pomiędzy obecnym Boidem a danymi w pobliżu, obliczamy wektor separacji, spójności i wyrównania.Po obliczeniu wektorów są dzielone przez liczbę pobliskich boidów i normalizowane.
+
+\lstinputlisting[caption=Metody obliczające odpowiednie wektory, label={lst:listing-cpp}, language=C++]{code/boids/BoidSAH.cpp}
+
+Jeśli śledzimy cel, to dodajemy też znormalizowany wektor pomiędzy pozycją celu i boida. Na koniec każdy wektor, po wcześniejszym pomnożeniu przez ich siłę z BoidManger, dodajemy do wektora interpolacji i mnożymy przez daną prędkość obrotu oraz normalizujemy, aby stworzyć rotator, który będzie kolejną rotacją boida.
+
+\lstinputlisting[caption=Obliczanie rotacji boida, label={lst:listing-cpp}, language=C++]{code/boids/BoidCalcRot.cpp}
+
+\subsubsection{Boids - UE4}
+
+Na podstawie kodów C++ stworzyłem w UE4 odpowiednie klasy BluePrintowe, które są dziećmi klas z kodu źródłowego. 
+
+W BP\_BoidTarget ustawiamy tylko mesh i materiał, a następnie umieszczamy ją na poziomie. Podobnie z BP\_Boid w którym też ustawiamy tylko mesh i materiał, ponieważ cała logika została stworzona w C++.
+
+\begin{figure}[H]%
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics//boids/BP_BoidTarget.png}
+		\caption{Ustawienia BoidTarget w UE4 }	
+		\label{ref:subref_a}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics//boids/BP_Boid.png}
+		\caption{Ustawienia Boid w UE4 }
+		\label{ref:subref_b}
+	\end{subfigure}%
+\label{ref:ref}
+\end{figure}
 
 
+BP\_BoidManager i BP\_BoidSpawner też nie mają rozbudowanych opcji. W pierwszym nic nie zmieniamy, ponieważ jego ustawienia będę wykorzystywane przez w widget. W drugim notomiast ustawiamy, czy ma być aktywny, jakie boidy ma robić oraz ich ilość i wielkość obszaru w którym mają być tworzone od niego.
 
+\begin{figure}[H]%
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics//boids/BP_BoidManager.png}
+		\caption{Ustawienia BoidManager w UE4 }	
+		\label{ref:subref_a}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics//boids/BP_BoidSpawner.png}
+		\caption{Ustawienia BoidSpawner w UE4 }
+		\label{ref:subref_b}
+	\end{subfigure}%
+\label{ref:ref}
+\end{figure}
+
+WBP\_BoidHud tak jak wszystkie widgety w poprzednich symulacjach, po najechaniu kontrolerem ruchowym, możemy wybrać to czy boidy mają podążać za celem, czy się będą rozpraszać po okolicy. Możemy też wybrać z jaką siłą ma być wykonywana jedna z trzech zasad rządząca boidamy, oraz jak blisko ma się zbliżyć celu. 
+
+\begin{figure}[H]%
+\centering
+\includegraphics[width=0.55\columnwidth]{graphics/boids/BP_BoidHud.png}
+\caption{Boids w programie
+\label{BPExample}}%
+%
+\qquad
+\end{figure}  
+
+\subsubsection{Boids - Wygląd w programie}
+
+W programie Model Agentowy wygląda następująco:
+
+\begin{figure}[H]%
+\centering
+\includegraphics[width=0.7\columnwidth]{graphics/boids/BoidsInUE.png}
+\caption{Boids w programie
+\label{BPExample}}%
+%
+\qquad
+\end{figure}  
 
 \section{Realizacja projektu}
 
