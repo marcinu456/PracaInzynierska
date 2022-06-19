@@ -771,7 +771,7 @@ W programie Model Agentowy wygląda następująco:
 \newpage
 \subsection{Boids}
 
-W roku 1986 w ciągu dwóch miesięcy, Craig Raynolds pracujący wtedy w firmie "Symbolics" stworzył model komputerowy skoordynowanego ruchu zwierząt takich, jak ławica ryb czy stado ptaków. Model ten był oparty na trójwymiarowej geometrii, którą zwykle używa się animacji komputerowej. Stworzenia wchodzące w skład modelu nazwał "boid", które w dialekcie Nowo Jorskim oznaczają również ptaki, a samą nazwę podobno zainspirował się z filmu "The Producers" Mela Brooksa\cite{boids_name}. Sam podstawowy model stada opiera się na 3 prostych zasadach\cite{flocking_system}:
+W roku 1986 w ciągu dwóch miesięcy, Craig Raynolds pracujący wtedy w firmie "Symbolics" stworzył model komputerowy skoordynowanego ruchu zwierząt takich, jak ławica ryb czy stado ptaków. Model ten był oparty na trójwymiarowej geometrii, którą zwykle używa się animacji komputerowej. Stworzenia wchodzące w skład modelu nazwał "boid", które w dialekcie Nowo Jorskim oznaczają również ptaki, a samą nazwę podobno zainspirował się z filmu "The Producers" Mela Brooksa \cite{boids_name}. Sam podstawowy model stada opiera się na 3 prostych zasadach \cite{flocking_system}:
 
 \begin{itemize}
 \item Separacja(a): Odpowiedzialne za unikanie kolizji pobliskich członków stada poprzez unikanie nagromadzenia ich w pobliżu
@@ -802,7 +802,7 @@ W roku 1986 w ciągu dwóch miesięcy, Craig Raynolds pracujący wtedy w firmie 
 \label{ref:ref}
 \end{figure}
 
-Każdy z boidów reaguję tylko na inne boidy w jego bliskim otoczeniu od niego, a każdy boid z poza tego otoczenia jest ignorowany. W początkowych eksperymentach, model był trochę bardziej rozbudowany, dzięki czemu boidy, mogły omijać obiekty i poszukiwać celu\cite{boids_reynolds}. Na podstawie kodu\cite{code_boids} zrobiłem prostą wersję która działa z kontrolerami ruchów VR do możliwości sterowania ruchami stada, stado porusza się za obiektem.
+Każdy z boidów reaguję tylko na inne boidy w jego bliskim otoczeniu od niego, a każdy boid z poza tego otoczenia jest ignorowany. W początkowych eksperymentach, model był trochę bardziej rozbudowany, dzięki czemu boidy, mogły omijać obiekty i poszukiwać celu \cite{boids_reynolds}. Na podstawie kodu \cite{code_boids} zrobiłem prostą wersję która działa z kontrolerami ruchów VR do możliwości sterowania ruchami stada, stado porusza się za obiektem.
 
 \subsubsection{Boids - kod}
 
@@ -882,12 +882,31 @@ WBP\_BoidHud tak jak wszystkie widgety w poprzednich symulacjach, po najechaniu 
 
 \subsubsection{Boids - Wygląd w programie}
 
-W programie Model Agentowy wygląda następująco:
+W programie nad lewym kontrolerze mamy widget którym sterujemy zaochawniem boidów. Za pomocą prawego kontrolera możemy ustawić opcje np. ustawić czy boidy mają podążać za targetem oraz możemy wrócić do galerii.
+
+\begin{figure}[H]%
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics//boids/BoidsInUE.png}
+		\caption{Boidy zmierzają w kierunku targetu }	
+		\label{ref:subref_a}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics//boids/BoidsInUE.png}
+		\caption{Boidy się rozpraszają}
+		\label{ref:subref_b}
+	\end{subfigure}%
+\label{ref:ref}
+\end{figure}
+
+Po kliknięciu na prawym kontrolerze spustu możemy zmienić położenie targetu do którego mogą zmierzają boidy.
 
 \begin{figure}[H]%
 \centering
 \includegraphics[width=0.7\columnwidth]{graphics/boids/BoidsInUE.png}
-\caption{Boids w programie
+\caption{Przesuwanie targetu w programie w programie
 \label{BPExample}}%
 %
 \qquad
