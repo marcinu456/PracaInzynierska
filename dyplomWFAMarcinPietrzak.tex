@@ -565,26 +565,41 @@ Klasa WBP\_GameOfLifeControll jest odpowiedzialna kontakt miedzy użytkownikiem 
 \end{figure}  
 
 \subsubsection{Gra w życie - Wygląd w programie}
-W programie Gra w życie wygląda następująco:
-
+W programie za pomocą kontrolerów możemy ustawić stan początkowy każdej komórki w poprzez najechanie na nią wskaźnikiem wystającym z kontrolerów.
 
 \begin{figure}[H]%
 	\centering
 	\begin{subfigure}{.5\textwidth}
 		\centering
 		\includegraphics[width=0.8\linewidth]{graphics/gameoflife/GOLInUE_1.png}
-		\caption{Gra w życie podczas ustawia stanu początkowego}	
+		\caption{Ożywianie komórek z pomocą kontrolera}	
 		\label{ref:subref_a}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
 		\includegraphics[width=0.8\linewidth]{graphics/gameoflife/GOLInUE_2.png}
-		\caption{Gra w życie w trakcie trwania symulacji}
+		\caption{Uśmiercanie komórek z pomocą kontrolera}
 		\label{ref:subref_b}
 	\end{subfigure}%
-	
+\label{ref:ref}
+\end{figure}
 
-\caption{Działanie programu}
+Po lewej stronie od tablicy z komórkami znajduję się widżet, na którym możemy włączyć grę, przyśpieszyć jej działanie lub spowolnić, albo zresetować komórki do stanu początkowego. 
+
+\begin{figure}[H]%
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics/gameoflife/GOLInUE_1.png}
+		\caption{Wygląd tablicy z komórkami i widżetu}	
+		\label{ref:subref_a}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics/gameoflife/GOLInUE_2.png}
+		\caption{Wygląd tablicy w trakcie uruchomienia gry}
+		\label{ref:subref_b}
+	\end{subfigure}%
 \label{ref:ref}
 \end{figure}
 
@@ -673,19 +688,19 @@ W programie Efekt Motyla wygląda następująco:
 \end{figure}  
 
 \newpage
-\subsection{Model Agentowy}
+\subsection{Modele Agentowe}
 
 Model agentowy jest typem modelu gdzie analizujemy wpływ agenta na dane środowisko i vice versa. Agentem może być np. komórka, człowiek, zwierzę itd. W modelu agentowym ustawiamy zachowanie poszczególnego lub grup agentów i obserwujemy jak wpływają na resztę w danym środowisku testowym. Główną ideą jest sprawdzenie w jaki sposób czynniki w mikro skali wpływają na czynniki w środowisku makro. Dzięki temu możemy wykorzystać tak zdobytą wiedzę do różnych celów np. Sprawdzenie roznoszenia się epidemii, badać zachowania konsumenckie u ludzi czy tworzyć proste środowiska  by zobaczyć jak populacja danych agentów zmieniała się w czasie.\cite{agent_examples} 
 
-Ten ostatni wykorzystałem do pokazania działania agentów w UE4. Stworzyłem prosty model środowiska, gdzie mamy 3 rodzaje agentów: Rośliny, Króliki i Lisy. Celem królików jest rozmnożenie się poprzez znalezienie najbliższego królika do tego zdolnego. Jeśli trakcie trwania symulacji zdrowie królika spadnie poniżej danego poziomu, ponieważ w trakcie trwania symulacji każdy agent nieustannie traci zdrowie lub w trakcie rozmnażania, jego celem wtedy jest znalezienie najbliższej rośliny i skonsumowanie jej. Po zjedzeniu rośliny może ponownie szukać partnera do rozmnażania.  Celem lisa podobnie jak królika jest znalezienie partnera do reprodukcji. Podobnie jak królik w wyniki rozmnażania lub czasu traci zdrowie, wtedy jego celem jest znalezienie najbliższego królika i zjedzenie go. Aby każdy miał jakieś szansę na przeżycie wartości prędkości danej grupy agentów różnią się. W obecnym modelu króliki są szybsze od lisów, ale mają też mniej od nich mniej zdrowia. Króliki mają też wyższy licznik reprodukcji. Model też jest bardzo prosty dlatego np. króliki nie uciekają od lisów.
-\subsubsection{Model Agentowy - kod}
+W Unrealu Engine 4 stworzyłem prosty model środowiska, gdzie mamy 3 rodzaje agentów: Rośliny, Króliki i Lisy. Celem królików jest rozmnożenie się poprzez znalezienie najbliższego królika do tego zdolnego. Jeśli trakcie trwania symulacji zdrowie królika spadnie poniżej danego poziomu, ponieważ w trakcie trwania symulacji każdy agent nieustannie traci zdrowie lub w trakcie rozmnażania, jego celem wtedy jest znalezienie najbliższej rośliny i skonsumowanie jej. Po zjedzeniu rośliny może ponownie szukać partnera do rozmnażania.  Celem lisa podobnie jak królika jest znalezienie partnera do reprodukcji. Podobnie jak królik w wyniki rozmnażania lub czasu traci zdrowie, wtedy jego celem jest znalezienie najbliższego królika i zjedzenie go. Aby każdy miał jakieś szansę na przeżycie wartości prędkości danej grupy agentów różnią się. W obecnym modelu króliki są szybsze od lisów, ale mają też mniej od nich mniej zdrowia. Króliki mają też wyższy licznik reprodukcji. Model też jest bardzo prosty dlatego np. króliki nie uciekają od lisów.
+\subsubsection{Modele Agentowe - kod}
 
 Kod C++ składa się z następujących klas: AgentBase, PlantAgent, RabbitAgent, WolfAgent, AgentSpawner, AgentSpawnBox, AgentTable i AgentControl. 
 AgentBase jest klasą bazową dla kolejnych trzech rodzajów agentów. W jego skład wchodzi informacja jaki mesh ma dany agent, prosty system kolizji wykorzystywany do interakcji z innymi agentami i użytkownikiem, stan zdrowia oraz informacja o spawnerze na mapie. Każdy agent ma odpowiednio własny zakres zachowań, takich jak: początkowy stan zdrowia czy prędkość. Każdy agent ma też funkcję które odziedziczyli po klasie bazowej, odpowiedzialne za inne zachowania. Do najważniejszych należą funkcja Move() w której dzieje się ruch danego agenta. Przykładowa w RabbitAgent, w zależności od jego stanu zdrowia albo szuka pożywienia albo partnera do kopulacji w pewnej odległości od niego by następnie się do niego zbliżać z zadaną mu prędkością. Jeśli jego zdrowie jest równe 0 dany agent się niszczy.
 
 \lstinputlisting[caption=Metoda Move(), label={lst:listing-cpp}, language=C++]{code/agent/AgentActorMove.cpp}
 
-Kolejną ważną metodą w każdym agencie jest OnOverlapBegin(), jest to metoda która poprzez napisanie jej w taki sposób ma możliwość generowanie eventów kiedy jakiś inny obiekt wejdzie w obszar jego interakcji.Dla RabbitAgent, w zależności od aktora i obecnych potrzeb ma inne zastosowania. Jeśli królik obecnie poszukuję rośliny i wejdzie z nią w obszar interakcji, roślinę usuwa, a sam zyskuję zdrowie. Jeśli obecnie poszukuję partnera i wejdzie w jego obszar interakcji, dany agent jak i jego partner tracą zdrowie do danego poziomu, a następnie tworzą nowych agentów.
+Kolejną ważną metodą w każdym agencie jest OnOverlapBegin(), jest to metoda która poprzez napisanie jej w taki sposób ma możliwość generowanie eventów kiedy jakiś inny obiekt wejdzie w obszar jego interakcji. Dla RabbitAgent, w zależności od aktora i obecnych potrzeb ma inne zastosowania. Jeśli królik obecnie poszukuję rośliny i wejdzie z nią w obszar interakcji, roślinę usuwa, a sam zyskuję zdrowie. Jeśli obecnie poszukuję partnera i wejdzie w jego obszar interakcji, dany agent jak i jego partner tracą zdrowie do danego poziomu, a następnie tworzą nowych agentów.
 	
 \lstinputlisting[caption=Interacja agenta z innymi agentami, label={lst:listing-cpp}, language=C++]{code/agent/AgentActorOverlap.cpp}
 
@@ -700,7 +715,7 @@ Kolejną klasą jest AgentTable. Ustawia on jedynie tych agentów których gracz
 
 Ostatnia klasą jest AgentControl, który odpowiada za tworzenie UI i komunikację pomiędzy graczem, a klasą odpowiedzialną za działanie agentów, czyli AgentSpawner. 
 
-\subsubsection{Model Agentowy - UE4}
+\subsubsection{Modele Agentowe - UE4}
 
 Na podstawie kodów C++ stworzyłem w UE4 odpowiednie klasy BluePrintowe, które są dziećmi klas z kodu źródłowego. Klasy BP\_RabbitAgent, BP\_PlantAgent i BP\_WolfAgent
 Ustawia się w taki sam sposób, poprzez wybranie odpowiedniego mesha jakiego chcemy dla danego agenta i wybrać jakiego actora ma stworzyć w trakcie etapu reprodukcji, z wyłączeniem PlantAgent, który powstaje tylko w AgentSpawner. Tutaj też wybieramy, jaki kolor ma mieć actor, kiedy będziemy w nim wchodzić w interakcje na etapie ręcznego tworzenia planszy.
@@ -756,17 +771,57 @@ Ostatnie dwie klasy to BP\_AgentTable i BP\_AgentControl. Pierwsza w nim jest pl
 \label{ref:ref}
 \end{figure}
 
-\subsubsection{Model Agentowy - Wygląd w programie}
-W programie Model Agentowy wygląda następująco:
+\subsubsection{Modele Agentowe - Wygląd w programie}
+W programie za pomocą kontrolerów możemy wyciągać agentów z SpawnBoxów i kłaść ich następnie na planszy. Każdy rodzaj agenta ma swój własny SpawnBox różniący się wyglądem.
+
+\begin{figure}[H]%
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics//agent/AgentInUE_1.png}
+		\caption{SpawnBoxy w programie}	
+		\label{ref:subref_a}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics//agent/AgentInUE_1.png}
+		\caption{Wyciąganie agenta z SpawnBoxu}
+		\label{ref:subref_b}
+	\end{subfigure}%
+\label{ref:ref}
+\end{figure}
+
+Każdego agenta z SpawnBoxu możemy położyć w dowolnym miejscu na planszy. Kiedy agent zmieni kolor na żółty, oznacza to że możemy go spokojnie postawić i że nie zniknie. Agenta z planszy możemy też przełożyć w inne miejsce lub go usunąć poprzez wyciągnięcie go z planszy, a następnie poprzez puszczenie trzymanego agenta poza planszą.
+
+\begin{figure}[H]%
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics//agent/AgentInUE_1.png}
+		\caption{Kładzenie agenta na planszy}	
+		\label{ref:subref_a}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics//agent/AgentInUE_1.png}
+		\caption{Plansza z agentami}
+		\label{ref:subref_b}
+	\end{subfigure}%
+\label{ref:ref}
+\end{figure}
+
+Symulację uruchamiamy poprzez najechanie kontrolerem na przycisk start który znajduję się na widgecie przed planszą. Symulacja będzie trwać dopóki nie wyłączymy jej drugim przyciskiem. Podczas symulacji agenci będą się poruszać zgodnie z zachowaniami, jakie im zostały stworzone w kodzie.
 
 \begin{figure}[H]%
 \centering
-\includegraphics[width=0.7\columnwidth]{graphics/agent/AgentInUE_1.png}
-\caption{Model Agentowy w programie
+\includegraphics[width=0.5\columnwidth]{graphics/agent/AgentInUE_1.png}
+\caption{Wygląd symulacji w trakcie jej działania
 \label{BPExample}}%
 %
 \qquad
 \end{figure}  
+
+
 
 \newpage
 \subsection{Boids}
@@ -880,6 +935,7 @@ WBP\_BoidHud tak jak wszystkie widgety w poprzednich symulacjach, po najechaniu 
 \qquad
 \end{figure}  
 
+\newpage
 \subsubsection{Boids - Wygląd w programie}
 
 W programie nad lewym kontrolerze mamy widget którym sterujemy zaochawniem boidów. Za pomocą prawego kontrolera możemy ustawić opcje np. ustawić czy boidy mają podążać za targetem oraz możemy wrócić do galerii.
@@ -912,8 +968,10 @@ Po kliknięciu na prawym kontrolerze spustu możemy zmienić położenie targetu
 \qquad
 \end{figure}  
 
+\newpage
 \section{Realizacja projektu}
 
+\newpage
 \section{Wnioski}
 
 
