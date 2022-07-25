@@ -303,116 +303,93 @@ Program był pisany w silniku Unreal Engine 4, z powodu że korzystam z tego sil
 
 \subsection{Wahadło Podwójne}
 
+Pierwszym modelem, który zamieściłem w swoim projekcie jest model wahadła podwójnego. Wahadło podwójne składa się z dwóch wahadeł prostych, tzn. pierwsze wahadło o masie $m_0$ zostało przymocowane za pomocą pręta o długości $l_0$ do stałego punktu obrotu, gdzie $\theta_0$ jest przesunięciem kątowym wahadła od położenia równowagi. Drugie wahadło o masie $m_1$ zostało przymocowane za pomocą pręta o długości $l_1$ do pierwszego wahadła z własnym kątem swobody $\theta_1$. Z powodu występowania dwóch stopni swobody $\theta_0$ i $\theta_1$, a przez to ma bardziej złożony ruch, wahadło jest podatne na chaotyczny ruch i jest bardzo wrażliwy na warunki początkowe\cite{double_pendulum_book}.
+
 \begin{figure}[H]%
 \centering
 \includegraphics[width=0.5\columnwidth]{graphics/pendulum/DoublePendulum.png}
-\caption{$\theta$ 1-2 kąty swobodne, m1 m2 masy obiektów, l1 l2 długości pręta
+\caption{Wahadło podwójne
 \label{BPExample}}%
 %
 \qquad
 \end{figure}  
 
-
-Pierwszy model który umieściłem jest model wahadła podwójnego. Wahadło podwójne, jest wahadłem które ma przymocowane drugie wahadło na jego końcu. \cite{double_pendulum} W wahadle tym punkty masy są na końcu każdego pręta o danej długości. Wahadła obracają się swobodnie w płaszczyźnie pionowej. Energię potencjalną wahadła podwójnego oblicza się jako odniesienie uniesionego wahadła do stanu zerowej energii potencjalnej w położeniu równowagi, Dlatego równanie ma następującą postać: 
-
-\begin{equation} 
-V=m_1gl_1(1-\cos\theta_1)+m_2g[l_1(1-\cos\theta_1)+l_2(1-\cos\theta_2)]
-\end{equation}
-
-W celu sformułowania równania energii kinetycznej wykorzystamy wyprowadzenie współrzędnych x i y układu, które przedstawiono poniżej:
-
-\begin{equation}
-\begin{split} 
-x_2=l_1\sin\theta_1+l_2\sin\theta_2\\
-y_2=l_1\cos\theta_1-l_2\cos\theta_2
-\end{split}
-\end{equation}
-
-Po wyprowadzeniu i zsumowaniu wyrażeń możemy określić ostateczną postać energii kinetycznej:
-
-\begin{equation}
-\begin{split} 
-K=\frac{1}{2}m_1l_1^2\dot{\theta_1^2}+\frac{1}{2}m_2l_1^2\dot{\theta_1^2}+\frac{1}{2}m_2l_2^2\dot{\theta_2^2}+m_2l_1l_2\cos(\theta_1-\theta_2)\dot{\theta_1}\dot{\theta_2}
-\end{split}
-\end{equation}
-
-
-Najprostsze równanie Lagrange ma postać:
-
-\begin{equation}
-\begin{split} 
-\frac{d}{dt}(\frac{\partial L}{d\dot{\theta_i}})-(\frac{\partial L}{d\theta_i})=0
-\end{split}
-\end{equation}
-
-Korzystając z równań Lagrange i dokonując odpowiednich podstawień, możemy sformułować sprzężone równanie ruchu dla podanego układu:
-
-\begin{equation}
-\begin{split} 
-\ddot{\theta_1}=-\frac{l_2}{\mu l_1} \ddot{\theta_2}\cos(\theta_1-\theta_2)-\frac{l_2}{\mu l_1}\dot{\theta_2^2} sin(\theta_1-\theta_2)-\frac{g}{l_1}\sin\theta_1\\
-\ddot{\theta_2}=-\frac{l_1}{l_2} \ddot{\theta_1}\cos(\theta_1-\theta_2)-\frac{l_1}{l_2}\dot{\theta_1^2} sin(\theta_1-\theta_2)-\frac{g}{l_2}\sin\theta_2\\
-\end{split}
-\end{equation}
-
-gdzie:
-\begin{equation}
-\begin{split} 
-\mu=1+(m_1+m_2)
-\end{split}
-\end{equation}
-
-Aby zdekomponować pojęcia przyspieszenia kątowego, podstawiamy je, wstawiając drugie równanie do pierwszego i odwrotnie, otrzymujemy: 
-
-\begin{equation}
-\begin{split} 
-\ddot{\theta_1}=\frac{g(\sin\theta_2\cos(\theta_1-\theta_2)-\mu\sin\theta_1)
--(l_2\dot{\theta_2^2}+l_1\dot{\theta_1^2}\cos(\theta_1-\theta_2))\sin(\theta_1-\theta_2)}{l_1(\mu-\cos^2(\theta_1-\theta_2))}
-\\
-\ddot{\theta_1}=\frac{g\mu(\sin\theta_1\cos(\theta_1-\theta_2)-\sin\theta_2)
--(\mu l_1\dot{\theta_1^2}+l_2\dot{\theta_2^2}\cos(\theta_1-\theta_2))\sin(\theta_1-\theta_2)}
-{l_2(\mu-\cos^2(\theta_1-\theta_2))}
-\\
-\end{split}
-\end{equation}
-
-
- nowych zmienny w1 i w2 pozwala na sformułowanie czterech równań co ułatwia rozwiązanie numeryczne:
- 
- 
-\begin{equation}
-\begin{split} 
-\dot{\theta_1}=\omega_1\\\\
-\omega_1=\frac{g(\sin\theta_2\cos(\theta_1-\theta_2)-\mu\sin\theta_1)
--(l_2\dot{\theta_2^2}+l_1\dot{\theta_1^2}\cos(\theta_1-\theta_2))\sin(\theta_1-\theta_2)}{l_1(\mu-\cos^2(\theta_1-\theta_2))}
-\\
-\dot{\theta_1}=\omega_2\\\\
-\omega_2=\frac{g\mu(\sin\theta_1\cos(\theta_1-\theta_2)-\sin\theta_2)
--(\mu l_1\dot{\theta_1^2}+l_2\dot{\theta_2^2}\cos(\theta_1-\theta_2))\sin(\theta_1-\theta_2)}
-{l_2(\mu-\cos^2(\theta_1-\theta_2))}
-\\
-\end{split}
-\label{computeAnglesEuler}
-\end{equation}
-
-
 \subsubsection{Wahadło podwójne - kod}
 
 
-W C++ kod wahadła składa się z trzech klas: Pendulum, PendulumSpawn, PendulumControl
+Kod C++ przeznaczony do tworzenia i zarządzania wahadłami wahadła składa się z trzech klas: Pendulum, PendulumSpawn, PendulumControl
 
-W klasie Pendulum, wahadło podwójne jest stworzone z Spline, na podstawie danych pozycji X i Y jest aktualizowany co klatkę. Na podstawie tych równań (\ref{computeAnglesEuler}) stworzyłem metodę która obliczą theta wahadeł do obliczenia ich obecnej pozycji w programie:
+W klasie Pendulum, aby obliczyć wartość $\theta_0$ i $\theta_1$ potrzebne są najpierw prędkości kątowe  $\dot{\theta_0}$ i $\dot{\theta_1}$ oraz ich przyśpieszenie kątowe $\ddot{\theta_0}$ i $\ddot{\theta_1}$. Aby obliczyć zmianie kąta w czasie trzeba rozwiązać układ równań różniczkowych. Najpierw robimy do dla kątów  $\theta_0$ i $\theta_1$, gdzie pochodna kąta od czasu jest równa $\dot{\theta_0}$ i $\dot{\theta_1}$. Teraz robimy równanie na pochodną prędkości od czasu dla $\dot{\theta_0}$ i $\dot{\theta_1}$ co daje nam przyśpieszenie kątowe $\ddot{\theta_0}$ i $\ddot{\theta_1}$.
 
-\lstinputlisting[caption=Obliczanie wartości theta, label={lst:listing-cpp}, language=C++]{code/doublependulum/ComputeAnglesEuler.cpp}
+\begin{equation}
+\begin{split} 
+\frac{\partial\theta_0}{\partial t}=\dot{\theta_0}
+\\
+\frac{\partial\theta_1}{\partial t}=\dot{\theta_1}
+\\
+\frac{\partial\dot{\theta_0}}{\partial t}=\ddot{\theta_0}
+\\
+\frac{\partial\dot{\theta_1}}{\partial t}=\ddot{\theta_1}
+\end{split}
+\label{thetas}
+\end{equation}
 
+Równania [\ref{thetas}] dla łatwiejszego wykorzystania możemy zapisać algebraicznie poprzez zapisanie równań różnicowych, tzn. dokonujemy przekształcenia gdzie pochodną po czasie zastępujemy prostym operatorem liniowym:
 
-Następnie wyliczone wartości są wykorzystywane do obliczania pozycji wahadła w metodzie computePosition i aktualizowana jest w nim pozycja Spline:
+\begin{equation}
+\begin{split} 
+\theta_0=\theta_0+\dot{\theta_0}*dt;
+\\
+\theta_1=\theta_1+\dot{\theta_1}*dt;
+\\
+\dot{\theta_0}=\dot{\theta_0}+\ddot{\theta_0}*dt;
+\\
+\dot{\theta_1}=\dot{\theta_1}+\ddot{\theta_1}*dt;
+\\
+gdzie:
+\\
+dt-krok\ czasowy
+\end{split}
+\label{pendumalgeb}
+\end{equation}
+
+Do szczęścia brakuje nam już tylko $\ddot{\theta_0}$ i $\ddot{\theta_1}$, które można wyprowadzić ze wzoru \cite{double_pendulum}: 
+
+\begin{equation}
+\begin{split} 
+\ddot{\theta_0}=\frac{g(\sin\theta_1\cos(\theta_0-\theta_1)-\mu\sin\theta_0)
+-(l_1\dot{\theta_1^2}+l_0\dot{\theta_0^2}\cos(\theta_0-\theta_1))\sin(\theta_0-\theta_1)}{l_0(\mu-\cos^2(\theta_0-\theta_1))}
+\\
+\ddot{\theta_1}=\frac{g\mu(\sin\theta_0\cos(\theta_0-\theta_1)-\sin\theta_1)
+-(\mu l_0\dot{\theta_0^2}+l_1\dot{\theta_1^2}\cos(\theta_0-\theta_1))\sin(\theta_0-\theta_1)}
+{l_1(\mu-\cos^2(\theta_0-\theta_1))}
+\\
+gdzie:
+\\
+\mu=1+(m_0+m_1)
+\end{split}
+\label{computeAngularAcceleration}
+\end{equation}
+
+Tak wyżej utworzone równania możemy w końcu wykorzystać w kodzie do obliczenia wartości $\theta_0$ i $\theta_1$ w danym kroku czasowym.
+
+\lstinputlisting[caption=Obliczanie wartości $\theta_0$ i $\theta_1$, label={lst:listing-cpp}, language=C++]{code/doublependulum/ComputeAnglesEuler.cpp}
+\label{ComputeTheta}
+
+%spytać się o ref do listingu
+
+Tak wyliczone wartości $\theta_0$ i $\theta_1$ są wykorzystane do obliczenia położeń wahadeł w kolejnej funkcji. Pręta wahadeł są stworzone ze "Spline Mesh Compoment", jest to zdeformowany Static Mesh w którym podajemy mu obecnie wyliczone współrzędne wahadła, dzięki temu uzyskujemy odpowiednio wyglądające wahadło.
 
 \lstinputlisting[caption=Aktualizacja pozycji wahadła, label={lst:listing-cpp}, language=C++]{code/doublependulum/ComputePosition.cpp}
 
-Klasa PendulumSpawn jest odpowiedzialna za dodawanie i usuwanie wahadeł oraz jest odpowiedzialna za uruchamianie i resetowanie wszystkich aktualnych wahadeł na scenie
-Klasa ma też wskaźnik na klasę PendulumControl która ta jest odpowiedzialna za stworzenie UI dzięki któremu użytkownik może obsługiwać wahadła.
+
+Klasa PendulumSpawn jest natomiast odpowiedzialna za dodawanie, usuwanie wahadeł. Klasa jest też odpowiedzialna za uruchomianie i resetowanie wszystkich wahadeł które zostały przez dany PendulumSpawn stworzone.
+
+Ostatnią klasą jest klasa PendulumControl, w której są zawarte metody i zmienne potrzebne do stworzenia interfejsu użytkownika, odpowiedzialnego za kontakt między użytkownikiem programu, a PendulumSpawn.
 
 \subsubsection{Wahadło podwójne - UE4}
+{\color{red}
+
 Na podstawie powyższych klas zostały stworzone klasy BluePrintowe które można potem umieścić w na poziomie w programie. BP\_Pendulum ma tylko informację o tym jak Spline ma wyglądać w świecie gry:
 
 \begin{figure}[H]%
@@ -445,7 +422,7 @@ Klasa WBP\_PendulumControl jest odpowiedzialna kontakt miedzy użytkownikiem a p
 %
 \qquad
 \end{figure}  
-
+p}
 \subsubsection{Wahadło podwójne - Wygląd w programie}
 W programie wahadło wygląda następująco:
 
@@ -610,15 +587,15 @@ Po lewej stronie od tablicy z komórkami znajduję się widżet, na którym moż
 
 \begin{figure}[H]%
 \centering
-\includegraphics[width=0.4\columnwidth]{graphics/butterfly/Edward_lorenz.jpg}
-\caption{Edward Norton Lorenz 1917-2008 
+\includegraphics[width=0.7\columnwidth]{graphics/butterfly/josep_castells_burza.jpg}
+\caption{Burza 
 \label{BPExample}}%
 %
 \qquad
 \end{figure} 
 
 Obecnie układ Lorenza jest bardziej znany jako układ 3 nieliniowych
-równań różniczkowych:
+równań różniczkowych\cite{lorenz_dziwne_atraktory}:
 
 \begin{equation}
 \begin{split}

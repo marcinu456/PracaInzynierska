@@ -48,25 +48,29 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Przykładowy BluePrint w UE4 \relax }}{8}{figure.caption.5}\protected@file@percent }
 \newlabel{BPExample}{{4}{8}{Przykładowy BluePrint w UE4 \relax }{figure.caption.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Język C++}{8}{subsection.3.2}\protected@file@percent }
+\citation{double_pendulum_book}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces W nawiasie informacja, że odziedziczone z po klasie bazowej \relax }}{9}{figure.caption.6}\protected@file@percent }
 \newlabel{CppInherited}{{5}{9}{W nawiasie informacja, że odziedziczone z po klasie bazowej \relax }{figure.caption.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Oculus Quest}{9}{subsection.3.3}\protected@file@percent }
-\citation{double_pendulum}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Jakie modele się znajdują}{10}{section.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Wahadło Podwójne}{10}{subsection.4.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces $\theta $ 1-2 kąty swobodne, m1 m2 masy obiektów, l1 l2 długości pręta \relax }}{10}{figure.caption.7}\protected@file@percent }
-\newlabel{BPExample}{{6}{10}{$\theta $ 1-2 kąty swobodne, m1 m2 masy obiektów, l1 l2 długości pręta \relax }{figure.caption.7}{}}
-\newlabel{computeAnglesEuler}{{8}{11}{Wahadło Podwójne}{equation.4.8}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Wahadło podwójne - kod}{11}{subsubsection.4.1.1}\protected@file@percent }
-\newlabel{lst:listing-cpp}{{1}{11}{Obliczanie wartości theta}{lstlisting.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}{\ignorespaces Obliczanie wartości theta}}{11}{lstlisting.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Wahadło podwójne \relax }}{10}{figure.caption.7}\protected@file@percent }
+\newlabel{BPExample}{{6}{10}{Wahadło podwójne \relax }{figure.caption.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Wahadło podwójne - kod}{10}{subsubsection.4.1.1}\protected@file@percent }
+\newlabel{thetas}{{1}{10}{Wahadło podwójne - kod}{equation.4.1}{}}
+\citation{double_pendulum}
+\newlabel{pendumalgeb}{{2}{11}{Wahadło podwójne - kod}{equation.4.2}{}}
+\newlabel{computeAngularAcceleration}{{3}{11}{Wahadło podwójne - kod}{equation.4.3}{}}
+\newlabel{lst:listing-cpp}{{1}{11}{Obliczanie wartości $\theta _0$ i $\theta _1$}{lstlisting.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}{\ignorespaces Obliczanie wartości $\theta _0$ i $\theta _1$}}{11}{lstlisting.1}\protected@file@percent }
+\newlabel{ComputeTheta}{{4.1.1}{11}{Wahadło podwójne - kod}{lstnumber.1.19}{}}
 \newlabel{lst:listing-cpp}{{2}{12}{Aktualizacja pozycji wahadła}{lstlisting.2}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {2}{\ignorespaces Aktualizacja pozycji wahadła}}{12}{lstlisting.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Wahadło podwójne - UE4}{13}{subsubsection.4.1.2}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Ustawiony mesh i tekstura dla wahadła \relax }}{13}{figure.caption.8}\protected@file@percent }
 \newlabel{BPExample}{{7}{13}{Ustawiony mesh i tekstura dla wahadła \relax }{figure.caption.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Ustawione wahadło do stworzenia i widget \relax }}{14}{figure.caption.9}\protected@file@percent }
-\newlabel{BPExample}{{8}{14}{Ustawione wahadło do stworzenia i widget \relax }{figure.caption.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Ustawione wahadło do stworzenia i widget \relax }}{13}{figure.caption.9}\protected@file@percent }
+\newlabel{BPExample}{{8}{13}{Ustawione wahadło do stworzenia i widget \relax }{figure.caption.9}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Wygląd widgetu w programie \relax }}{14}{figure.caption.10}\protected@file@percent }
 \newlabel{BPExample}{{9}{14}{Wygląd widgetu w programie \relax }{figure.caption.10}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}Wahadło podwójne - Wygląd w programie}{14}{subsubsection.4.1.3}\protected@file@percent }
@@ -106,16 +110,17 @@
 \newlabel{sub@ref:subref_a}{{a}{19}{Ożywianie komórek z pomocą kontrolera\relax }{figure.caption.15}{}}
 \newlabel{ref:subref_b}{{14b}{19}{Uśmiercanie komórek z pomocą kontrolera\relax }{figure.caption.15}{}}
 \newlabel{sub@ref:subref_b}{{b}{19}{Uśmiercanie komórek z pomocą kontrolera\relax }{figure.caption.15}{}}
-\newlabel{ref:ref}{{\caption@xref {ref:ref}{ on input line 584}}{19}{Gra w życie - Wygląd w programie}{figure.caption.15}{}}
+\newlabel{ref:ref}{{\caption@xref {ref:ref}{ on input line 561}}{19}{Gra w życie - Wygląd w programie}{figure.caption.15}{}}
 \newlabel{ref:subref_a}{{15a}{19}{Wygląd tablicy z komórkami i widżetu\relax }{figure.caption.16}{}}
 \newlabel{sub@ref:subref_a}{{a}{19}{Wygląd tablicy z komórkami i widżetu\relax }{figure.caption.16}{}}
 \newlabel{ref:subref_b}{{15b}{19}{Wygląd tablicy w trakcie uruchomienia gry\relax }{figure.caption.16}{}}
 \newlabel{sub@ref:subref_b}{{b}{19}{Wygląd tablicy w trakcie uruchomienia gry\relax }{figure.caption.16}{}}
-\newlabel{ref:ref}{{\caption@xref {ref:ref}{ on input line 603}}{19}{Gra w życie - Wygląd w programie}{figure.caption.16}{}}
+\newlabel{ref:ref}{{\caption@xref {ref:ref}{ on input line 580}}{19}{Gra w życie - Wygląd w programie}{figure.caption.16}{}}
 \citation{burze_motyle}
+\citation{lorenz_dziwne_atraktory}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Efekt Motyla}{20}{subsection.4.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Edward Norton Lorenz 1917-2008 \relax }}{20}{figure.caption.17}\protected@file@percent }
-\newlabel{BPExample}{{16}{20}{Edward Norton Lorenz 1917-2008 \relax }{figure.caption.17}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Burza \relax }}{20}{figure.caption.17}\protected@file@percent }
+\newlabel{BPExample}{{16}{20}{Burza \relax }{figure.caption.17}{}}
 \citation{motyle_cpp}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Efekt Motyla - kod}{21}{subsubsection.4.3.1}\protected@file@percent }
 \newlabel{lst:listing-cpp}{{8}{21}{Metoda Tick()}{lstlisting.8}{}}
@@ -150,18 +155,18 @@
 \newlabel{sub@ref:subref_a}{{a}{28}{Wygląd planszy w UE4\relax }{figure.caption.24}{}}
 \newlabel{ref:subref_b}{{23b}{28}{Wygląd widgetu w UE4\relax }{figure.caption.24}{}}
 \newlabel{sub@ref:subref_b}{{b}{28}{Wygląd widgetu w UE4\relax }{figure.caption.24}{}}
-\newlabel{ref:ref}{{\caption@xref {ref:ref}{ on input line 771}}{28}{Modele Agentowe - UE4}{figure.caption.24}{}}
+\newlabel{ref:ref}{{\caption@xref {ref:ref}{ on input line 748}}{28}{Modele Agentowe - UE4}{figure.caption.24}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.3}Modele Agentowe - Wygląd w programie}{28}{subsubsection.4.4.3}\protected@file@percent }
 \newlabel{ref:subref_a}{{24a}{29}{SpawnBoxy w programie\relax }{figure.caption.25}{}}
 \newlabel{sub@ref:subref_a}{{a}{29}{SpawnBoxy w programie\relax }{figure.caption.25}{}}
 \newlabel{ref:subref_b}{{24b}{29}{Wyciąganie agenta z SpawnBoxu\relax }{figure.caption.25}{}}
 \newlabel{sub@ref:subref_b}{{b}{29}{Wyciąganie agenta z SpawnBoxu\relax }{figure.caption.25}{}}
-\newlabel{ref:ref}{{\caption@xref {ref:ref}{ on input line 791}}{29}{Modele Agentowe - Wygląd w programie}{figure.caption.25}{}}
+\newlabel{ref:ref}{{\caption@xref {ref:ref}{ on input line 768}}{29}{Modele Agentowe - Wygląd w programie}{figure.caption.25}{}}
 \newlabel{ref:subref_a}{{25a}{29}{Kładzenie agenta na planszy\relax }{figure.caption.26}{}}
 \newlabel{sub@ref:subref_a}{{a}{29}{Kładzenie agenta na planszy\relax }{figure.caption.26}{}}
 \newlabel{ref:subref_b}{{25b}{29}{Plansza z agentami\relax }{figure.caption.26}{}}
 \newlabel{sub@ref:subref_b}{{b}{29}{Plansza z agentami\relax }{figure.caption.26}{}}
-\newlabel{ref:ref}{{\caption@xref {ref:ref}{ on input line 810}}{29}{Modele Agentowe - Wygląd w programie}{figure.caption.26}{}}
+\newlabel{ref:ref}{{\caption@xref {ref:ref}{ on input line 787}}{29}{Modele Agentowe - Wygląd w programie}{figure.caption.26}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {26}{\ignorespaces Wygląd symulacji w trakcie jej działania \relax }}{29}{figure.caption.27}\protected@file@percent }
 \newlabel{BPExample}{{26}{29}{Wygląd symulacji w trakcie jej działania \relax }{figure.caption.27}{}}
 \citation{boids_name}
@@ -175,7 +180,7 @@
 \newlabel{sub@ref:subref_b}{{b}{30}{Wyrównanie\relax }{figure.caption.28}{}}
 \newlabel{ref:subref_c}{{27c}{30}{Spójność\relax }{figure.caption.28}{}}
 \newlabel{sub@ref:subref_c}{{c}{30}{Spójność\relax }{figure.caption.28}{}}
-\newlabel{ref:ref}{{\caption@xref {ref:ref}{ on input line 857}}{30}{Boids}{figure.caption.28}{}}
+\newlabel{ref:ref}{{\caption@xref {ref:ref}{ on input line 834}}{30}{Boids}{figure.caption.28}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.1}Boids - kod}{30}{subsubsection.4.5.1}\protected@file@percent }
 \newlabel{lst:listing-cpp}{{13}{30}{Metoda Tick()}{lstlisting.13}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {13}{\ignorespaces Metoda Tick()}}{30}{lstlisting.13}\protected@file@percent }
@@ -188,12 +193,12 @@
 \newlabel{sub@ref:subref_a}{{a}{32}{Ustawienia BoidTarget w UE4 \relax }{figure.caption.29}{}}
 \newlabel{ref:subref_b}{{28b}{32}{Ustawienia Boid w UE4 \relax }{figure.caption.29}{}}
 \newlabel{sub@ref:subref_b}{{b}{32}{Ustawienia Boid w UE4 \relax }{figure.caption.29}{}}
-\newlabel{ref:ref}{{\caption@xref {ref:ref}{ on input line 904}}{32}{Boids - UE4}{figure.caption.29}{}}
+\newlabel{ref:ref}{{\caption@xref {ref:ref}{ on input line 881}}{32}{Boids - UE4}{figure.caption.29}{}}
 \newlabel{ref:subref_a}{{29a}{33}{Ustawienia BoidManager w UE4 \relax }{figure.caption.30}{}}
 \newlabel{sub@ref:subref_a}{{a}{33}{Ustawienia BoidManager w UE4 \relax }{figure.caption.30}{}}
 \newlabel{ref:subref_b}{{29b}{33}{Ustawienia BoidSpawner w UE4 \relax }{figure.caption.30}{}}
 \newlabel{sub@ref:subref_b}{{b}{33}{Ustawienia BoidSpawner w UE4 \relax }{figure.caption.30}{}}
-\newlabel{ref:ref}{{\caption@xref {ref:ref}{ on input line 924}}{33}{Boids - UE4}{figure.caption.30}{}}
+\newlabel{ref:ref}{{\caption@xref {ref:ref}{ on input line 901}}{33}{Boids - UE4}{figure.caption.30}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {30}{\ignorespaces Boids w programie \relax }}{33}{figure.caption.31}\protected@file@percent }
 \newlabel{BPExample}{{30}{33}{Boids w programie \relax }{figure.caption.31}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.3}Boids - Wygląd w programie}{34}{subsubsection.4.5.3}\protected@file@percent }
@@ -201,7 +206,7 @@
 \newlabel{sub@ref:subref_a}{{a}{34}{Boidy zmierzają w kierunku targetu \relax }{figure.caption.32}{}}
 \newlabel{ref:subref_b}{{31b}{34}{Boidy się rozpraszają\relax }{figure.caption.32}{}}
 \newlabel{sub@ref:subref_b}{{b}{34}{Boidy się rozpraszają\relax }{figure.caption.32}{}}
-\newlabel{ref:ref}{{\caption@xref {ref:ref}{ on input line 957}}{34}{Boids - Wygląd w programie}{figure.caption.32}{}}
+\newlabel{ref:ref}{{\caption@xref {ref:ref}{ on input line 934}}{34}{Boids - Wygląd w programie}{figure.caption.32}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {32}{\ignorespaces Przesuwanie targetu w programie w programie \relax }}{34}{figure.caption.33}\protected@file@percent }
 \newlabel{BPExample}{{32}{34}{Przesuwanie targetu w programie w programie \relax }{figure.caption.33}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Realizacja projektu}{35}{section.5}\protected@file@percent }
@@ -213,14 +218,16 @@
 \bibcite{porownanie_gogli}{3}
 \bibcite{Sprzedasz_gogli_VR}{4}
 \bibcite{choroba_vr}{5}
-\bibcite{double_pendulum}{6}
-\bibcite{game_of_life}{7}
-\bibcite{game_of_life_wiki}{8}
-\bibcite{burze_motyle}{9}
-\bibcite{motyle_cpp}{10}
-\bibcite{agent_examples}{11}
-\bibcite{boids_name}{12}
-\bibcite{flocking_system}{13}
-\bibcite{boids_reynolds}{14}
-\bibcite{code_boids}{15}
-\gdef \@abspage@last{37}
+\bibcite{double_pendulum_book}{6}
+\bibcite{double_pendulum}{7}
+\bibcite{game_of_life}{8}
+\bibcite{game_of_life_wiki}{9}
+\bibcite{burze_motyle}{10}
+\bibcite{lorenz_dziwne_atraktory}{11}
+\bibcite{motyle_cpp}{12}
+\bibcite{agent_examples}{13}
+\bibcite{boids_name}{14}
+\bibcite{flocking_system}{15}
+\bibcite{boids_reynolds}{16}
+\bibcite{code_boids}{17}
+\gdef \@abspage@last{38}

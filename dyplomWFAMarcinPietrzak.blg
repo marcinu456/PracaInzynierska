@@ -17,63 +17,67 @@ Warning--entry type for "choroba_vr" isn't style-file defined
 --line 30 of file bibliografia.bib
 Warning--entry type for "double_pendulum" isn't style-file defined
 --line 37 of file bibliografia.bib
+Warning--entry type for "double_pendulum_book" isn't style-file defined
+--line 45 of file bibliografia.bib
 Warning--entry type for "game_of_life" isn't style-file defined
---line 44 of file bibliografia.bib
+--line 53 of file bibliografia.bib
 Warning--entry type for "game_of_life_wiki" isn't style-file defined
---line 51 of file bibliografia.bib
+--line 60 of file bibliografia.bib
 Warning--entry type for "burze_motyle" isn't style-file defined
---line 65 of file bibliografia.bib
+--line 74 of file bibliografia.bib
+Warning--entry type for "lorenz_dziwne_atraktory" isn't style-file defined
+--line 81 of file bibliografia.bib
 Warning--entry type for "motyle_cpp" isn't style-file defined
---line 72 of file bibliografia.bib
+--line 88 of file bibliografia.bib
 Warning--entry type for "agent_examples" isn't style-file defined
---line 79 of file bibliografia.bib
+--line 95 of file bibliografia.bib
 Warning--entry type for "flocking_system" isn't style-file defined
---line 86 of file bibliografia.bib
+--line 102 of file bibliografia.bib
 Warning--entry type for "boids_reynolds" isn't style-file defined
---line 93 of file bibliografia.bib
+--line 109 of file bibliografia.bib
 Warning--entry type for "boids_name" isn't style-file defined
---line 100 of file bibliografia.bib
+--line 116 of file bibliografia.bib
 Warning--entry type for "code_boids" isn't style-file defined
---line 107 of file bibliografia.bib
-You've used 15 entries,
+--line 123 of file bibliografia.bib
+You've used 17 entries,
             1791 wiz_defined-function locations,
-            502 strings with 5333 characters,
-and the built_in function-call counts, 1897 in all, are:
-= -- 150
-> -- 60
+            511 strings with 5732 characters,
+and the built_in function-call counts, 2147 in all, are:
+= -- 170
+> -- 68
 < -- 0
-+ -- 30
-- -- 15
++ -- 34
+- -- 17
 * -- 2
-:= -- 296
-add.period$ -- 45
-call.type$ -- 15
-change.case$ -- 15
+:= -- 334
+add.period$ -- 51
+call.type$ -- 17
+change.case$ -- 17
 chr.to.int$ -- 0
-cite$ -- 15
-duplicate$ -- 75
-empty$ -- 271
-format.name$ -- 15
-if$ -- 451
+cite$ -- 17
+duplicate$ -- 85
+empty$ -- 307
+format.name$ -- 17
+if$ -- 511
 int.to.chr$ -- 0
-int.to.str$ -- 15
+int.to.str$ -- 17
 missing$ -- 0
-newline$ -- 78
-num.names$ -- 15
-pop$ -- 75
+newline$ -- 88
+num.names$ -- 17
+pop$ -- 85
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 74
+skip$ -- 84
 stack$ -- 0
 substring$ -- 0
-swap$ -- 15
+swap$ -- 17
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 15
-width$ -- 17
-write$ -- 137
-(There were 15 warnings)
+while$ -- 17
+width$ -- 19
+write$ -- 155
+(There were 17 warnings)

@@ -28,9 +28,15 @@ IDC.
 \newblock \newline
   \url{https://vrpolska.eu/skad-sie-bierze-choroba-symulatorowa/}.
 
+\bibitem{double_pendulum_book}
+James A.~Blackburn Gregory L.~Baker.
+\newblock {The Pendulum A Case Study in Physics}.
+\newblock \newline
+  \url{https://www.academia.edu/34415707/The_pendulum_A_case_study_in_physics_pdf_pdf}.
+
 \bibitem{double_pendulum}
-IDC.
-\newblock {Wahadło podwójne}.
+Krzysztof Jankowski.
+\newblock {Dynamics of double pendulum with parametric vertical excitation}.
 \newblock \newline
   \url{https://web.archive.org/web/*/http://www.team.kdm.p.lodz.pl/master/Jankowski.pdf/}.
 
@@ -50,6 +56,12 @@ Paul Halpern.
 \newblock {O motylach i burzach}.
 \newblock \newline
   \url{https://web.archive.org/web/20100909161235/http://czytelnia.onet.pl/0,1161316,do_czytania.html/}.
+
+\bibitem{lorenz_dziwne_atraktory}
+Jarosław Demkowski.
+\newblock {Efekt motyla i dziwne atraktory}.
+\newblock \newline
+  \url{https://silo.tips/download/efekt-motyla-i-dziwne-atraktory}.
 
 \bibitem{motyle_cpp}
 Maciej Matyka.
