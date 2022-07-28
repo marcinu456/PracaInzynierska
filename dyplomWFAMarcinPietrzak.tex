@@ -389,8 +389,10 @@ Ostatnią klasą jest klasa PendulumControl, w której są zawarte metody i zmie
 
 \subsubsection{Wahadło podwójne - UE4}
 {\color{red}
+Na podstawie klas C++ z poprzedniego rozdziału stworzyłem klasy blueprintowe, które to umieszczam na poziomie w edytorze lub są wykorzystane do stworzenia interfejsu użytkownika.
 
-Na podstawie powyższych klas zostały stworzone klasy BluePrintowe które można potem umieścić w na poziomie w programie. BP\_Pendulum ma tylko informację o tym jak Spline ma wyglądać w świecie gry:
+
+W klasie BP\_Pendulum w blueprincie do najważniejszej rzeczy którą można zrobić, jest możliwość zmiany siatki 3D i materiału z którego jest stworzone wahadło:
 
 \begin{figure}[H]%
 \centering
@@ -401,7 +403,7 @@ Na podstawie powyższych klas zostały stworzone klasy BluePrintowe które możn
 \qquad
 \end{figure}  
 
-BP\_PendulumSpawn jest aktorem który zostaje umieszczony na poziomie, trzeba tylko ustawić w nim informację o wahadle które chcemy stworzyć na poziomie oraz jaki widget chcemy umieścić by można za jego pomocą sterować wahadłami.
+W klasie BP\_PendulumSpawn ustawiamy tylko jakie ma tworzyć wahadła oraz jaki widget ma być umieszczony do obsługi wahadeł. Po ustawieniu wszystkich potrzebnych rzeczy klasę można umieścić na poziomie:
 
 \begin{figure}[H]%
 \centering
@@ -412,7 +414,9 @@ BP\_PendulumSpawn jest aktorem który zostaje umieszczony na poziomie, trzeba ty
 \qquad
 \end{figure}  
 
-Klasa WBP\_PendulumControl jest odpowiedzialna kontakt miedzy użytkownikiem a programem, klasa ta jest widgetem dzięki któremu poprzez najechanie kontrolerem ruchowym na odpowiednie opcje możemy dodać lub usunąć wahadło oraz włączyć lub zresetować wszystkie wahadła podpięte pod dany spawner 
+ 
+Klasa WBP\_PendulumControl jest klasą typu widget, czyli klasą interfejsu użytkownika. W klasie tej trzeba stworzyć odpowiednie jej elementy na podstawie bazowej klasy C++, aby móc obsługiwać wahadła stworzone przez BP\_PendulumSpawn
+}
 
 \begin{figure}[H]%
 \centering
@@ -422,9 +426,9 @@ Klasa WBP\_PendulumControl jest odpowiedzialna kontakt miedzy użytkownikiem a p
 %
 \qquad
 \end{figure}  
-p}
-\subsubsection{Wahadło podwójne - Wygląd w programie}
-W programie wahadło wygląda następująco:
+
+\subsubsection{Wahadło podwójne – Wygląd symulacji w projekcie}
+W projekcie po najechaniu wskaźnikiem z kontrolera ruchowego na panel użytkownika, możemy dodać, usunąć, uruchomić lub zresetować wahadła stworzone przez spawner. Jak pokazano na rysunku \ref{Pendulum_in_project:subref_a}, na początku symulacji wahadła są stosunkowo blisko siebie. Lecz w trakcie jej działania w pewnym momencie wahadła zaczną się zachowywać w sposób chaotyczny, tak jak to widać na rysunku \ref{Pendulum_in_project:subref_b}.
 
 
 \begin{figure}[H]%
@@ -433,18 +437,18 @@ W programie wahadło wygląda następująco:
 		\centering
 		\includegraphics[width=0.8\linewidth]{graphics/pendulum/PendulumInUE_1.png}
 		\caption{Wahadła na początku symulacji}	
-		\label{ref:subref_a}
+		\label{Pendulum_in_project:subref_a}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
 		\includegraphics[width=0.8\linewidth]{graphics/pendulum/PendulumInUE_2.png}
 		\caption{Wahadła na końcu symulacji}
-		\label{ref:subref_b}
+		\label{Pendulum_in_project:subref_b}
 	\end{subfigure}%
 	
 
 \caption{Działanie programu}
-\label{ref:ref}
+\label{Pendulum_in_project}
 \end{figure}
 
 \newpage
@@ -541,7 +545,7 @@ Klasa WBP\_GameOfLifeControll jest odpowiedzialna kontakt miedzy użytkownikiem 
 \qquad
 \end{figure}  
 
-\subsubsection{Gra w życie - Wygląd w programie}
+\subsubsection{Gra w życie - Wygląd symulacji w projekcie}
 W programie za pomocą kontrolerów możemy ustawić stan początkowy każdej komórki w poprzez najechanie na nią wskaźnikiem wystającym z kontrolerów.
 
 \begin{figure}[H]%
@@ -652,7 +656,7 @@ W BP\_ButterflySpawner ustawiamy jakiego aktora chcemy ustawić na scenie, oraz 
 
 
 
-\subsubsection{Efekt Motyla - Wygląd w programie}
+\subsubsection{Efekt Motyla - Wygląd symulacji w projekcie}
 W programie Efekt Motyla wygląda następująco:
 
 \begin{figure}[H]%
@@ -748,7 +752,7 @@ Ostatnie dwie klasy to BP\_AgentTable i BP\_AgentControl. Pierwsza w nim jest pl
 \label{ref:ref}
 \end{figure}
 
-\subsubsection{Modele Agentowe - Wygląd w programie}
+\subsubsection{Modele Agentowe - Wygląd symulacji w projekcie}
 W programie za pomocą kontrolerów możemy wyciągać agentów z SpawnBoxów i kłaść ich następnie na planszy. Każdy rodzaj agenta ma swój własny SpawnBox różniący się wyglądem.
 
 \begin{figure}[H]%
@@ -913,9 +917,11 @@ WBP\_BoidHud tak jak wszystkie widgety w poprzednich symulacjach, po najechaniu 
 \end{figure}  
 
 \newpage
-\subsubsection{Boids - Wygląd w programie}
+\subsubsection{Boids - Wygląd symulacji w projekcie}
 
 W programie nad lewym kontrolerze mamy widget którym sterujemy zaochawniem boidów. Za pomocą prawego kontrolera możemy ustawić opcje np. ustawić czy boidy mają podążać za targetem oraz możemy wrócić do galerii.
+
+%Dodaj jak wyglądają kontolery w boidsach
 
 \begin{figure}[H]%
 	\centering
