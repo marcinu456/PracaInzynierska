@@ -317,7 +317,7 @@ Pierwszym modelem, który zamieściłem w swoim projekcie jest model wahadła po
 \subsubsection{Wahadło podwójne - kod}
 
 
-Kod C++ przeznaczony do tworzenia i zarządzania wahadłami wahadła składa się z trzech klas: Pendulum, PendulumSpawn, PendulumControl
+Kod C++ przeznaczony do tworzenia i zarządzania wahadłami składa się z trzech klas: Pendulum, PendulumSpawn, PendulumControl
 
 W klasie Pendulum, aby obliczyć wartość $\theta_0$ i $\theta_1$ potrzebne są najpierw prędkości kątowe  $\dot{\theta_0}$ i $\dot{\theta_1}$ oraz ich przyśpieszenie kątowe $\ddot{\theta_0}$ i $\ddot{\theta_1}$. Aby obliczyć zmianie kąta w czasie trzeba rozwiązać układ równań różniczkowych. Najpierw robimy do dla kątów  $\theta_0$ i $\theta_1$, gdzie pochodna kąta od czasu jest równa $\dot{\theta_0}$ i $\dot{\theta_1}$. Teraz robimy równanie na pochodną prędkości od czasu dla $\dot{\theta_0}$ i $\dot{\theta_1}$ co daje nam przyśpieszenie kątowe $\ddot{\theta_0}$ i $\ddot{\theta_1}$.
 
@@ -484,37 +484,28 @@ Gra w życie Conwaya w pierwotnych założeniach składa się z 4 zasad\cite{gam
 
 
 \subsubsection{Gra w życie - kod}
-{\color{red}
+
 W C++ kod gry w życie składa się z trzech klas: CellActor, GridActor, GameOfLifeControl
 
-CellActor jest klasą w której znajdują się informację o jednej komórce znajdującej w siatce. Sama w sobie ma informację o swoim położeniu X i Y na siatce 2D, o swoim obecnym stanie życia oraz o stanie życia w następnej klatce trwania programu. 
-Kiedy użytkownik najedzie na daną komórkę i kliknie spust w metodzie Clicked zmieni stan początkowy komórki z martwą na żywą i vice versa.
+CellActor jest klasą w której znajdują się informację o jednej komórce znajdującej w siatce. W klasie znajdują się informację o położeniu na dwuwymiarowej siatce (X i Y), również informację o stanie życia w obecnej generacji oraz o stanu życia w kolejnej generacji. Klasa posiada metodę Clicked, dzięki której jak użytkownik wejdzie w interakcje z komórką zmienia jej status początkowy z martwą na żywą i vice versa. 
 
 \lstinputlisting[caption=Aktualizacja stanu danej komórki przez użytkownika, label={lst:listing-cpp}, language=C++]{code/gameoflife/CellActorClicked.cpp}
 
-W metodzie Update która jest wykorzystywana przez GridActora podobnie jak w metodzie Clicked na podstawie zmiennej AliveNext, pozostawia przy życiu lub uśmierca daną komórkę
+Metoda Update, która jest wykorzystywana przez GridActora, podobnie jak metoda Clicked zmienia stan życia komórki, lecz w tym wypadku wykorzystuję zmienną AliveNext.
 
 \lstinputlisting[caption=Aktualizacja stanu danej komórki, label={lst:listing-cpp}, language=C++]{code/gameoflife/CellActorUpdate.cpp}
 
-Klasa ma też Gettery i Settery odpowiedzialne, za branie informacji o obecnym stanie komórki jak i o jej stanie w następnej klatce
 
-\lstinputlisting[caption=Aktualizacja stanu danej komórki, label={lst:listing-cpp}, language=C++]{code/gameoflife/CellActorGetSet.cpp}
-
-Klasa GridActor jest odpowiedzialna za tworzenie siatki 2D z klasy CellActor o podanej wielkości. W samej klasie dzieją się też wszystkie obliczenia związane z działaniem gry w życie od obliczania obecnie żyjących sąsiadów danej komórki w metodzie CountAliveNeighbors(const int i, const int j)
+Klasa GridActor jest odpowiedzialna za tworzenie dwuwymiarowej siatki składającej się z CellActorów i o podanej wysokości oraz długości. W klasie odbywają się wszystkie obliczenia związane z działaniem gry w życie od obliczania obecnie żyjących sąsiadów danej komórki w metodzie CountAliveNeighbors(const int i, const int j)
 
 \lstinputlisting[caption=Zliczanie żyjących sąsiadów danej komórki, label={lst:listing-cpp}, language=C++]{code/gameoflife/GridActorCount.cpp}
 
-Następnie na podstawie obecnie żyjących sąsiadów i reguł jakie zostały ustawione w metodzie UpdateAliveNext(const int Index, const int NumAliveNeighbors) ustawiamy czy dana komórka w następnej klatce będzie żywa lub martwa
+Następnie na podstawie obecnie żyjących sąsiadów i reguł jakie zostały ustawione w metodzie UpdateAliveNext(const int Index, const int NumAliveNeighbors) ustawiamy czy dana komórka w następnej klatce będzie żywa lub martwa.
 
 \lstinputlisting[caption=Aktualizacja stanu komórki w następnej klatce, label={lst:listing-cpp}, language=C++]{code/gameoflife/GridActorAlive.cpp}
 
-
-Stworzona została jeszcze wersja 3D GridActora którego jedyną różnicą jest to, że na została dodana też głębokość.
-
 Ostatnią klasą jest GameOfLifeControll która jest odpowiedzialna
-za stworzenie UI dzięki któremu użytkownik może włączyć grę w życie, zmienać szybkość działania symulacji oraz resetowania jej do stanu początkowego.
-}
-
+za stworzenia interfejsu użytkownika, dzięki któremu użytkownik może włączyć grę w życie, zmieniać szybkość działania gry oraz resetować ją do stanu początkowego.
 \subsubsection{Gra w życie - UE4}
 {\color{red}
 Na podstawie powyższych klas zostały stworzone klasy BluePrintowe które można potem umieścić w na poziomie w programie. W BP\_CellActor ustawiamy jak dana komórka ma wyglądać w świecie gry i jak się zachować kiedy najedziemy na nią kontrolerem ruchowym:
@@ -605,7 +596,7 @@ Po lewej stronie od tablicy z komórkami znajduję się widżet, na którym moż
 \newpage
 \subsection{Efekt Motyla}
 
-"Dowolny układ fizyczny, który zachowuje się nieokresowo, jest nieprzewidywalny." Są to słowa Edwarda Lorenza, meteorologa który jako pierwszy odkrył, że nie można zrobić dobrej prognozy pogody na dłużej niż kilka dni do przodu. W 1960 roku pracował on nad programem komputerowym który miał prognozować pogodę, na podstawie zbioru równań określających zależności między prędkością wiatru, temperaturą, ciśnieniem i wilgotnością. Gdy Lorenz testował swój program po wprowadzeniu danych i po wydrukowaniu wyniku w formie wykresu. Rozkład maksimów i minimów na wykresie wyglądał tak, jak się tego spodziewał Edward. Postanowił jednak ponownie zbadać wyniki, dlatego uruchomił program ponownie, wprowadzając jak myślał takie same wyniki. Okazało się jednak, że wyniki wyszły na odwrót. Po sprawdzeniu danych zauważył, że podał je w postaci przybliżonej z mniejszą liczbą cyfr po przecinku. Było to dla niego tak ciekawe, że spróbował to samo z innymi zbiorami danych i zaobserwował identyczne zjawisko. Lorenz w ten sposób odkrył "efekt motyla", gdzie dla pewnych układów deterministycznych nawet minimalne zmiany wartości danych początkowych zostają bardzo szybko wzmocnione i powodują ogromne zmiany w ewolucji układu\cite{burze_motyle}.
+"Dowolny układ fizyczny, który zachowuje się nieokresowo, jest nieprzewidywalny." Są to słowa Edwarda Lorenza, meteorologa który jako pierwszy odkrył, że nie można zrobić dobrej prognozy pogody na dłużej niż kilka dni do przodu. W 1960 roku pracował on nad programem komputerowym który miał prognozować pogodę, na podstawie zbioru równań określających zależności między prędkością wiatru, temperaturą, ciśnieniem i wilgotnością\cite{burze_motyle}. Gdy Lorenz testował swój program po wprowadzeniu danych i po wydrukowaniu wyniku w formie wykresu. Rozkład maksimów i minimów na wykresie wyglądał tak, jak się tego spodziewał Edward. Postanowił jednak ponownie zbadać wyniki, dlatego uruchomił program ponownie, wprowadzając jak myślał takie same wyniki\cite{burze_motyle}. Okazało się jednak, że wyniki wyszły na odwrót. Po sprawdzeniu danych zauważył, że podał je w postaci przybliżonej z mniejszą liczbą cyfr po przecinku. Było to dla niego tak ciekawe, że spróbował to samo z innymi zbiorami danych i zaobserwował identyczne zjawisko. Lorenz w ten sposób odkrył "efekt motyla", gdzie dla pewnych układów deterministycznych nawet minimalne zmiany wartości danych początkowych zostają bardzo szybko wzmocnione i powodują ogromne zmiany w ewolucji układu\cite{burze_motyle}.
 
 \begin{figure}[H]%
 \centering
@@ -632,8 +623,15 @@ sigma - stała Prandtla,\\
 rho - stała Rayleigha,\\
 beta - obszar obejmujący równania\\
 sigma,rho,beta>0,\\
-Jednakże zwykle podaje się:\\
-sigma = 10, rho =8/3, beta jest zmienne.\\
+Jednakże zwykle podaje się\cite{lorenz_dziwne_atraktory}:\\
+\begin{equation}
+\begin{split}
+sigma = 10\\
+rho = \frac{8}{3}\\
+beta - zmienna
+\end{split}
+\label{ButterflyVariables}
+\end{equation}
 
 \subsubsection{Efekt Motyla - kod}
 
@@ -673,16 +671,16 @@ W BP\_ButterflySpawner ustawiamy jakiego aktora chcemy ustawić na scenie, oraz 
 \end{figure} 
 
 
-
+\newpage
 \subsubsection{Efekt Motyla - Wygląd symulacji w projekcie}
 {\color{blue}
-W programie Efekt Motyla wygląda następująco:
+W programie użytkownik może obserwować efekt motyla z podstawowymi parametrami dla atraktorów[\ref{ButterflyVariables}], łącznie ze ścieżka, po jakiej się poruszają się atraktory:
 
 \begin{figure}[H]%
 \centering
 \includegraphics[width=0.7\columnwidth]{graphics/butterfly/ButterflyInUE_1.png}
 \caption{Wygląd motyli w programie
-\label{BPExample}}%
+\label{ButterflyEffectUE4}}%
 %
 \qquad
 \end{figure}  
