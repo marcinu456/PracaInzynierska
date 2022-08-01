@@ -23,7 +23,7 @@ IDC.
   \url{https://www.idc.com/getdoc.jsp?containerId=prUS48969722}.
 
 \bibitem{choroba_vr}
-IDC.
+Michał Brzeżański.
 \newblock {Choroba Symulatorowa}.
 \newblock \newline
   \url{https://vrpolska.eu/skad-sie-bierze-choroba-symulatorowa/}.
@@ -60,6 +60,11 @@ Martin Gardner.
 Staffan~Björk i~Jesper~Juul.
 \newblock {Zero-Player Games}.
 \newblock \newline \url{https://www.jesperjuul.net/text/zeroplayergames/}.
+
+\bibitem{game_of_life_code}
+sweyns.
+\newblock {GameOfLife}.
+\newblock \newline \url{https://github.com/sweyns/GameOfLife}.
 
 \bibitem{burze_motyle}
 Paul Halpern.
