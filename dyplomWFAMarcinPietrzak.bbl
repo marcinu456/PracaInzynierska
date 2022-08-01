@@ -40,16 +40,26 @@ Krzysztof Jankowski.
 \newblock \newline
   \url{https://web.archive.org/web/*/http://www.team.kdm.p.lodz.pl/master/Jankowski.pdf/}.
 
-\bibitem{game_of_life}
-IDC.
-\newblock {Gra w życie }.
-\newblock \newline
-  \url{https://www.sztucznainteligencja.org.pl/sztuczna-inteligencja-gra-w-zycie/}.
+\bibitem{game_of_life_zero_cellular_automata}
+Encyklopedia PWN.
+\newblock {Automat Komórkowy}.
+\newblock \newline \url{https://encyklopedia.pwn.pl/haslo/;3872571}.
 
-\bibitem{game_of_life_wiki}
-IDC.
-\newblock {Gra w życie }.
-\newblock \newline \url{https://en.wikipedia.org/wiki/Conway's_Game_of_Life/}.
+\bibitem{game_of_life_story}
+{Conway's Game of Life}.
+\newblock \newline \url{https://conwaylife.com/wiki/Conway's_Game_of_Life}.
+
+\bibitem{game_of_life_methematical_games}
+Martin Gardner.
+\newblock {The fantastic combinations of John Conway's new solitaire game
+  "life"}.
+\newblock \newline
+  \url{https://web.stanford.edu/class/sts145/Library/life.pdf}.
+
+\bibitem{game_of_life_zero_player}
+Staffan~Björk i~Jesper~Juul.
+\newblock {Zero-Player Games}.
+\newblock \newline \url{https://www.jesperjuul.net/text/zeroplayergames/}.
 
 \bibitem{burze_motyle}
 Paul Halpern.

@@ -389,7 +389,7 @@ Ostatnią klasą jest klasa PendulumControl, w której są zawarte metody i zmie
 
 \subsubsection{Wahadło podwójne - UE4}
 {\color{red}
-Na podstawie klas C++ z poprzedniego rozdziału stworzyłem klasy blueprintowe, które to umieszczam na poziomie w edytorze lub są wykorzystane do stworzenia interfejsu użytkownika.
+Na podstawie klas C++ z poprzedniego podrozdziału stworzyłem klasy blueprintowe, które to umieszczam na poziomie w edytorze lub są wykorzystane do stworzenia interfejsu użytkownika.
 
 
 W klasie BP\_Pendulum w blueprincie do najważniejszej rzeczy którą można zrobić, jest możliwość zmiany siatki 3D i materiału z którego jest stworzone wahadło:
@@ -454,20 +454,37 @@ W projekcie po najechaniu wskaźnikiem z kontrolera ruchowego na panel użytkown
 \newpage
 \subsection{Gra w życie}
 
-{\color{blue}
-Gra w życie została wymyślona w 1970 przez Johna Conwaya zainpirowany pracami Stanisława Ulmana. Gra w życie jest automatem komórkowym, czyli jest to system składający się z pojedynczych komórek działający według określonych reguł.\cite{game_of_life} W przypadku gry w życie, dana komórka, ma ośmiu sąsiadów przylegających do niej bokami i rogami w jednej chwili może być żywa lub martwa, a to czy żyje określają 3 zasady:
+Gra w życie, znana też po prostu jako "Życie" nie jest tylko starą grą planszową, pod tą samą nazwą kryję się też automat komórkowy stworzony przez Johna Conwaya. Zacznijmy od tego, że automatem komórkowym jest sieć komórek, symulowanych w pamięci komputera, w którym w danej chwili każda z komórek przyjmuje określony stan, według wcześniej ustanowionych reguł\cite{game_of_life_zero_cellular_automata}. 
+
+Krótka lekcja historii, Conway zainteresował się problemem przedstawionym w latach 40 XX wieku przez matematyka Johna von Neumanna, który to próbował znaleźć hipotetyczną maszynę, która mogłaby budować kopie samej siebie. Neumannowi udało się, gdy znalazł matematyczny model takiej maszyny z bardzo skomplikowanymi regułami na prostokątnej siatce. Gra w życie powstała jako udana próba Conwaya uproszczenia idei von Neumanna\cite{game_of_life_story}. Gra w życie Conwaya pierwotnie ukazała się w październiku 1970 roku w magazynie "Scientific American" w kolumnie "Mathematical Games" Martina Gardnera, pod tytułem: "The fantastic combinations of John Conway's new solitaire game "life""\cite{game_of_life_methematical_games}, gdzie z miejsca zdobyła dużą popularność.
+
+
+ Sama Gra w życie nie jest do końca grą. Conway nazywał ją "gra bez graczy", czyli gra w której przebieg jest niezależny od gracza, a jego rola sprowadza się w tym wypadku tylko do utworzenia stanu początkowego, czyli pierwszej generacji komórek\cite{game_of_life_zero_player}. 
+
+
+ Gra w pierwotnym założeniu rozgrywa się na 2 wymiarowej siatce składającej się z komórek. Każda komórka w danej turze (generacji) może być albo żywa, albo martwa. To czy pojedyncza komórka w kolejnej turze będzie żyć lub nie, zależy od stanu jej 8 sąsiadów i ustanowionych początkowych reguł.
+
+\begin{figure}[H]%
+\centering
+\includegraphics[width=0.2\columnwidth]{graphics//gameoflife/GOL_Cell.png}
+\caption{Pojedyncza komórka i 8 sąsiadów 
+\label{BPExample}}%
+%
+\qquad
+\end{figure} 
+
+Gra w życie Conwaya w pierwotnych założeniach składa się z 4 zasad\cite{game_of_life_story}:
 
 \begin{itemize}
-\item Żywa komórka, która ma dwóch lub trzech sąsiadów przeżywa
-\item Martwa komórka, która ma trzech żywych sąsiadów – ożywa
-\item Wszystkie inne żywe komórki w kolejnym cyklu umierają, a martwe komórki pozostają martwe
+\item Każda żywa komórka z mniej niż dwoma żywymi sąsiadami umiera
+\item Każda żywa komórka mająca więcej niż trzech żywych sąsiadów umiera
+\item Każda żywa komórka z dwoma lub trzema żywymi sąsiadami żyje, niezmieniona, do następnego pokolenia.
+\item Każda martwa komórka z dokładnie trzema żywymi sąsiadami ożywa.
 \end{itemize}
 
-Gra w życie nie jest do końca grą, rola "gracza" ogranicza się ustawienia stanu początkowego planszy, poprzez ożywianie lub uśmiercanie danej komórki.\cite{game_of_life_wiki}. Sama gra trawiła do większego grona odbiorów dzięki ukazaniu się magazynie Scientific American. Od czasu publikacji Gra w Życie wzbudziła duże zainteresowanie z powodu prostych zasad i zaskakujących wyników w jakie może ewoluować.
 
-}
 \subsubsection{Gra w życie - kod}
-
+{\color{red}
 W C++ kod gry w życie składa się z trzech klas: CellActor, GridActor, GameOfLifeControl
 
 CellActor jest klasą w której znajdują się informację o jednej komórce znajdującej w siatce. Sama w sobie ma informację o swoim położeniu X i Y na siatce 2D, o swoim obecnym stanie życia oraz o stanie życia w następnej klatce trwania programu. 
@@ -496,9 +513,10 @@ Stworzona została jeszcze wersja 3D GridActora którego jedyną różnicą jest
 
 Ostatnią klasą jest GameOfLifeControll która jest odpowiedzialna
 za stworzenie UI dzięki któremu użytkownik może włączyć grę w życie, zmienać szybkość działania symulacji oraz resetowania jej do stanu początkowego.
+}
 
 \subsubsection{Gra w życie - UE4}
-
+{\color{red}
 Na podstawie powyższych klas zostały stworzone klasy BluePrintowe które można potem umieścić w na poziomie w programie. W BP\_CellActor ustawiamy jak dana komórka ma wyglądać w świecie gry i jak się zachować kiedy najedziemy na nią kontrolerem ruchowym:
 
 \begin{figure}[H]%
@@ -544,7 +562,7 @@ Klasa WBP\_GameOfLifeControll jest odpowiedzialna kontakt miedzy użytkownikiem 
 %
 \qquad
 \end{figure}  
-
+}
 \subsubsection{Gra w życie - Wygląd symulacji w projekcie}
 W programie za pomocą kontrolerów możemy ustawić stan początkowy każdej komórki w poprzez najechanie na nią wskaźnikiem wystającym z kontrolerów.
 
@@ -657,6 +675,7 @@ W BP\_ButterflySpawner ustawiamy jakiego aktora chcemy ustawić na scenie, oraz 
 
 
 \subsubsection{Efekt Motyla - Wygląd symulacji w projekcie}
+{\color{blue}
 W programie Efekt Motyla wygląda następująco:
 
 \begin{figure}[H]%
@@ -667,7 +686,7 @@ W programie Efekt Motyla wygląda następująco:
 %
 \qquad
 \end{figure}  
-
+}
 \newpage
 \subsection{Modele Agentowe}
 

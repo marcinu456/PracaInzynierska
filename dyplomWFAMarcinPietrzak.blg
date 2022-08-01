@@ -19,65 +19,69 @@ Warning--entry type for "double_pendulum" isn't style-file defined
 --line 37 of file bibliografia.bib
 Warning--entry type for "double_pendulum_book" isn't style-file defined
 --line 45 of file bibliografia.bib
-Warning--entry type for "game_of_life" isn't style-file defined
---line 53 of file bibliografia.bib
-Warning--entry type for "game_of_life_wiki" isn't style-file defined
---line 60 of file bibliografia.bib
+Warning--entry type for "game_of_life_zero_cellular_automata" isn't style-file defined
+--line 52 of file bibliografia.bib
+Warning--entry type for "game_of_life_zero_player" isn't style-file defined
+--line 59 of file bibliografia.bib
+Warning--entry type for "game_of_life_story" isn't style-file defined
+--line 66 of file bibliografia.bib
+Warning--entry type for "game_of_life_methematical_games" isn't style-file defined
+--line 73 of file bibliografia.bib
 Warning--entry type for "burze_motyle" isn't style-file defined
---line 74 of file bibliografia.bib
-Warning--entry type for "lorenz_dziwne_atraktory" isn't style-file defined
---line 81 of file bibliografia.bib
-Warning--entry type for "motyle_cpp" isn't style-file defined
---line 88 of file bibliografia.bib
-Warning--entry type for "agent_examples" isn't style-file defined
---line 95 of file bibliografia.bib
-Warning--entry type for "flocking_system" isn't style-file defined
---line 102 of file bibliografia.bib
-Warning--entry type for "boids_reynolds" isn't style-file defined
 --line 109 of file bibliografia.bib
-Warning--entry type for "boids_name" isn't style-file defined
+Warning--entry type for "lorenz_dziwne_atraktory" isn't style-file defined
 --line 116 of file bibliografia.bib
-Warning--entry type for "code_boids" isn't style-file defined
+Warning--entry type for "motyle_cpp" isn't style-file defined
 --line 123 of file bibliografia.bib
-You've used 17 entries,
+Warning--entry type for "agent_examples" isn't style-file defined
+--line 130 of file bibliografia.bib
+Warning--entry type for "flocking_system" isn't style-file defined
+--line 137 of file bibliografia.bib
+Warning--entry type for "boids_reynolds" isn't style-file defined
+--line 144 of file bibliografia.bib
+Warning--entry type for "boids_name" isn't style-file defined
+--line 151 of file bibliografia.bib
+Warning--entry type for "code_boids" isn't style-file defined
+--line 158 of file bibliografia.bib
+You've used 19 entries,
             1791 wiz_defined-function locations,
-            511 strings with 5732 characters,
-and the built_in function-call counts, 2147 in all, are:
-= -- 170
-> -- 68
+            521 strings with 6084 characters,
+and the built_in function-call counts, 2372 in all, are:
+= -- 188
+> -- 73
 < -- 0
-+ -- 34
-- -- 17
++ -- 37
+- -- 18
 * -- 2
-:= -- 334
-add.period$ -- 51
-call.type$ -- 17
-change.case$ -- 17
+:= -- 362
+add.period$ -- 56
+call.type$ -- 19
+change.case$ -- 19
 chr.to.int$ -- 0
-cite$ -- 17
-duplicate$ -- 85
-empty$ -- 307
-format.name$ -- 17
-if$ -- 511
+cite$ -- 19
+duplicate$ -- 95
+empty$ -- 343
+format.name$ -- 18
+if$ -- 568
 int.to.chr$ -- 0
-int.to.str$ -- 17
+int.to.str$ -- 19
 missing$ -- 0
-newline$ -- 88
-num.names$ -- 17
-pop$ -- 85
+newline$ -- 97
+num.names$ -- 18
+pop$ -- 96
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 84
+skip$ -- 95
 stack$ -- 0
 substring$ -- 0
-swap$ -- 17
+swap$ -- 19
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 17
-width$ -- 19
-write$ -- 155
-(There were 17 warnings)
+while$ -- 18
+width$ -- 21
+write$ -- 171
+(There were 19 warnings)
