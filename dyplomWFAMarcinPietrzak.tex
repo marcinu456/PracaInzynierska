@@ -299,11 +299,11 @@ Program był pisany w silniku Unreal Engine 4, z powodu że korzystam z tego sil
  Gogle VR z których korzystam to Oculus Quest 1. Aby komunikować się z nimy korzystam z obrogramowania storzonym przez firmę Oculus, dzięki niemu mogę obsługiwać gogle na komputerzę przez sieć WiFi, a nie przez podłączenie gogli po kablu do komputera. Gogle te nie potrzebują do pracy komputera, poniewasz są w pełni autonomiczne, cała technologia skrywa się w samych goglach, dzięki czemu nie są potrzebne stacje bazowe. Aby tworzyć programy na goglach nie trzeba się specjalnie męczyć, trzeba oczywiście stowrzyć sterowania i komunikajcę ze światem wirtualnym przystosowanym specjalnie pod sterowanie ruchowe, oraz dostosawnie grafiki, aby ilośc FPS nie spadała poniżej 72 i utrzymywała je stale na tej wartości, dzięki temu nie ma większych problemów z chorobą symulatorową dla większości osób
 }
 
-\section{Jakie modele się znajdują}
+\section{Modele wykorzystane w programie}
 
 \subsection{Wahadło Podwójne}
 
-Pierwszym modelem, który zamieściłem w swoim projekcie jest model wahadła podwójnego. Wahadło podwójne składa się z dwóch wahadeł prostych, tzn. pierwsze wahadło o masie $m_0$ zostało przymocowane za pomocą pręta o długości $l_0$ do stałego punktu obrotu, gdzie $\theta_0$ jest przesunięciem kątowym wahadła od położenia równowagi. Drugie wahadło o masie $m_1$ zostało przymocowane za pomocą pręta o długości $l_1$ do pierwszego wahadła z własnym kątem swobody $\theta_1$. Z powodu występowania dwóch stopni swobody $\theta_0$ i $\theta_1$, a przez to ma bardziej złożony ruch, wahadło jest podatne na chaotyczny ruch i jest bardzo wrażliwy na warunki początkowe\cite{double_pendulum_book}.
+Pierwszym modelem, który zamieściłem w swoim projekcie jest model wahadła podwójnego. Wahadło podwójne składa się z dwóch wahadeł prostych, tzn. pierwsze wahadło o masie $m_0$ zostało przymocowane za pomocą pręta o długości $l_0$ do stałego punktu obrotu, gdzie $\theta_0$ jest przesunięciem kątowym wahadła od położenia równowagi. Drugie wahadło o masie $m_1$ zostało przymocowane za pomocą pręta o długości $l_1$ do pierwszego wahadła z własnym kątem swobody $\theta_1$. Z powodu występowania dwóch stopni swobody $\theta_0$ i $\theta_1$, a przez to ma bardziej złożony ruch, wahadło jest podatne na chaotyczny ruch i jest bardzo wrażliwy na warunki początkowe \cite{double_pendulum_book}.
 
 \begin{figure}[H]%
 \centering
@@ -319,7 +319,7 @@ Pierwszym modelem, który zamieściłem w swoim projekcie jest model wahadła po
 
 Kod C++ przeznaczony do tworzenia i zarządzania wahadłami składa się z trzech klas: Pendulum, PendulumSpawn, PendulumControl
 
-W klasie Pendulum, aby obliczyć wartość $\theta_0$ i $\theta_1$ potrzebne są najpierw prędkości kątowe  $\dot{\theta_0}$ i $\dot{\theta_1}$ oraz ich przyśpieszenie kątowe $\ddot{\theta_0}$ i $\ddot{\theta_1}$. Aby obliczyć zmianie kąta w czasie trzeba rozwiązać układ równań różniczkowych. Najpierw robimy do dla kątów  $\theta_0$ i $\theta_1$, gdzie pochodna kąta od czasu jest równa $\dot{\theta_0}$ i $\dot{\theta_1}$. Teraz robimy równanie na pochodną prędkości od czasu dla $\dot{\theta_0}$ i $\dot{\theta_1}$ co daje nam przyśpieszenie kątowe $\ddot{\theta_0}$ i $\ddot{\theta_1}$.
+Aby obliczyć wartość $\theta_0$ i $\theta_1$ potrzebne są najpierw prędkości kątowe  $\dot{\theta_0}$ i $\dot{\theta_1}$ oraz ich przyśpieszenie kątowe $\ddot{\theta_0}$ i $\ddot{\theta_1}$. Aby obliczyć zmianie kąta w czasie trzeba rozwiązać układ równań różniczkowych. Najpierw robimy do dla kątów  $\theta_0$ i $\theta_1$, gdzie pochodna kąta od czasu jest równa $\dot{\theta_0}$ i $\dot{\theta_1}$. Zapisujemy równanie na pochodną prędkości od czasu dla $\dot{\theta_0}$ i $\dot{\theta_1}$ co daje nam przyśpieszenie kątowe $\ddot{\theta_0}$ i $\ddot{\theta_1}$.
 
 \begin{equation}
 \begin{split} 
@@ -334,7 +334,7 @@ W klasie Pendulum, aby obliczyć wartość $\theta_0$ i $\theta_1$ potrzebne są
 \label{thetas}
 \end{equation}
 
-Równania [\ref{thetas}] dla łatwiejszego wykorzystania możemy zapisać algebraicznie poprzez zapisanie równań różnicowych, tzn. dokonujemy przekształcenia gdzie pochodną po czasie zastępujemy prostym operatorem liniowym:
+Równania [\ref{thetas}] możemy zapisać jako równanie różnicowe, tzn. dokonujemy przekształcenia, w którym pochodną po czasie zastępujemy prostym operatorem liniowym:
 
 \begin{equation}
 \begin{split} 
@@ -353,7 +353,7 @@ dt-krok\ czasowy
 \label{pendumalgeb}
 \end{equation}
 
-Do szczęścia brakuje nam już tylko $\ddot{\theta_0}$ i $\ddot{\theta_1}$, które można wyprowadzić ze wzoru \cite{double_pendulum}: 
+Jest to realizacja metody Eulera. Brakuje nam już tylko $\ddot{\theta_0}$ i $\ddot{\theta_1}$, które można wyprowadzić ze wzoru \cite{double_pendulum}: 
 
 \begin{equation}
 \begin{split} 
@@ -371,7 +371,7 @@ gdzie:
 \label{computeAngularAcceleration}
 \end{equation}
 
-Tak wyżej utworzone równania możemy w końcu wykorzystać w kodzie do obliczenia wartości $\theta_0$ i $\theta_1$ w danym kroku czasowym.
+Tak wyżej utworzone równania możemy wykorzystać w kodzie do obliczenia wartości $\theta_0$ i $\theta_1$ w danym kroku czasowym.
 
 \lstinputlisting[caption=Obliczanie wartości $\theta_0$ i $\theta_1$, label={lst:listing-cpp}, language=C++]{code/doublependulum/ComputeAnglesEuler.cpp}
 \label{ComputeTheta}
@@ -428,8 +428,9 @@ Klasa WBP\_PendulumControl jest klasą typu widget, czyli klasą interfejsu uży
 \end{figure}  
 
 \subsubsection{Wahadło podwójne – Wygląd symulacji w projekcie}
+{\color{red}
 W projekcie po najechaniu wskaźnikiem z kontrolera ruchowego na panel użytkownika, możemy dodać, usunąć, uruchomić lub zresetować wahadła stworzone przez spawner. Jak pokazano na rysunku \ref{Pendulum_in_project:subref_a}, na początku symulacji wahadła są stosunkowo blisko siebie. Lecz w trakcie jej działania w pewnym momencie wahadła zaczną się zachowywać w sposób chaotyczny, tak jak to widać na rysunku \ref{Pendulum_in_project:subref_b}.
-
+}
 
 \begin{figure}[H]%
 	\centering
@@ -454,12 +455,12 @@ W projekcie po najechaniu wskaźnikiem z kontrolera ruchowego na panel użytkown
 \newpage
 \subsection{Gra w życie}
 
-Gra w życie, znana też po prostu jako "Życie" nie jest tylko starą grą planszową, pod tą samą nazwą kryję się też automat komórkowy stworzony przez Johna Conwaya. Zacznijmy od tego, że automatem komórkowym jest sieć komórek, symulowanych w pamięci komputera, w którym w danej chwili każda z komórek przyjmuje określony stan, według wcześniej ustanowionych reguł\cite{game_of_life_zero_cellular_automata}. 
+Gra w życie, jest automatem komórkowym stworzonym przez Johna Conwaya. Jest to sieć komórek, symulowanych w pamięci komputera, w którym w danej chwili każda z komórek przyjmuje określony stan, według wcześniej ustanowionych reguł \cite{game_of_life_zero_cellular_automata}. 
 
-Krótka lekcja historii, Conway zainteresował się problemem przedstawionym w latach 40 XX wieku przez matematyka Johna von Neumanna, który to próbował znaleźć hipotetyczną maszynę, która mogłaby budować kopie samej siebie. Neumannowi udało się, gdy znalazł matematyczny model takiej maszyny z bardzo skomplikowanymi regułami na prostokątnej siatce. Gra w życie powstała jako udana próba Conwaya uproszczenia idei von Neumanna\cite{game_of_life_story}. Gra w życie Conwaya pierwotnie ukazała się w październiku 1970 roku w magazynie "Scientific American" w kolumnie "Mathematical Games" Martina Gardnera, pod tytułem: "The fantastic combinations of John Conway's new solitaire game "life""\cite{game_of_life_methematical_games}, gdzie z miejsca zdobyła dużą popularność.
+Conway zainteresował się problemem przedstawionym w latach 40 XX wieku przez matematyka Johna von Neumanna, który to próbował znaleźć hipotetyczną maszynę, która mogłaby budować kopie samej siebie. Neumannowi udało się, gdy znalazł matematyczny model takiej maszyny z bardzo skomplikowanymi regułami na prostokątnej siatce. Gra w życie powstała jako udana próba Conwaya uproszczenia idei von Neumanna \cite{game_of_life_story}. Gra w życie Conwaya pierwotnie ukazała się w październiku 1970 roku w magazynie "Scientific American" w kolumnie "Mathematical Games" Martina Gardnera, pod tytułem: "The fantastic combinations of John Conway's new solitaire game 'life'" \cite{game_of_life_methematical_games}, gdzie z miejsca zdobyła ogromną popularność.
 
 
- Sama Gra w życie nie jest do końca grą. Conway nazywał ją "gra bez graczy", czyli gra w której przebieg jest niezależny od gracza, a jego rola sprowadza się w tym wypadku tylko do utworzenia stanu początkowego, czyli pierwszej generacji komórek\cite{game_of_life_zero_player}. 
+ Sama Gra w życie nie jest do końca grą. Conway nazywał ją "gra bez graczy", czyli gra w której przebieg jest niezależny od gracza, a jego rola sprowadza się w tym wypadku tylko do utworzenia stanu początkowego, czyli pierwszej generacji komórek \cite{game_of_life_zero_player}. 
 
 
  Gra w pierwotnym założeniu rozgrywa się na 2 wymiarowej siatce składającej się z komórek. Każda komórka w danej turze (generacji) może być albo żywa, albo martwa. To czy pojedyncza komórka w kolejnej turze będzie żyć lub nie, zależy od stanu jej 8 sąsiadów i ustanowionych początkowych reguł.
@@ -473,7 +474,7 @@ Krótka lekcja historii, Conway zainteresował się problemem przedstawionym w l
 \qquad
 \end{figure} 
 
-Gra w życie Conwaya w pierwotnych założeniach składa się z 4 zasad\cite{game_of_life_story}:
+Gra w życie Conwaya w pierwotnych założeniach składa się z 4 zasad \cite{game_of_life_story}:
 
 \begin{itemize}
 \item Każda żywa komórka z mniej niż dwoma żywymi sąsiadami umiera
@@ -597,7 +598,7 @@ Po lewej stronie od tablicy z komórkami znajduję się widżet, na którym moż
 \newpage
 \subsection{Efekt Motyla}
 
-"Dowolny układ fizyczny, który zachowuje się nieokresowo, jest nieprzewidywalny." Są to słowa Edwarda Lorenza, meteorologa który jako pierwszy odkrył, że nie można zrobić dobrej prognozy pogody na dłużej niż kilka dni do przodu. W 1960 roku pracował on nad programem komputerowym który miał prognozować pogodę, na podstawie zbioru równań określających zależności między prędkością wiatru, temperaturą, ciśnieniem i wilgotnością\cite{burze_motyle}. Gdy Lorenz testował swój program po wprowadzeniu danych i po wydrukowaniu wyniku w formie wykresu. Rozkład maksimów i minimów na wykresie wyglądał tak, jak się tego spodziewał Edward. Postanowił jednak ponownie zbadać wyniki, dlatego uruchomił program ponownie, wprowadzając jak myślał takie same wyniki\cite{burze_motyle}. Okazało się jednak, że wyniki wyszły na odwrót. Po sprawdzeniu danych zauważył, że podał je w postaci przybliżonej z mniejszą liczbą cyfr po przecinku. Było to dla niego tak ciekawe, że spróbował to samo z innymi zbiorami danych i zaobserwował identyczne zjawisko. Lorenz w ten sposób odkrył "efekt motyla", gdzie dla pewnych układów deterministycznych nawet minimalne zmiany wartości danych początkowych zostają bardzo szybko wzmocnione i powodują ogromne zmiany w ewolucji układu\cite{burze_motyle}.
+"Dowolny układ fizyczny, który zachowuje się nieokresowo, jest nieprzewidywalny." Są to słowa Edwarda Lorenza, meteorologa który jako pierwszy odkrył, że nie można zrobić dobrej prognozy pogody na dłużej niż kilka dni do przodu. W 1960 roku pracował on nad programem komputerowym który miał prognozować pogodę, na podstawie zbioru równań określających zależności między prędkością wiatru, temperaturą, ciśnieniem i wilgotnością \cite{burze_motyle}. Gdy Lorenz testował swój program po wprowadzeniu danych i po wydrukowaniu wyniku w formie wykresu. Rozkład maksimów i minimów na wykresie wyglądał tak, jak się tego spodziewał Edward. Postanowił jednak ponownie zbadać wyniki, dlatego uruchomił program ponownie, wprowadzając jak myślał takie same wyniki \cite{burze_motyle}. Okazało się jednak, że wyniki wyszły na odwrót. Po sprawdzeniu danych zauważył, że podał je w postaci przybliżonej z mniejszą liczbą cyfr po przecinku. Było to dla niego tak ciekawe, że spróbował to samo z innymi zbiorami danych i zaobserwował identyczne zjawisko. Lorenz w ten sposób odkrył "efekt motyla", gdzie dla pewnych układów deterministycznych nawet minimalne zmiany wartości danych początkowych zostają bardzo szybko wzmocnione i powodują ogromne zmiany w ewolucji układu \cite{burze_motyle}.
 
 \begin{figure}[H]%
 \centering
@@ -613,23 +614,22 @@ równań różniczkowych\cite{lorenz_dziwne_atraktory}:
 
 \begin{equation}
 \begin{split}
-\dot{x}=\sigma(y-x)\\
-\dot{y}=x(\rho-z)-y\\
-\dot{z}=xy-\beta z\\
+\dot{x}=\sigma(y-x),\\
+\dot{y}=x(\rho-z)-y,\\
+\dot{z}=xy-\beta z,\\
 \end{split}
 \end{equation}
-
 gdzie:\\
-sigma - stała Prandtla,\\
-rho - stała Rayleigha,\\
-beta - obszar obejmujący równania\\
-sigma,rho,beta>0,\\
+$\sigma$ - stała Prandtla,\\
+$\rho$ - stała Rayleigha,\\
+$\beta$ - obszar obejmujący równania\\
+$\sigma$, $\rho$, $\beta$ > 0,\\
 Jednakże zwykle podaje się\cite{lorenz_dziwne_atraktory}:\\
 \begin{equation}
 \begin{split}
-sigma = 10\\
-rho = \frac{8}{3}\\
-beta - zmienna
+\sigma = 10\\
+\rho = \frac{8}{3}\\
+\beta - zmienna
 \end{split}
 \label{ButterflyVariables}
 \end{equation}
@@ -637,7 +637,7 @@ beta - zmienna
 \subsubsection{Efekt Motyla - kod}
 
 Kod C++ składa się z dwóch klas ButterflyActor i ButterflySpawner.
-W ButterflyActor najważnejszą metodą jest Tick(float DeltaTime) w której poprzez rozwązanie wczęśniej pokazanych równań różniczkowych po przecałkowaniu. Następnie odpowiednio ustawiamy te równania dla pozycji X, Y i Z danego aktora\cite{motyle_cpp}
+W ButterflyActor najważnejszą metodą jest Tick(float DeltaTime) w której poprzez rozwązanie wczęśniej pokazanych równań różniczkowych po przecałkowaniu. Następnie odpowiednio ustawiamy te równania dla pozycji X, Y i Z danego aktora \cite{motyle_cpp}
 
 \lstinputlisting[caption=Metoda Tick(), label={lst:listing-cpp}, language=C++]{code/butterfly/ButterflyActorTick.cpp}
 
@@ -689,9 +689,9 @@ W programie użytkownik może obserwować efekt motyla z podstawowymi parametram
 \newpage
 \subsection{Modele Agentowe}
 
-Model agentowy jest typem modelu gdzie analizujemy wpływ agenta na dane środowisko i vice versa. Agentem może być np. komórka, człowiek, zwierzę itd. W modelu agentowym ustawiamy zachowanie poszczególnego lub grup agentów i obserwujemy jak wpływają na resztę w danym środowisku testowym. Główną ideą jest sprawdzenie w jaki sposób czynniki w mikro skali wpływają na czynniki w środowisku makro. Dzięki temu możemy wykorzystać tak zdobytą wiedzę do różnych celów np. Sprawdzenie roznoszenia się epidemii, badać zachowania konsumenckie u ludzi czy tworzyć proste środowiska  by zobaczyć jak populacja danych agentów zmieniała się w czasie.\cite{agent_examples} 
+Model agentowy jest typem modelu gdzie analizujemy wpływ agenta na dane środowisko i vice versa. Agentem może być np. komórka, człowiek, zwierzę itd. W modelu agentowym ustawiamy zachowanie poszczególnego lub grup agentów i obserwujemy jak wpływają na resztę w danym środowisku testowym. Główną ideą jest sprawdzenie w jaki sposób czynniki w mikro skali wpływają na czynniki w środowisku makro. Dzięki temu możemy wykorzystać tak zdobytą wiedzę do różnych celów np. Sprawdzenie roznoszenia się epidemii, badać zachowania konsumenckie u ludzi czy tworzyć proste środowiska  by zobaczyć jak populacja danych agentów zmieniała się w czasie \cite{agent_examples}. 
 
-W Unrealu Engine 4 stworzyłem prosty model środowiska, gdzie mamy 3 rodzaje agentów: Rośliny, Króliki i Lisy. Celem królików jest rozmnożenie się poprzez znalezienie najbliższego królika do tego zdolnego. Jeśli trakcie trwania symulacji zdrowie królika spadnie poniżej danego poziomu, ponieważ w trakcie trwania symulacji każdy agent nieustannie traci zdrowie lub w trakcie rozmnażania, jego celem wtedy jest znalezienie najbliższej rośliny i skonsumowanie jej. Po zjedzeniu rośliny może ponownie szukać partnera do rozmnażania.  Celem lisa podobnie jak królika jest znalezienie partnera do reprodukcji. Podobnie jak królik w wyniki rozmnażania lub czasu traci zdrowie, wtedy jego celem jest znalezienie najbliższego królika i zjedzenie go. Aby każdy miał jakieś szansę na przeżycie wartości prędkości danej grupy agentów różnią się. W obecnym modelu króliki są szybsze od lisów, ale mają też mniej od nich mniej zdrowia. Króliki mają też wyższy licznik reprodukcji. Model też jest bardzo prosty dlatego np. króliki nie uciekają od lisów.
+W Unrealu Engine 4 stworzyłem prosty model środowiska, gdzie mamy 3 rodzaje agentów: Rośliny, Króliki i Lisy. Celem królików jest rozmnożenie się poprzez znalezienie najbliższego królika do tego zdolnego. Jeśli trakcie trwania symulacji zdrowie królika spadnie poniżej danego poziomu, ponieważ w trakcie trwania symulacji każdy agent nieustannie traci zdrowie lub w trakcie rozmnażania, jego celem wtedy jest znalezienie najbliższej rośliny i skonsumowanie jej. Po zjedzeniu rośliny może ponownie szukać partnera do rozmnażania.  Celem lisa podobnie jak królika jest znalezienie partnera do reprodukcji. Podobnie jak królik w wyniki rozmnażania lub czasu traci zdrowie, wtedy jego celem jest znalezienie najbliższego królika i zjedzenie go. Aby każdy miał jakieś szansę na przeżycie wartości prędkości danej grupy agentów różnią się. W obecnym modelu króliki są szybsze od lisów, ale mają też mniej od nich mniej zdrowia. Króliki mają też wyższy licznik reprodukcji. Model też jest bardzo prosty, dlatego np. króliki nie uciekają od lisów.
 \subsubsection{Modele Agentowe - kod}
 
 Kod C++ składa się z następujących klas: AgentBase, PlantAgent, RabbitAgent, WolfAgent, AgentSpawner, AgentSpawnBox, AgentTable i AgentControl. 
@@ -828,9 +828,9 @@ Symulację uruchamiamy poprzez najechanie kontrolerem na przycisk start który z
 W roku 1986 w ciągu dwóch miesięcy, Craig Raynolds pracujący wtedy w firmie "Symbolics" stworzył model komputerowy skoordynowanego ruchu zwierząt takich, jak ławica ryb czy stado ptaków. Model ten był oparty na trójwymiarowej geometrii, którą zwykle używa się animacji komputerowej. Stworzenia wchodzące w skład modelu nazwał "boid", które w dialekcie Nowo Jorskim oznaczają również ptaki, a samą nazwę podobno zainspirował się z filmu "The Producers" Mela Brooksa \cite{boids_name}. Sam podstawowy model stada opiera się na 3 prostych zasadach \cite{flocking_system}:
 
 \begin{itemize}
-\item Separacja(a): Odpowiedzialne za unikanie kolizji pobliskich członków stada poprzez unikanie nagromadzenia ich w pobliżu
-\item Wyrównanie(b): Odpowiedzialne aby przemieszanie było uśrednione do innych pobliskich członków stada
-\item Spójność(c): Odpowiedzialne za utrzymanie bliskości członków stada, poprzez poruszanie się obiektu w kierunku średniej pozycji pobliskich członków
+\item Separacja(a): Odpowiedzialne za unikanie kolizji pobliskich członków stada poprzez unikanie nagromadzenia ich w pobliżu. Czerwona strzałka oznacza kierunek steru, zielone linie odległości do pobliskich boidów które są w zasięgu danego boida
+\item Wyrównanie(b): Odpowiedzialne aby przemieszanie było uśrednione do innych pobliskich członków stada. Czerwona strzałka oznacza kierunek steru, zielone linia oznacza obecny kierunek, a niebieskie żądany kierunek ruchu
+\item Spójność(c): Odpowiedzialne za utrzymanie bliskości członków stada, poprzez poruszanie się obiektu w kierunku średniej pozycji pobliskich członków. Czerwona strzałka oznacza kierunek steru, zielone linia oznacza obecny kierunek, a zielone odległości od środka masy pobliskich boidów
 \end{itemize}
 
 \begin{figure}[H]%
@@ -856,7 +856,7 @@ W roku 1986 w ciągu dwóch miesięcy, Craig Raynolds pracujący wtedy w firmie 
 \label{ref:ref}
 \end{figure}
 
-Każdy z boidów reaguję tylko na inne boidy w jego bliskim otoczeniu od niego, a każdy boid z poza tego otoczenia jest ignorowany. W początkowych eksperymentach, model był trochę bardziej rozbudowany, dzięki czemu boidy, mogły omijać obiekty i poszukiwać celu \cite{boids_reynolds}. Na podstawie kodu \cite{code_boids} zrobiłem prostą wersję która działa z kontrolerami ruchów VR do możliwości sterowania ruchami stada, stado porusza się za obiektem.
+Każdy z boidów reaguję, tylko na inne boidy w jego bliskim otoczeniu od niego, a każdy boid z poza tego otoczenia jest ignorowany. W początkowych eksperymentach, model był trochę bardziej rozbudowany, dzięki czemu boidy, mogły omijać obiekty i poszukiwać celu \cite{boids_reynolds}. Na podstawie kodu \cite{code_boids} zrobiłem prostą wersję która działa z kontrolerami ruchów VR do możliwości sterowania ruchami stada, stado porusza się za obiektem.
 
 \subsubsection{Boids - kod}
 
@@ -868,7 +868,7 @@ BoidManager jest klasą odpowiedzialną za zarządzaniem wszystkimi boidami na p
 
 \lstinputlisting[caption=Metoda Tick(), label={lst:listing-cpp}, language=C++]{code/boids/BoidManagerTick.cpp}
 
-W BoidManager są też informacje o tym, czy boidy mają udać się w stronę wyznaczonego celu. Znajduję się równiesz informację z jaką siłą mają działać trzy zasady dotyczące boidsów. Siłę działania zasad oraz podążanie za celem ustawiamy potem w widgecie, który jest dzieckiem klasy BoidsMenu.
+W BoidManager są też informacje o tym, czy boidy mają udać się w stronę wyznaczonego celu. Znajduję się również informację z jaką siłą mają działać trzy zasady dotyczące boidów. Siłę działania zasad oraz podążanie za celem ustawiamy potem w widgecie, który jest dzieckiem klasy BoidsMenu.
 
 BoidSpawner jest odpowiedzialny za tworzenie nowych boidów, w takiej ilości jaką mu zadamy oraz w danej mu odległości.
 
@@ -928,7 +928,7 @@ WBP\_BoidHud tak jak wszystkie widgety w poprzednich symulacjach, po najechaniu 
 \begin{figure}[H]%
 \centering
 \includegraphics[width=0.55\columnwidth]{graphics/boids/BP_BoidHud.png}
-\caption{Boids w programie
+\caption{Wygląd widgetu do sterowania zachowaniem boidów
 \label{BPExample}}%
 %
 \qquad
@@ -937,7 +937,7 @@ WBP\_BoidHud tak jak wszystkie widgety w poprzednich symulacjach, po najechaniu 
 \newpage
 \subsubsection{Boids - Wygląd symulacji w projekcie}
 
-W programie nad lewym kontrolerze mamy widget którym sterujemy zaochawniem boidów. Za pomocą prawego kontrolera możemy ustawić opcje np. ustawić czy boidy mają podążać za targetem oraz możemy wrócić do galerii.
+W programie nad lewym kontrolerze mamy widget którym sterujemy zaochawniem boidów. Za pomocą prawego kontrolera możemy ustawić opcje np. ustawić czy boidy mają podążać za calem oraz możemy wrócić do galerii.
 
 %Dodaj jak wyglądają kontolery w boidsach
 
@@ -958,12 +958,12 @@ W programie nad lewym kontrolerze mamy widget którym sterujemy zaochawniem boid
 \label{ref:ref}
 \end{figure}
 
-Po kliknięciu na prawym kontrolerze spustu możemy zmienić położenie targetu do którego mogą zmierzają boidy.
+Po kliknięciu na prawym kontrolerze spustu możemy zmienić położenie celu do którego mogą zmierzają boidy.
 
 \begin{figure}[H]%
 \centering
 \includegraphics[width=0.7\columnwidth]{graphics/boids/BoidsInUE.png}
-\caption{Przesuwanie targetu w programie w programie
+\caption{Przesuwanie celu w programie
 \label{BPExample}}%
 %
 \qquad
