@@ -970,7 +970,39 @@ Po kliknięciu na prawym kontrolerze spustu możemy zmienić położenie celu do
 \end{figure}  
 
 \newpage
-\section{Realizacja projektu}
+\section{Nie realizacja, a co było jeszcze robione}
+
+Jedną z pierwszych rzeczy jaką zrobiłem w grze była klasa odpowiedzialna za poruszanie się postaci. Klasa AVRCharacter jest dzieckiem klasy ACharacter. Klasa jest "pionkiem", którym może sterować gracz. Jest fizyczną reprezentacją gracza na poziomie z wbudowaną informacją o meshu, kolizji i logice ruchu. W klasie tej znajdują się wszystkie informacje potrzebne postaci w tym informacja o klasie kontrolerów ruchu, które w zależności od mapy na którym są modele, różnią się miedzy sobą. Metoda SetupPlayerInputComponent, która jest metodą wirtualną, jest wywołana w celu powiązania metod klasy z przyciskami, które zdefiniowaliśmy w ustawieniach projektu. 
+
+\lstinputlisting[caption=Przypisanie metod do przycisków, label={lst:listing-cpp}, language=C++]{code/05/AVRCharacterSetupPlayerInputComponent.cpp}
+
+
+\begin{figure}[H]%
+\centering
+\includegraphics[width=0.4\linewidth]{graphics/05/InputMappingUE4.png}
+\caption{Przypisanie przycisków w projekcie }	
+\label{ref:InputMappingUE4}
+\end{figure}%
+
+W projekcie można poruszać się na dwa sposoby. Pierwszy z nich polega na używaniu 
+analoga na lewym kontrolerze do płynnego poruszania się po mapie w zależności od wychylenia analoga przy pomocy kciuka. Drugi sposób jest natomiast o wiele bardziej przyjemny do poruszania się dla osób mających chorobę symulatorową. A mianowicie teleportację do miejsca gdzie obecnie wskazuję znacznik celu. Znacznik aktywujemy poprzez kliknięcie przycisku na prawym kontrolerze. Do znalezienia miejsca w które się teleportowaliśmy użyłem kilku struktur silnikowych. FPredictProjectilePathParams do którego wstawiamy parametry wejściowe, są to:
+
+\begin{itemize}
+\item Promień naszej teleportacji używany podczas śledzenia kolizji
+\item Lokalizacja początku śladu teleportacji, jako punkt startowy przyjęty został prawy kontroler
+\item Początkowa prędkość startowa na początku śladu teleportacji, jako prędkości początkowa został przyjęty kierunek, który znajduję się na wprost kontrolera
+\item Maksymalny czas symulacji pocisku
+\item Kanał śledzenia używany do śledzenia kolizji
+\end{itemize}
+
+Kolejną strukturą jest FPredictProjectilePathResult, jest to kontener na wynik śledzenia ścieżki teleportacji, który to dostajemy przy użyciu funkcji silnikowej PredictProjectilePath. Z FPredictProjectilePathResult możemy wyciągnąć informacje o
+tym, jak wygląda cała przewidziana ścieżka dla naszej teleportacji i miejsce w które uderzy. Dodatkowo sprawdzana jest jeszcze czy nasz punkt trafi w miejsce gdzie możemy spokojnie się teleportować poprzez sprawdzenie czy w miejscu teleportacji jest navmesh. Jeśli tak, to po puszczeniu przycisku na kontrolerze zostaniemy teleportowani w miejsce gdzie wskazaliśmy.
+
+\lstinputlisting[caption=Metoda do znajdowania miejsca gdzie będziemy się teleportować, label={lst:listing-cpp}, language=C++]{code/05/AVRCharacterFindTeleportDestination.cpp}
+
+{\color{purple}
+Tutaj napisz informację z funkcji do teleportacji. Potem dodaj indormację o kontrolerach ruchu, a dokładnie ich klasach. Na końcu napisz krótko o poziomach z jednym poziomem który został storzony. co się znajduje i jak go zrobiłeś. Na koncu przeredaguj i wyślij matyce do poprawy. Potem popraw pierwsze trzy rozdziały i w 4 zrób poprawki których potrzebują
+}
 
 \newpage
 \section{Wnioski}
@@ -984,6 +1016,7 @@ Po kliknięciu na prawym kontrolerze spustu możemy zmienić położenie celu do
 {\color{blue} kolor blue: rozpisać}\\
 {\color{red} kolor red: edytować i może dodać}\\
 {\color{green} kolor green: wymyślić co dodać}
+{\color{purple} kolor purple: własne notatki z cyklu wszystko i nic}
 
 \end{document}
 
