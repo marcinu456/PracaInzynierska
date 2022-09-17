@@ -970,7 +970,7 @@ Po kliknięciu na prawym kontrolerze spustu możemy zmienić położenie celu do
 \end{figure}  
 
 \newpage
-\section{Nie realizacja, a co było jeszcze robione}
+\section{Nie realizacja, a co było jeszcze robione - tytuł do wymyślenia}
 
 Jedną z pierwszych rzeczy jaką zrobiłem w grze była klasa odpowiedzialna za poruszanie się postaci. Klasa AVRCharacter jest dzieckiem klasy ACharacter. Klasa jest "pionkiem", którym może sterować gracz. Jest fizyczną reprezentacją gracza na poziomie z wbudowaną informacją o meshu, kolizji i logice ruchu. W klasie tej znajdują się wszystkie informacje potrzebne postaci w tym informacja o klasie kontrolerów ruchu, które w zależności od mapy na którym są modele, różnią się miedzy sobą. Metoda SetupPlayerInputComponent, która jest metodą wirtualną, jest wywołana w celu powiązania metod klasy z przyciskami, które zdefiniowaliśmy w ustawieniach projektu. 
 
@@ -1000,13 +1000,48 @@ tym, jak wygląda cała przewidziana ścieżka dla naszej teleportacji i miejsce
 
 \lstinputlisting[caption=Metoda do znajdowania miejsca gdzie będziemy się teleportować, label={lst:listing-cpp}, language=C++]{code/05/AVRCharacterFindTeleportDestination.cpp}
 
+Ostatnie co zostało stworzone do projektu to pokoje (mapy) na których zostały umieszczone modele. Każdy pokój został podzielony na dwa segmenty. W pierwszym segmencie użytkownik może przeczytać informację o modelu na którego poziomie się znajduję. W drugim segmencie może zobaczyć jak dany model działa oraz uruchomić dany model.
+
+\begin{figure}[H]%
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics/05/GalleryRoom.png}
+		\caption{Pierwszy segment pokoju }	
+		\label{ref:subref_a}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics/05/GalleryRoom2.png}
+		\caption{Drugi segment pokoju}
+		\label{ref:subref_b}
+	\end{subfigure}%
+\label{ref:ref}
+\end{figure}
+
+Elementy pokoju zostały stworzone w programie do grafiki 3D Blender3D. Jest to darmowy program z którego w łatwy sposób można wrzucać stworzone tam meshe do UE4.
+Natomiast ściany, podłoga i sufit zostały stworzone przy pomocy meshy znajdujących się już w silniku UE4.
+
+{\color{red}
+Obsługa kontrolerów została stworzona przy użyciu zasad dziedziczenia z klasy bazowej i metod wirtualnych. Każdy kontroler dziedziczy z klasy bazowej metody odpowiedzialne za zachowanie spustów, gripa i drążka. W zależności co było potrzebne do osiągnięcia w modelu zachowania poszczególnych funkcji się różnią, a dzięki zasadą dziedziczenia, mogę je wywołać w tych samych miejscach w kodzie, podmieniając tylko klasy kontrolerów.
+}
+
 {\color{purple}
 Tutaj napisz informację z funkcji do teleportacji. Potem dodaj indormację o kontrolerach ruchu, a dokładnie ich klasach. Na końcu napisz krótko o poziomach z jednym poziomem który został storzony. co się znajduje i jak go zrobiłeś. Na koncu przeredaguj i wyślij matyce do poprawy. Potem popraw pierwsze trzy rozdziały i w 4 zrób poprawki których potrzebują
 }
-
 \newpage
 \section{Wnioski}
 
+
+Podczas pracy nad projektem, jako osoba go robiąca doszedłem do kilku wniosków na bazie mojego doświadczenia z tego wynikająca:
+
+\begin{itemize}
+\item Najlepsza cecha blueprintów: pozwala nam zacząć kodować logikę gier wideo bez żadnej wiedzy programistycznej. Najgorsza cecha blueprintów: pozwala nam zacząć kodować logikę gier wideo bez żadnej wiedzy programistycznej.
+\item Dobrze napisana dokumentacja do programu to rzadkość, a UE4 niestety takowej dobrze napisanej nie posiada.
+\item Do projektowania grafiki 3D trzeba mięć odpowiednie umiejętności i czas by stworzyć coś ładnego, a zarazem optymalnego dla VR.
+\item Wybrany temat nauczył mnie tworzenia ciekawych modeli, które w przyszłości można rozbudować o nowe funkcje lub dodać kolejne modele do galerii.
+\item Tworzenie projektu z myślą o VR uczy prób pisania optymalnego kodu modeli, aby te podczas ich oglądania nie powodowały choroby symulatorowej spowodowanej niską ilością klatek na sekundę.
+\end{itemize}
 
 \newpage
 
