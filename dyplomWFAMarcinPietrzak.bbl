@@ -5,22 +5,22 @@ Steam.
 \newblock {Ankieta używanego sprzętu na steam}.
 \newblock \newline \url{https://store.steampowered.com/hwsurvey}.
 
-\bibitem{PlayStation_VR2}
-Sony.
-\newblock {Zapowiedź PlayStation VR2}.
-\newblock \newline \url{https://www.playstation.com/pl-pl/ps-vr2/}.
-
-\bibitem{porownanie_gogli}
+\bibitem{ilosc_urzadzen}
 VRcompare.
-\newblock {Compare Oculus Quest and Oculus Quest 2}.
-\newblock \newline
-  \url{https://vr-compare.com/compare?h1=pDTZ02PkT&h2=GeZ01ojF8}.
+\newblock {VR Devices}.
+\newblock \newline \url{https://vr-compare.com}.
 
-\bibitem{Sprzedasz_gogli_VR}
-IDC.
-\newblock {AR/VR Headset Shipments Grew Dramatically in 2021}.
+\bibitem{liczba_gier_quest}
+Ben Lang.
+\newblock {Quest App Lab Soars to 1,440 Apps, More Than Tripling Those on the
+  Main Store}.
 \newblock \newline
-  \url{https://www.idc.com/getdoc.jsp?containerId=prUS48969722}.
+  \url{https://www.roadtovr.com/oculus-quest-app-lab-100-apps-best-rated-most-popular/}.
+
+\bibitem{liczba_gier_steam}
+Valve.
+\newblock {Steam VR Game List}.
+\newblock \newline \url{https://store.steampowered.com/vr}.
 
 \bibitem{choroba_vr}
 Michał Brzeżański.
