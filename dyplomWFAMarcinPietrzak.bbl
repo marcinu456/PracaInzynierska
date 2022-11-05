@@ -1,14 +1,14 @@
 \begin{thebibliography}{10}
 
-\bibitem{popularnosc_gogli}
-Steam.
-\newblock {Ankieta używanego sprzętu na steam}.
-\newblock \newline \url{https://store.steampowered.com/hwsurvey}.
-
 \bibitem{ilosc_urzadzen}
 VRcompare.
 \newblock {VR Devices}.
 \newblock \newline \url{https://vr-compare.com}.
+
+\bibitem{popularnosc_gogli}
+Steam.
+\newblock {Ankieta używanego sprzętu na steam}.
+\newblock \newline \url{https://store.steampowered.com/hwsurvey}.
 
 \bibitem{liczba_gier_quest}
 Ben Lang.
