@@ -203,7 +203,7 @@ do tworzenia dzieł sztuki lub galerii modelów komputerowych.
 Głównym założeniem jest stworzenie aplikacji VR która przedstawi kilka wybranych
 modeli komputerowych, dodatkowo będą znajdować się tam informację o modelu w formie galerii w
 której znajdować się będzie historia danego modelu i ciekawostki z nim związane.
-Użyte gogle VR do pomocy przy tworzeniu aplikacji to Oculus Quest, aplikacja została natomiast napisana w silniku Unreal Engine oraz w środowisku programistycznym Visual Studio 2022. Silnik UE4 posiada wsparcia dla gogli VR, a także można w nim pisać klasy i skrypty w języku C++ oraz przy wykorzystaniu Blueprintów, jest to wizualny język skryptowy stworzony z myślą o ludziach, którzy nie mieli styczności z językiem programowania. Np. dla game designerów którzy  mogą zrobić proste skrypty, a następnie programista może je przerobić na skrypty C++. Dodatkowo po stronie C++ można stworzyć bazowy system, który może zostać rozszerzony w Blueprintach o funkcje do których dostęp jest łatwiejszy w blueprintach. Celem niniejszej pracy, jest pokazanie że przy dzisiejszej technologii i wiedzy można stworzyć program w mało wymagający sposób, który nie
+Użyte gogle VR do pomocy przy tworzeniu aplikacji to Oculus Quest, aplikacja została natomiast napisana w silniku Unreal Engine oraz w środowisku programistycznym Visual Studio 2022. Silnik UE4 posiada wsparcia dla gogli VR, a także można w nim pisać klasy i skrypty w języku C++ oraz przy wykorzystaniu Blueprintów, jest to wizualny język skryptowy stworzony z myślą o ludziach, którzy nie mieli styczności z językiem programowania. Np. dla game designerów którzy  mogą zrobić proste skrypty, a następnie programista może je przerobić na skrypty C++. Dodatkowo po stronie C++ można stworzyć bazowy system, który może zostać rozszerzony w Blueprintach o funkcje do których dostęp jest łatwiejszy w Blueprintach. Celem niniejszej pracy, jest pokazanie że przy dzisiejszej technologii i wiedzy można stworzyć program w mało wymagający sposób, który nie
 byłby możliwy do zrealizowania jeszcze 10 lat temu.
 
 \begin{figure}[H]%
@@ -235,14 +235,14 @@ Aby uruchomić program potrzebną są gogle VR i kontrolery ruchowe, które są 
 	\centering
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=0.8\linewidth]{graphics/tunnelvision.png}
-		\caption{Tunnel Vision}	
+		\includegraphics[width=1\linewidth]{graphics/tunnelvisionUE4.png}
+		\caption{Wizja tunelowa}	
 		\label{ref:subref_a}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=0.8\linewidth]{graphics/teleportmove.png}
-		\caption{Teleport Move}
+		\includegraphics[width=1\linewidth]{graphics/teleportmoveUE4.png}
+		\caption{Ruch teleportacyjny}
 		\label{ref:subref_b}
 	\end{subfigure}%
 
@@ -250,31 +250,37 @@ Aby uruchomić program potrzebną są gogle VR i kontrolery ruchowe, które są 
 \label{ref:ref}
 \end{figure}
 
-\subsection{Cześć Galerii Programu}
-{\color{blue}
-W tej części można poczytać i dowiedzieć się trochę o danym modelu. Swoim wyglądem przypomina to galerię obrazów, gdzie osoba podchodzi do danej ciekawostki i może ją przeczytać.
-}
-\subsection{Część pokazowa modeli programu programu}
-{\color{blue}
-Ta część galerii ma pokazać użytkownikowi programu w jaki sposób wygląda dany model w działaniu. Modele obsługuję się za pomocą kontrolerów ruchowych. W zależności od modelu interakcja wygląda trochę inaczej, szczegółowo każda zostanie omówiona w sekcji dotyczącej danego modelu. 
-}
+\newpage
+\subsection{Wygląd Galerii w Programie}
+
+Każdy pokój został podzielony na dwie części. W części pierwszej znajdują się informację o modelu jaki się znajduję w pokoju. Swoim wyglądem przypomina to galerię obrazów, do których można podejść i poczytać ciekawostki o modelu. W drugiej części znajduję się model komputerowy. W zależności od modelu możemy z nim wchodzić w interakcje, aby zobaczyć jak model działa w ruchu.
+
+\begin{figure}[H]%
+\centering
+\includegraphics[width=0.8\columnwidth]{graphics/Level.png}
+\caption{Wygląd pokoju galerii w programie
+\label{OpenBrush}}%
+%
+\qquad
+\end{figure}  
+
 \newpage
 \section{Warstwa Programistyczna}
 
 \subsection{Unreal Engine 4}
-{\color{red}
-Program był pisany w silniku Unreal Engine 4, z powodu że korzystam z tego silnika na codzień w swojej pracy. Sam silnik wspiera też bez większym problemów gogle VR, dzięki pluginowi stworzonemu przez twórców silnika. UE4 jest silnikiem wszechstronnym, czyli nie musi byc wykorzystywany tylko do tworzenia gier. Sam silnik jest dość popularny wśród ludzi co oznacza, że w  i nie tylko można znaleźć ogrom materiałów do pomocy przy projekcie. UE4 posiada wbudowany język skryptowy zwany BluePrint, opiera się głównie bloczkach które łączą się miedzy sobą. Głównym celem BP jest chęć zdobycia widowni wśród ludzi którzy na codzień nie programują i wolą patrzeć na coś milszego dla oka. Nody są podobne do tych wykorzystywanych w blenderze. Projekt w UE4 nie musi się opierać tylko na nodach, można też większość rzeczy pisać w C++.
+
+Program został napisany na silniku Unreal Engine 4. Został on wybrany z powodu wsparcia gogli VR, dużej społeczności, otwartego kodu źródłowego oraz został napisany C++. Dzięki wsparci gogli VR nie trzeba tracić czasu by napisać odpowiednie narzędzie do ich obsługi. Duża społeczność oznacza, że w internecie można znaleźć wiele pomocnych materiałów przy tworzeniu aplikacji. Otwartość kodu oznacza, że można bez większych problemów wprowadzić własne modyfikacje, jeśli są potrzebne. Jedną z najważniejszych funkcji UE4 jest Unreal Editor, czyli graficzny edytor silnika w którym bez znajomości programowania można stworzyć własny program. Kolejną ważną funkcja UE4 jest wbudowany język skryptowy zwany BluePrint. Jest on oparty na koncepcji wykorzystywania interfejsu opartego na węzłach, dzięki którym możemy tworzyć elementy programu bezpośrednio w Unreal Editor bez wchodzenia do kodu źródłowego C++. Jest on używany do definiowania klas lub obiektów metodą programowania obiektowego.
+
 \begin{figure}[H]%
 \centering
 \includegraphics[width=0.8\columnwidth]{graphics/BPExample.png}
-\caption{Przykładowy BluePrint w UE4
+\caption{Przykładowa funkcja napisana w BP
 \label{BPExample}}%
 %
 \qquad
 \end{figure}  
 
- Sam w silnik pozwala też na tworzenie poziomów w prosty i intuicyjny sposób, poprzez przeciąganie interesującego nas obiektu bezpośrednio na ekran a następnie, na jego obracanie czy nachylenie. W edytorze możemy też uruchomić interesujący na poziom i zobaczyć czy wszystko działa tak jak należy. Możemy też edytować materiał dla meshy na poziomię w podobny sposób jak tworzymy klasy aktorów, czyli poprzez nody. 
-}
+Unreal Editor pozwala też na tworzenie poziomów w prosty i intuicyjny sposób, poprzez przeciąganie interesującego nas obiektu bezpośrednio na ekran a następnie zmiany jego obrotu czy skali. Edytor pozwala również na uruchomienie obecnie włączonego poziomu, by zobaczyć czy wszystkie funkcje zostały prawidłowo napisanie i nie ma żadnych z nimi problemów. Jeśli pojawi się jakiś problem BP pozwala na debugowanie funkcji które zostały w nim napisane. 
 \subsection{Język C++}
 {\color{red}
  UE4 pozwala też pisać klasy i funkcję w języku C++, a nie tylko w BP. Pisanie rzeczy C++ w UE4 nie różni się wiele od pisania w czystym C++, zaleca się oczywiście pisania rzeczy odwołujących się do biblioteki unrelea, co nie znaczy, że nie można niektóre pisać czysto w C++. Można oczywiście daną zmienną w klasie trzymać tylko w kodzie źródłowym, jeśli chcemy się odwołać do edytora UE4 i tam też coś robić musimy użyć specyfikator UPROPERTY przed zmienną i UFUNCTION przed funckja. Specyfikatory mają też dostępne opcję dzięki którym możemy np. edytować daną zmienna w edytorze lub podczas działania aplikacji. Najważniejszymi funckjami które dziedziczymi po klasach z biblioteki UE4 to Begin Play, Tick i EndPlay. BeginPlay uruchamia się kiedy dany aktor zostaję wywołany w czasię gry podsczas spawnu. Tick jest wywowyłany w każdym ticku życia aktora na poziomię. EndPlay jest wywoływany kiedy aktor kończy swój żywot. Danego aktora możemy zrobić czysto w C++ i tak samo go spawnować na levelu, ale lepiej jest stworzyć klasę dziedziczącą po nim w edytorze, staję się wtedy ona klasą BP którą możemy rozbudować o nowę funckje. Jeśli w klasię C++ stworzymy odwołonie do actor componenta, specjalna fuckcje (rozpisać co to), w klasię bp będzie widoczna jako odziedzicona po klasię C++.
