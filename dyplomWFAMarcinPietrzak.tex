@@ -201,19 +201,28 @@ do tworzenia dzieł sztuki lub galerii modelów komputerowych.
 \subsection{Cel i zakres pracy}
 
 Głównym założeniem jest stworzenie aplikacji VR która przedstawi kilka wybranych
-modeli komputerowych w przystępny sposób, łącznie z częścią galerii w
+modeli komputerowych, dodatkowo będą znajdować się tam informację o modelu w formie galerii w
 której znajdować się będzie historia danego modelu i ciekawostki z nim związane.
-Gogle VR których używałem do testów to Oculus Quest pierwszej generacji,
-natomiast aplikację napisałem w Unreal Engine 4, ponieważ mogę w tym silniku
-pisać w języku C++, który to najbardziej z języków programowania znam, oraz w
-blueprintach czyli Unrealowym wizualnym języku skryptowym, który jest przystępny
-dla nowych użytkowników. Silnik posiada pełne wsparcie dla gogli VR czy to wersji
-autonomicznej czy wersji PCVR. Sam aplikację pisałem z myślą o PCVR, ponieważ
-nie musiałem się aż tak obawiać o ograniczenia które stawia sprzęt w wersji
-androidowej np. brak wsparcia dla Unrealowych postprocesów obrazu. Projekt ten
-pokazuję, że w dzisiejszych czasach dzięki dostępnym narzędziom typu UE4 i gogle
-VR, człowiek jest w stanie stworzyć program w mało wymagający sposób który nie
+Użyte gogle VR do pomocy przy tworzeniu aplikacji to Oculus Quest, aplikacja została natomiast napisana w silniku Unreal Engine oraz w środowisku programistycznym Visual Studio 2022. Silnik UE4 posiada wsparcia dla gogli VR, a także można w nim pisać klasy i skrypty w języku C++ oraz przy wykorzystaniu Blueprintów, jest to wizualny język skryptowy stworzony z myślą o ludziach, którzy nie mieli styczności z językiem programowania. Np. dla game designerów którzy  mogą zrobić proste skrypty, a następnie programista może je przerobić na skrypty C++. Dodatkowo po stronie C++ można stworzyć bazowy system, który może zostać rozszerzony w Blueprintach o funkcje do których dostęp jest łatwiejszy w blueprintach. Celem niniejszej pracy, jest pokazanie że przy dzisiejszej technologii i wiedzy można stworzyć program w mało wymagający sposób, który nie
 byłby możliwy do zrealizowania jeszcze 10 lat temu.
+
+\begin{figure}[H]%
+\centering
+\includegraphics[width=0.8\columnwidth]{graphics/UE4View.png}
+\caption{Podstawowy wygląd programu Unreal Engine 4
+\label{OpenBrush}}%
+%
+\qquad
+\end{figure}  
+
+\begin{figure}[H]%
+\centering
+\includegraphics[width=0.8\columnwidth]{graphics/VSView.png}
+\caption{Podstawowy wygląd programu Visual Studio 2022
+\label{OpenBrush}}%
+%
+\qquad
+\end{figure}  
 
 \newpage
 \section{Warstwa Użytkowa}
@@ -249,6 +258,7 @@ W tej części można poczytać i dowiedzieć się trochę o danym modelu. Swoim
 {\color{blue}
 Ta część galerii ma pokazać użytkownikowi programu w jaki sposób wygląda dany model w działaniu. Modele obsługuję się za pomocą kontrolerów ruchowych. W zależności od modelu interakcja wygląda trochę inaczej, szczegółowo każda zostanie omówiona w sekcji dotyczącej danego modelu. 
 }
+\newpage
 \section{Warstwa Programistyczna}
 
 \subsection{Unreal Engine 4}
