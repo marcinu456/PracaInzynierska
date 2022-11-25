@@ -182,7 +182,7 @@ urządzeń. Z czego 78\% były to Meta Quest 2\cite{ilosc_urzadzen}.
 \begin{figure}[H]%
 \centering
 \includegraphics[width=0.8\columnwidth]{graphics/BeatSaber.jpg}
-\caption{Przykład gry stworzonej z myślą o VR Beat Saber
+\caption{Przykład gry stworzonej z myślą o VR: "Beat Saber"
 \label{OpenBrush}}%
 %
 \qquad
@@ -282,26 +282,22 @@ Program został napisany na silniku Unreal Engine 4. Został on wybrany z powodu
 
 Unreal Editor pozwala też na tworzenie poziomów w prosty i intuicyjny sposób, poprzez przeciąganie interesującego nas obiektu bezpośrednio na ekran a następnie zmiany jego obrotu czy skali. Edytor pozwala również na uruchomienie obecnie włączonego poziomu, by zobaczyć czy wszystkie funkcje zostały prawidłowo napisanie i nie ma żadnych z nimi problemów. Jeśli pojawi się jakiś problem BP pozwala na debugowanie funkcji które zostały w nim napisane. 
 \subsection{Język C++}
-{\color{red}
- UE4 pozwala też pisać klasy i funkcję w języku C++, a nie tylko w BP. Pisanie rzeczy C++ w UE4 nie różni się wiele od pisania w czystym C++, zaleca się oczywiście pisania rzeczy odwołujących się do biblioteki unrelea, co nie znaczy, że nie można niektóre pisać czysto w C++. Można oczywiście daną zmienną w klasie trzymać tylko w kodzie źródłowym, jeśli chcemy się odwołać do edytora UE4 i tam też coś robić musimy użyć specyfikator UPROPERTY przed zmienną i UFUNCTION przed funckja. Specyfikatory mają też dostępne opcję dzięki którym możemy np. edytować daną zmienna w edytorze lub podczas działania aplikacji. Najważniejszymi funckjami które dziedziczymi po klasach z biblioteki UE4 to Begin Play, Tick i EndPlay. BeginPlay uruchamia się kiedy dany aktor zostaję wywołany w czasię gry podsczas spawnu. Tick jest wywowyłany w każdym ticku życia aktora na poziomię. EndPlay jest wywoływany kiedy aktor kończy swój żywot. Danego aktora możemy zrobić czysto w C++ i tak samo go spawnować na levelu, ale lepiej jest stworzyć klasę dziedziczącą po nim w edytorze, staję się wtedy ona klasą BP którą możemy rozbudować o nowę funckje. Jeśli w klasię C++ stworzymy odwołonie do actor componenta, specjalna fuckcje (rozpisać co to), w klasię bp będzie widoczna jako odziedzicona po klasię C++.
+
+Innym sposobem na tworzenie nowej funkcjonalności dla tworzonego programu w Unreal Engine jest napisanie jej w C++. Klasy C++ mogę być używane jako klasy bazowe dla klas BluePrintowych, gdzie podstawy klasy tworzymy w C++, a następnie rozszerzamy jej możliwość w BP. C++ pozwala na tworzenie metod i zmiennych, które następnie mogą być wykorzystane w BP, dzięki odpowienim specyfikatorom. Dla metod używany jest UFUNCTION z odpowiednimi flagami w zależności od tego, jak dana metoda ma się zachować w BP. Dzięki temu można na przykład w BP odwołać się do metody stworzonej w C++ i korzystać z niej jakby była stworzona w BP. Ma to swoje zalety z czego największą jest to, że metody w C++ są szybsze niż ich odpowiedniki w BP. Podobnie jak dla metod zmienne też posiadają swój specyfikator UPROPERTY, dzięki któremu zmienne stworzone w C++ możemy użyć w BP.
 
 \begin{figure}[H]%
 \centering
 \includegraphics[width=0.8\columnwidth]{graphics/CppInherited.png}
-\caption{W nawiasie informacja, że odziedziczone z po klasie bazowej
+\caption{Przykład kodu C++
 \label{CppInherited}}%
 %
 \qquad
 \end{figure}   
- 
-  C++ pod względem działania funkcji jest szybszy od funkcji BP, więc z doświadczenia zalecam pisania głównie w nim i dopiero w mniejszym stopniu tworzyć jakieś małe funkcje pomocnicze w BP.
-  }
 
 \subsection{Oculus Quest}
 
-{\color{red}
- Gogle VR z których korzystam to Oculus Quest 1. Aby komunikować się z nimy korzystam z obrogramowania storzonym przez firmę Oculus, dzięki niemu mogę obsługiwać gogle na komputerzę przez sieć WiFi, a nie przez podłączenie gogli po kablu do komputera. Gogle te nie potrzebują do pracy komputera, poniewasz są w pełni autonomiczne, cała technologia skrywa się w samych goglach, dzięki czemu nie są potrzebne stacje bazowe. Aby tworzyć programy na goglach nie trzeba się specjalnie męczyć, trzeba oczywiście stowrzyć sterowania i komunikajcę ze światem wirtualnym przystosowanym specjalnie pod sterowanie ruchowe, oraz dostosawnie grafiki, aby ilośc FPS nie spadała poniżej 72 i utrzymywała je stale na tej wartości, dzięki temu nie ma większych problemów z chorobą symulatorową dla większości osób
-}
+Gogle VR które były wykorzystywane do testowania projektu to Oculus Quest. Gogle posiadają dwa ekrany OLED o rozdzielczości 1440x1600 na każdy ekran. Częstotliwość odświeżania ekranów wynosi 72 Hz. Do obsługi gogli wykorzystywane są dwa kontrolery Oculus Touch drugiej generacji. Dzięki swojej autonomiczności nie potrzeba podłączać gogli bezpośrednio do komputera lecz można wykorzystać lokalną sieć WiFi i oficjalne oprogramowanie firmy Reality Labs. Natomiast dzięki oficjalnemu wsparciu w Unreal Engine można od razu po stworzeniu nowego projektu, zacząć pisać go z myślą o goglach VR.
+
 
 \section{Modele wykorzystane w programie}
 
