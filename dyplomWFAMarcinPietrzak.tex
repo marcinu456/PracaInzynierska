@@ -303,7 +303,7 @@ Gogle VR które były wykorzystywane do testowania projektu to Oculus Quest. Gog
 
 \subsection{Wahadło Podwójne}
 
-Pierwszym modelem, który zamieściłem w swoim projekcie jest model wahadła podwójnego. Wahadło podwójne składa się z dwóch wahadeł prostych, tzn. pierwsze wahadło o masie $m_0$ zostało przymocowane za pomocą pręta o długości $l_0$ do stałego punktu obrotu, gdzie $\theta_0$ jest przesunięciem kątowym wahadła od położenia równowagi. Drugie wahadło o masie $m_1$ zostało przymocowane za pomocą pręta o długości $l_1$ do pierwszego wahadła z własnym kątem swobody $\theta_1$. Z powodu występowania dwóch stopni swobody $\theta_0$ i $\theta_1$, a przez to ma bardziej złożony ruch, wahadło jest podatne na chaotyczny ruch i jest bardzo wrażliwy na warunki początkowe \cite{double_pendulum_book}.
+Pierwszy model, który został umieszczony w projekcie to model wahadła podwójnego. Wahadło podwójne składa się z dwóch wahadeł prostych, tzn. pierwsze wahadło o masie $m_0$ zostało przymocowane za pomocą pręta o długości $l_0$ do stałego punktu obrotu, gdzie $\theta_0$ jest przesunięciem kątowym wahadła od położenia równowagi. Drugie wahadło o masie $m_1$ zostało przymocowane za pomocą pręta o długości $l_1$ do pierwszego wahadła z własnym kątem swobody $\theta_1$. Z powodu występowania dwóch stopni swobody $\theta_0$ i $\theta_1$, a przez to ma bardziej złożony ruch, wahadło jest podatne na chaotyczny ruch i jest bardzo wrażliwy na warunki początkowe \cite{double_pendulum_book}.
 
 \begin{figure}[H]%
 \centering
@@ -388,8 +388,8 @@ Klasa PendulumSpawn jest natomiast odpowiedzialna za dodawanie, usuwanie wahade�
 Ostatnią klasą jest klasa PendulumControl, w której są zawarte metody i zmienne potrzebne do stworzenia interfejsu użytkownika, odpowiedzialnego za kontakt między użytkownikiem programu, a PendulumSpawn.
 
 \subsubsection{Wahadło podwójne - UE4}
-{\color{red}
-Na podstawie klas C++ z poprzedniego podrozdziału stworzyłem klasy blueprintowe, które to umieszczam na poziomie w edytorze lub są wykorzystane do stworzenia interfejsu użytkownika.
+
+Na podstawie klas C++ z poprzedniego podrozdziału stworzone zostały klasy BP.
 
 
 W klasie BP\_Pendulum w blueprincie do najważniejszej rzeczy którą można zrobić, jest możliwość zmiany siatki 3D i materiału z którego jest stworzone wahadło:
@@ -416,7 +416,7 @@ W klasie BP\_PendulumSpawn ustawiamy tylko jakie ma tworzyć wahadła oraz jaki 
 
  
 Klasa WBP\_PendulumControl jest klasą typu widget, czyli klasą interfejsu użytkownika. W klasie tej trzeba stworzyć odpowiednie jej elementy na podstawie bazowej klasy C++, aby móc obsługiwać wahadła stworzone przez BP\_PendulumSpawn
-}
+
 
 \begin{figure}[H]%
 \centering
@@ -428,9 +428,9 @@ Klasa WBP\_PendulumControl jest klasą typu widget, czyli klasą interfejsu uży
 \end{figure}  
 
 \subsubsection{Wahadło podwójne – Wygląd symulacji w projekcie}
-{\color{red}
+
 W projekcie po najechaniu wskaźnikiem z kontrolera ruchowego na panel użytkownika, możemy dodać, usunąć, uruchomić lub zresetować wahadła stworzone przez spawner. Jak pokazano na rysunku \ref{Pendulum_in_project:subref_a}, na początku symulacji wahadła są stosunkowo blisko siebie. Lecz w trakcie jej działania w pewnym momencie wahadła zaczną się zachowywać w sposób chaotyczny, tak jak to widać na rysunku \ref{Pendulum_in_project:subref_b}.
-}
+
 
 \begin{figure}[H]%
 	\centering
@@ -484,7 +484,7 @@ Gra w życie Conwaya w pierwotnych założeniach składa się z 4 zasad \cite{ga
 \end{itemize}
 
 
-Na podstawie kodu \cite{game_of_life_code} zrobiłem wersję Gry w Życie, która działa z kontrolerami ruchów VR.
+Na podstawie kodu \cite{game_of_life_code} została stworzona wersja Gry w Życie, która działa z kontrolerami ruchów VR.
 \subsubsection{Gra w życie - kod}
 
 W C++ kod gry w życie składa się z trzech klas: CellActor, GridActor, GameOfLifeControl
@@ -509,7 +509,7 @@ Następnie na podstawie obecnie żyjących sąsiadów i reguł jakie zostały us
 Ostatnią klasą jest GameOfLifeControll która jest odpowiedzialna
 za stworzenia interfejsu użytkownika, dzięki któremu użytkownik może włączyć grę w życie, zmieniać szybkość działania gry oraz resetować ją do stanu początkowego.
 \subsubsection{Gra w życie - UE4}
-{\color{red}
+
 Na podstawie powyższych klas zostały stworzone klasy BluePrintowe które można potem umieścić w na poziomie w programie. W BP\_CellActor ustawiamy jak dana komórka ma wyglądać w świecie gry i jak się zachować kiedy najedziemy na nią kontrolerem ruchowym:
 
 \begin{figure}[H]%
@@ -555,7 +555,7 @@ Klasa WBP\_GameOfLifeControll jest odpowiedzialna kontakt miedzy użytkownikiem 
 %
 \qquad
 \end{figure}  
-}
+
 \subsubsection{Gra w życie - Wygląd symulacji w projekcie}
 W programie za pomocą kontrolerów możemy ustawić stan początkowy każdej komórki w poprzez najechanie na nią wskaźnikiem wystającym z kontrolerów.
 
@@ -602,8 +602,8 @@ Po lewej stronie od tablicy z komórkami znajduję się widżet, na którym moż
 
 \begin{figure}[H]%
 \centering
-\includegraphics[width=0.7\columnwidth]{graphics/butterfly/josep_castells_burza.jpg}
-\caption{Burza 
+\includegraphics[width=0.7\columnwidth]{graphics/butterfly/Lorenz_Attractor.jpg}
+\caption{Atraktor Lorenza 
 \label{BPExample}}%
 %
 \qquad
@@ -648,7 +648,7 @@ Jedyną rolą ButterflySpawner jest utworzenie tyle ButterflyActor ile zostanie 
 
 \subsubsection{Efekt Motyla - UE4}
 
-Na podstawie powyższych klas zostały stworzone klasy BluePrintowe które można potem umieścić w na poziomie w programie. W BP\_ButterflyActor dla którego stworzyłem efekt cząsteczkowy który zostawia ścieżką jaką poruszał się dany aktor.
+Na podstawie powyższych klas zostały stworzone klasy BluePrintowe które można potem umieścić w na poziomie w programie. Dodatkowo dla BP\_ButterflyActor został stworzony efekt cząsteczkowy który zostawia ścieżką jaką poruszał się dany aktor.
 
 \begin{figure}[H]%
 \centering
@@ -660,7 +660,7 @@ Na podstawie powyższych klas zostały stworzone klasy BluePrintowe które możn
 \end{figure} 
 
 
-W BP\_ButterflySpawner ustawiamy jakiego aktora chcemy ustawić na scenie, oraz ile motyli chcemy stworzyć.
+W BP\_ButterflySpawner ustawiamy jakiego aktora chcemy ustawić na scenie, oraz ile BP\_ButterflyActor  ma zostać stworzona.
 
 \begin{figure}[H]%
 \centering
@@ -691,7 +691,7 @@ W programie użytkownik może obserwować efekt motyla z podstawowymi parametram
 
 Model agentowy jest typem modelu gdzie analizujemy wpływ agenta na dane środowisko i vice versa. Agentem może być np. komórka, człowiek, zwierzę itd. W modelu agentowym ustawiamy zachowanie poszczególnego lub grup agentów i obserwujemy jak wpływają na resztę w danym środowisku testowym. Główną ideą jest sprawdzenie w jaki sposób czynniki w mikro skali wpływają na czynniki w środowisku makro. Dzięki temu możemy wykorzystać tak zdobytą wiedzę do różnych celów np. Sprawdzenie roznoszenia się epidemii, badać zachowania konsumenckie u ludzi czy tworzyć proste środowiska  by zobaczyć jak populacja danych agentów zmieniała się w czasie \cite{agent_examples}. 
 
-W Unrealu Engine 4 stworzyłem prosty model środowiska, gdzie mamy 3 rodzaje agentów: Rośliny, Króliki i Lisy. Celem królików jest rozmnożenie się poprzez znalezienie najbliższego królika do tego zdolnego. Jeśli trakcie trwania symulacji zdrowie królika spadnie poniżej danego poziomu, ponieważ w trakcie trwania symulacji każdy agent nieustannie traci zdrowie lub w trakcie rozmnażania, jego celem wtedy jest znalezienie najbliższej rośliny i skonsumowanie jej. Po zjedzeniu rośliny może ponownie szukać partnera do rozmnażania.  Celem lisa podobnie jak królika jest znalezienie partnera do reprodukcji. Podobnie jak królik w wyniki rozmnażania lub czasu traci zdrowie, wtedy jego celem jest znalezienie najbliższego królika i zjedzenie go. Aby każdy miał jakieś szansę na przeżycie wartości prędkości danej grupy agentów różnią się. W obecnym modelu króliki są szybsze od lisów, ale mają też mniej od nich mniej zdrowia. Króliki mają też wyższy licznik reprodukcji. Model też jest bardzo prosty, dlatego np. króliki nie uciekają od lisów.
+W projekcie został stworzony prosty model środowiska, gdzie są 3 rodzaje agentów: Rośliny, Króliki i Lisy. Celem królików jest rozmnożenie się poprzez znalezienie najbliższego królika do tego zdolnego. Jeśli trakcie trwania symulacji zdrowie królika spadnie poniżej danego poziomu, ponieważ w trakcie trwania symulacji każdy agent nieustannie traci zdrowie lub w trakcie rozmnażania, jego celem wtedy jest znalezienie najbliższej rośliny i skonsumowanie jej. Po zjedzeniu rośliny może ponownie szukać partnera do rozmnażania.  Celem lisa podobnie jak królika jest znalezienie partnera do reprodukcji. Podobnie jak królik w wyniki rozmnażania lub czasu traci zdrowie, wtedy jego celem jest znalezienie najbliższego królika i zjedzenie go. Aby każdy miał jakieś szansę na przeżycie wartości prędkości danej grupy agentów różnią się. W obecnym modelu króliki są szybsze od lisów, ale mają też mniej od nich mniej zdrowia. Króliki mają też wyższy licznik reprodukcji. Model też jest bardzo prosty, dlatego np. króliki nie uciekają od lisów.
 \subsubsection{Modele Agentowe - kod}
 
 Kod C++ składa się z następujących klas: AgentBase, PlantAgent, RabbitAgent, WolfAgent, AgentSpawner, AgentSpawnBox, AgentTable i AgentControl. 
@@ -716,8 +716,7 @@ Ostatnia klasą jest AgentControl, który odpowiada za tworzenie UI i komunikacj
 
 \subsubsection{Modele Agentowe - UE4}
 
-Na podstawie kodów C++ stworzyłem w UE4 odpowiednie klasy BluePrintowe, które są dziećmi klas z kodu źródłowego. Klasy BP\_RabbitAgent, BP\_PlantAgent i BP\_WolfAgent
-Ustawia się w taki sam sposób, poprzez wybranie odpowiedniego mesha jakiego chcemy dla danego agenta i wybrać jakiego actora ma stworzyć w trakcie etapu reprodukcji, z wyłączeniem PlantAgent, który powstaje tylko w AgentSpawner. Tutaj też wybieramy, jaki kolor ma mieć actor, kiedy będziemy w nim wchodzić w interakcje na etapie ręcznego tworzenia planszy.
+Na podstawie kodów C++ stworzone zostały klasy BP będące dziećmi odpowiednich klas bazowych z kodu źródłowego. Klasy BP\_RabbitAgent, BP\_PlantAgent i BP\_WolfAgent ustawia się w następujący sposób, poprzez wybranie odpowiedniego obiekty, jak agent ma wyglądać w programie oraz wybrać jakiego actora ma stworzyć w trakcie etapu reprodukcji, z wyłączeniem PlantAgent, który powstaje tylko w AgentSpawner. Tutaj też wybieramy, jaki kolor ma mieć actor, kiedy będziemy w nim wchodzić w interakcje na etapie ręcznego tworzenia planszy.
 
 \begin{figure}[H]%
 \centering
@@ -751,7 +750,7 @@ Kolejną klasą jest BP\_AgentSpawnBox. Podobnie jak BP\_Spawner tworzy nowych a
 \qquad
 \end{figure} 
 
-Ostatnie dwie klasy to BP\_AgentTable i BP\_AgentControl. Pierwsza w nim jest planszą w której ustwiamy jak plansza ma wyglądać oraz miejsce gdzie możemy położyć i zabrać agentów. Drugą klasa jest widgetem i tak jak w poprzednich modelach, poprzez najechanie kontrolerem na odpowiednią opcje symulacja startuję, albo się resetuje.
+Ostatnie dwie klasy to BP\_AgentTable i BP\_AgentControl. Pierwsza w nim jest planszą w której ustawiamy jak plansza ma wyglądać oraz miejsce gdzie możemy położyć i zabrać agentów. Drugą klasa jest widgetem i tak jak w poprzednich modelach, poprzez najechanie kontrolerem na odpowiednią opcje symulacja startuję, albo się resetuje.
 
 \begin{figure}[H]%
 	\centering
@@ -771,7 +770,7 @@ Ostatnie dwie klasy to BP\_AgentTable i BP\_AgentControl. Pierwsza w nim jest pl
 \end{figure}
 
 \subsubsection{Modele Agentowe - Wygląd symulacji w projekcie}
-W programie za pomocą kontrolerów możemy wyciągać agentów z SpawnBoxów i kłaść ich następnie na planszy. Każdy rodzaj agenta ma swój własny SpawnBox różniący się wyglądem.
+W programie za pomocą kontrolerów możemy wyciągać agentów z SpawnBoxów i położyć ich następnie na planszy. Każdy rodzaj agenta ma swój własny SpawnBox różniący się wyglądem.
 
 \begin{figure}[H]%
 	\centering
@@ -809,7 +808,7 @@ Każdego agenta z SpawnBoxu możemy położyć w dowolnym miejscu na planszy. Ki
 \label{ref:ref}
 \end{figure}
 
-Symulację uruchamiamy poprzez najechanie kontrolerem na przycisk start który znajduję się na widgecie przed planszą. Symulacja będzie trwać dopóki nie wyłączymy jej drugim przyciskiem. Podczas symulacji agenci będą się poruszać zgodnie z zachowaniami, jakie im zostały stworzone w kodzie.
+Symulację uruchamiamy poprzez najechanie kontrolerem na przycisk start który znajduję się na widgecie przed planszą. Symulacja będzie trwać dopóki nie wyłączymy jej drugim przyciskiem. Podczas symulacji agenci będą się poruszać zgodnie z zachowaniami, jakie zostały stworzone w kodzie.
 
 \begin{figure}[H]%
 \centering
@@ -856,7 +855,7 @@ W roku 1986 w ciągu dwóch miesięcy, Craig Raynolds pracujący wtedy w firmie 
 \label{ref:ref}
 \end{figure}
 
-Każdy z boidów reaguję, tylko na inne boidy w jego bliskim otoczeniu od niego, a każdy boid z poza tego otoczenia jest ignorowany. W początkowych eksperymentach, model był trochę bardziej rozbudowany, dzięki czemu boidy, mogły omijać obiekty i poszukiwać celu \cite{boids_reynolds}. Na podstawie kodu \cite{code_boids} zrobiłem prostą wersję która działa z kontrolerami ruchów VR do możliwości sterowania ruchami stada, stado porusza się za obiektem.
+Każdy z boidów reaguję, tylko na inne boidy w jego bliskim otoczeniu od niego, a każdy boid z poza tego otoczenia jest ignorowany. W początkowych eksperymentach, model był trochę bardziej rozbudowany, dzięki czemu boidy, mogły omijać obiekty i poszukiwać celu \cite{boids_reynolds}. Boidy w projekcie zostały stworozne na podstawie kodu \cite{code_boids}.
 
 \subsubsection{Boids - kod}
 
@@ -882,7 +881,7 @@ Jeśli śledzimy cel, to dodajemy też znormalizowany wektor pomiędzy pozycją 
 
 \subsubsection{Boids - UE4}
 
-Na podstawie kodów C++ stworzyłem w UE4 odpowiednie klasy BluePrintowe, które są dziećmi klas z kodu źródłowego. 
+Na podstawie kodów C++ stworzone zostały klasy BP będące dziećmi odpowiednich klas bazowych z kodu źródłowego. 
 
 W BP\_BoidTarget ustawiamy tylko mesh i materiał, a następnie umieszczamy ją na poziomie. Podobnie z BP\_Boid w którym też ustawiamy tylko mesh i materiał, ponieważ cała logika została stworzona w C++.
 
@@ -972,7 +971,7 @@ Po kliknięciu na prawym kontrolerze spustu możemy zmienić położenie celu do
 \newpage
 \section{Nie realizacja, a co było jeszcze robione - tytuł do wymyślenia}
 
-Jedną z pierwszych rzeczy jaką zrobiłem w grze była klasa odpowiedzialna za poruszanie się postaci. Klasa AVRCharacter jest dzieckiem klasy ACharacter. Klasa jest "pionkiem", którym może sterować gracz. Jest fizyczną reprezentacją gracza na poziomie z wbudowaną informacją o meshu, kolizji i logice ruchu. W klasie tej znajdują się wszystkie informacje potrzebne postaci w tym informacja o klasie kontrolerów ruchu, które w zależności od mapy na którym są modele, różnią się miedzy sobą. Metoda SetupPlayerInputComponent, która jest metodą wirtualną, jest wywołana w celu powiązania metod klasy z przyciskami, które zdefiniowaliśmy w ustawieniach projektu. 
+Jedną z pierwszych rzeczy stworzonych w projekcie była klasa odpowiedzialna za poruszanie się postaci. Klasa AVRCharacter jest dzieckiem klasy ACharacter. Klasa jest "pionkiem", którym może sterować gracz. Jest fizyczną reprezentacją gracza na poziomie z wbudowaną informacją o meshu, kolizji i logice ruchu. W klasie tej znajdują się wszystkie informacje potrzebne postaci w tym informacja o klasie kontrolerów ruchu, które w zależności od mapy na którym są modele, różnią się miedzy sobą. Metoda SetupPlayerInputComponent, która jest metodą wirtualną, jest wywołana w celu powiązania metod klasy z przyciskami, które zdefiniowaliśmy w ustawieniach projektu. 
 
 \lstinputlisting[caption=Przypisanie metod do przycisków, label={lst:listing-cpp}, language=C++]{code/05/AVRCharacterSetupPlayerInputComponent.cpp}
 
@@ -985,7 +984,7 @@ Jedną z pierwszych rzeczy jaką zrobiłem w grze była klasa odpowiedzialna za 
 \end{figure}%
 
 W projekcie można poruszać się na dwa sposoby. Pierwszy z nich polega na używaniu 
-analoga na lewym kontrolerze do płynnego poruszania się po mapie w zależności od wychylenia analoga przy pomocy kciuka. Drugi sposób jest natomiast o wiele bardziej przyjemny do poruszania się dla osób mających chorobę symulatorową. A mianowicie teleportację do miejsca gdzie obecnie wskazuję znacznik celu. Znacznik aktywujemy poprzez kliknięcie przycisku na prawym kontrolerze. Do znalezienia miejsca w które się teleportowaliśmy użyłem kilku struktur silnikowych. FPredictProjectilePathParams do którego wstawiamy parametry wejściowe, są to:
+analoga na lewym kontrolerze do płynnego poruszania się po mapie w zależności od wychylenia analoga przy pomocy kciuka. Drugi sposób jest natomiast o wiele bardziej przyjemny do poruszania się dla osób mających chorobę symulatorową. A mianowicie jest to teleportacja do miejsca gdzie obecnie wskazuję znacznik celu. Znacznik aktywujemy poprzez kliknięcie przycisku na prawym kontrolerze. Do znalezienia miejsca w które się teleportowaliśmy zostały użyte kilka struktur silnikowych. FPredictProjectilePathParams do którego wstawiamy parametry wejściowe, są to:
 
 \begin{itemize}
 \item Promień naszej teleportacji używany podczas śledzenia kolizji
