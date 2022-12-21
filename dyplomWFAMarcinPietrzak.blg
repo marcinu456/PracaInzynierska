@@ -6,45 +6,45 @@ The style file: unsrt.bst
 Reallocating 'name_of_file' (item size: 1) to 13 items.
 Database file #1: bibliografia.bib
 Warning--entry type for "popularnosc_gogli" isn't style-file defined
---line 2 of file bibliografia.bib
+--line 3 of file bibliografia.bib
 Warning--entry type for "ilosc_urzadzen" isn't style-file defined
---line 23 of file bibliografia.bib
+--line 45 of file bibliografia.bib
 Warning--entry type for "liczba_gier_quest" isn't style-file defined
---line 30 of file bibliografia.bib
+--line 59 of file bibliografia.bib
 Warning--entry type for "liczba_gier_steam" isn't style-file defined
---line 37 of file bibliografia.bib
-Warning--entry type for "choroba_vr" isn't style-file defined
---line 51 of file bibliografia.bib
-Warning--entry type for "double_pendulum" isn't style-file defined
---line 58 of file bibliografia.bib
-Warning--entry type for "double_pendulum_book" isn't style-file defined
---line 66 of file bibliografia.bib
-Warning--entry type for "game_of_life_zero_cellular_automata" isn't style-file defined
 --line 73 of file bibliografia.bib
+Warning--entry type for "choroba_vr" isn't style-file defined
+--line 101 of file bibliografia.bib
+Warning--entry type for "double_pendulum" isn't style-file defined
+--line 115 of file bibliografia.bib
+Warning--entry type for "double_pendulum_book" isn't style-file defined
+--line 131 of file bibliografia.bib
+Warning--entry type for "game_of_life_zero_cellular_automata" isn't style-file defined
+--line 145 of file bibliografia.bib
 Warning--entry type for "game_of_life_zero_player" isn't style-file defined
---line 80 of file bibliografia.bib
+--line 159 of file bibliografia.bib
 Warning--entry type for "game_of_life_story" isn't style-file defined
---line 87 of file bibliografia.bib
+--line 173 of file bibliografia.bib
 Warning--entry type for "game_of_life_methematical_games" isn't style-file defined
---line 94 of file bibliografia.bib
+--line 187 of file bibliografia.bib
 Warning--entry type for "game_of_life_code" isn't style-file defined
---line 123 of file bibliografia.bib
+--line 245 of file bibliografia.bib
 Warning--entry type for "burze_motyle" isn't style-file defined
---line 137 of file bibliografia.bib
+--line 273 of file bibliografia.bib
 Warning--entry type for "lorenz_dziwne_atraktory" isn't style-file defined
---line 144 of file bibliografia.bib
+--line 287 of file bibliografia.bib
 Warning--entry type for "motyle_cpp" isn't style-file defined
---line 151 of file bibliografia.bib
+--line 301 of file bibliografia.bib
 Warning--entry type for "agent_examples" isn't style-file defined
---line 158 of file bibliografia.bib
+--line 315 of file bibliografia.bib
 Warning--entry type for "flocking_system" isn't style-file defined
---line 165 of file bibliografia.bib
+--line 329 of file bibliografia.bib
 Warning--entry type for "boids_reynolds" isn't style-file defined
---line 172 of file bibliografia.bib
+--line 343 of file bibliografia.bib
 Warning--entry type for "boids_name" isn't style-file defined
---line 179 of file bibliografia.bib
+--line 357 of file bibliografia.bib
 Warning--entry type for "code_boids" isn't style-file defined
---line 186 of file bibliografia.bib
+--line 371 of file bibliografia.bib
 You've used 20 entries,
             1791 wiz_defined-function locations,
             524 strings with 6135 characters,

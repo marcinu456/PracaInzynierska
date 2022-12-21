@@ -620,16 +620,16 @@ równań różniczkowych\cite{lorenz_dziwne_atraktory}:
 \end{split}
 \end{equation}
 gdzie:\\
-$\sigma$ - stała Prandtla,\\
-$\rho$ - stała Rayleigha,\\
+$\sigma$ - liczba Prandtla,\\
+$\rho$ - liczba Rayleigha,\\
 $\beta$ - obszar obejmujący równania\\
 $\sigma$, $\rho$, $\beta$ > 0,\\
 Jednakże zwykle podaje się\cite{lorenz_dziwne_atraktory}:\\
 \begin{equation}
 \begin{split}
 \sigma = 10\\
-\rho = \frac{8}{3}\\
-\beta - zmienna
+\rho = 28\\
+\beta - \frac{8}{3}
 \end{split}
 \label{ButterflyVariables}
 \end{equation}
@@ -671,11 +671,9 @@ W BP\_ButterflySpawner ustawiamy jakiego aktora chcemy ustawić na scenie, oraz 
 \qquad
 \end{figure} 
 
-
-\newpage
 \subsubsection{Efekt Motyla - Wygląd symulacji w projekcie}
-{\color{blue}
-W programie użytkownik może obserwować efekt motyla z podstawowymi parametrami dla atraktorów[\ref{ButterflyVariables}], łącznie ze ścieżka, po jakiej się poruszają się atraktory:
+
+W programie użytkownik może obserwować układ Lorenza z wybranymi parametrami dla atraktorów[\ref{ButterflyVariables}], łącznie ze ścieżka, po jakiej się poruszają się atraktory. Dzięki temu może zobaczyć jak zmienia się zachowanie układu po zmienieniu wartości zmiennych
 
 \begin{figure}[H]%
 \centering
@@ -685,7 +683,7 @@ W programie użytkownik może obserwować efekt motyla z podstawowymi parametram
 %
 \qquad
 \end{figure}  
-}
+
 \newpage
 \subsection{Modele Agentowe}
 
@@ -944,13 +942,13 @@ W programie nad lewym kontrolerze mamy widget którym sterujemy zaochawniem boid
 	\centering
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=0.8\linewidth]{graphics//boids/BoidsInUE.png}
-		\caption{Boidy zmierzają w kierunku targetu }	
+		\includegraphics[width=0.8\linewidth]{graphics//boids/BoidsInUE_1.png}
+		\caption{Boidy zmierzają w kierunku celu }	
 		\label{ref:subref_a}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=0.8\linewidth]{graphics//boids/BoidsInUE.png}
+		\includegraphics[width=0.8\linewidth]{graphics//boids/BoidsInUE_2.png}
 		\caption{Boidy się rozpraszają}
 		\label{ref:subref_b}
 	\end{subfigure}%
@@ -960,13 +958,21 @@ W programie nad lewym kontrolerze mamy widget którym sterujemy zaochawniem boid
 Po kliknięciu na prawym kontrolerze spustu możemy zmienić położenie celu do którego mogą zmierzają boidy.
 
 \begin{figure}[H]%
-\centering
-\includegraphics[width=0.7\columnwidth]{graphics/boids/BoidsInUE.png}
-\caption{Przesuwanie celu w programie
-\label{BPExample}}%
-%
-\qquad
-\end{figure}  
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics//boids/BoidsInUE_3.png}
+		\label{ref:subref_a}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{graphics//boids/BoidsInUE_4.png}
+		\label{ref:subref_b}
+	\end{subfigure}%
+\caption{Przesuwanie celu w programie}
+\label{ref:ref}
+\end{figure}
+
 
 \newpage
 \section{Nie realizacja, a co było jeszcze robione - tytuł do wymyślenia}
