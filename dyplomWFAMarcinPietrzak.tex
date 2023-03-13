@@ -179,10 +179,10 @@ firm\cite{ilosc_urzadzen}, z czego największą popularnością są gogle od
 Mety\cite{popularnosc_gogli}, w 2021 roku zostało sprzedanych 11 milionów sztuk 
 urządzeń. Z czego 78\% były to Meta Quest 2\cite{ilosc_urzadzen}.
 
-\begin{figure}[H]%
+\begin{figure}[!ht]%
 \centering
 \includegraphics[width=0.8\columnwidth]{graphics/BeatSaber.jpg}
-\caption{Przykład gry stworzonej z myślą o VR: "Beat Saber".
+\caption{Przykład gry stworzonej z myślą o VR: "Beat Saber" firmy Beat Games.
 \label{OpenBrush}}%
 %
 \qquad
@@ -205,7 +205,7 @@ której znajdować się będzie historia danego modelu i ciekawostki z nim zwią
 Użyte gogle VR do pomocy przy tworzeniu aplikacji to Oculus Quest. Aplikacja została natomiast napisana w silniku Unreal Engine oraz w środowisku programistycznym Visual Studio 2022. Silnik UE4 posiada wsparcia dla gogli VR, a także można w nim pisać klasy i skrypty w języku C++ oraz przy wykorzystaniu Blueprintów. Jest to wizualny język skryptowy stworzony z myślą o ludziach, którzy nie mieli styczności z językiem programowania, np. dla game designerów którzy  mogą zrobić proste skrypty, a następnie programista może je przerobić na skrypty C++. Dodatkowo po stronie C++ można stworzyć bazowy system, który może zostać rozszerzony w Blueprintach o funkcje do których dostęp jest łatwiejszy w Blueprintach. Celem niniejszej pracy, jest pokazanie że przy dzisiejszej technologii i wiedzy można stworzyć program w sposób, który nie
 byłby możliwy do zrealizowania jeszcze 10 lat temu.
 
-\begin{figure}[H]%
+\begin{figure}[!ht]%
 \centering
 \includegraphics[width=0.8\columnwidth]{graphics/UE4View.png}
 \caption{Podstawowy wygląd programu Unreal Engine 4.
@@ -214,7 +214,7 @@ byłby możliwy do zrealizowania jeszcze 10 lat temu.
 \qquad
 \end{figure}  
 
-\begin{figure}[H]%
+\begin{figure}[!ht]%
 \centering
 \includegraphics[width=0.8\columnwidth]{graphics/VSView.png}
 \caption{Podstawowy wygląd programu Visual Studio 2022.
@@ -232,29 +232,32 @@ Aby uruchomić program potrzebne są gogle VR i kontrolery ruchowe, które są w
 
 \begin{figure}[!ht]%
 	\centering
-	\begin{subfigure}{.5\textwidth}
+	\begin{subfigure}{.8\textwidth}
 		\centering
-		\includegraphics[width=1\linewidth]{graphics/tunnelvisionUE4.png}
+		\includegraphics[width=0.8\linewidth]{graphics/tunnelvisionUE4.png}
 		\caption{Wizja tunelowa}	
 		\label{ref:subref_a}
 	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
+
+	\begin{subfigure}{.8\textwidth}
 		\centering
-		\includegraphics[width=1\linewidth]{graphics/teleportmoveUE4.png}
-		\caption{Ruch teleportacyjny}
-		\label{ref:subref_b}
+		\includegraphics[width=0.8\linewidth]{graphics/teleportmoveUE4.png}
+		\caption{Ruch teleportacyjny}	
+		\label{ref:subref_c}
 	\end{subfigure}%
 
 \caption{Sposób poruszania się w programie.}
 \label{ref:ref}
 \end{figure}
 
+
+
 \newpage
 \subsection{Wygląd Galerii w Programie}
 
 Każdy pokój został podzielony na dwie części. W części pierwszej znajdują się informacje o modelu jaki się znajduję w pokoju. Swoim wyglądem przypomina to galerię obrazów, do których można podejść i poczytać ciekawostki o modelu. W drugiej części znajduję się model komputerowy. W zależności od modelu możemy z nim wchodzić w interakcje, aby zobaczyć jak model działa w ruchu.
 
-\begin{figure}[H]%
+\begin{figure}[!ht]%
 \centering
 \includegraphics[width=0.8\columnwidth]{graphics/Level.png}
 \caption{Wygląd pokoju galerii w programie.
@@ -270,7 +273,7 @@ Każdy pokój został podzielony na dwie części. W części pierwszej znajduj�
 
 Program został napisany na silniku Unreal Engine 4. Został on wybrany z powodu wsparcia gogli VR, dużej społeczności, otwartego kodu źródłowego oraz możliwość pisania kody w języku C++. Dzięki wsparci gogli VR nie trzeba tracić czasu by napisać odpowiednie narzędzie do ich obsługi. Duża społeczność oznacza, że w internecie można znaleźć wiele pomocnych materiałów przy tworzeniu aplikacji. Otwartość kodu oznacza, że można bez większych problemów wprowadzić własne modyfikacje, jeśli są potrzebne. Jedną z najważniejszych funkcji UE4 jest Unreal Editor, czyli graficzny edytor silnika w którym bez znajomości programowania można stworzyć własny program. Kolejną ważną funkcja UE4 jest wbudowany język skryptowy zwany BluePrint. Jest on oparty na koncepcji wykorzystywania interfejsu opartego na węzłach, dzięki którym możemy tworzyć elementy programu bezpośrednio w Unreal Editor bez wchodzenia do kodu źródłowego C++. Jest on używany do definiowania klas lub obiektów metodą programowania obiektowego.
 
-\begin{figure}[H]%
+\begin{figure}[!ht]%
 \centering
 \includegraphics[width=0.8\columnwidth]{graphics/BPExample.png}
 \caption{Przykładowa funkcja napisana w unrealowych blueprintach.
@@ -298,7 +301,7 @@ Gogle VR które były wykorzystywane do testowania projektu to Oculus Quest. Gog
 
 Pierwszy model, który został umieszczony w projekcie to model wahadła podwójnego. Wahadło podwójne składa się z dwóch wahadeł prostych, tzn. pierwsze wahadło o masie $m_0$ zostało przymocowane za pomocą pręta o długości $l_0$ do stałego punktu obrotu, gdzie $\theta_0$ jest przesunięciem kątowym wahadła od położenia równowagi. Drugie wahadło o masie $m_1$ zostało przymocowane za pomocą pręta o długości $l_1$ do pierwszego wahadła z własnym kątem swobody $\theta_1$. Z powodu występowania dwóch stopni swobody $\theta_0$ i $\theta_1$, a przez to ma bardziej złożony ruch, wahadło jest podatne na chaotyczny ruch i jest bardzo wrażliwy na warunki początkowe \cite{double_pendulum_book}.
 
-\begin{figure}[H]%
+\begin{figure}[!ht]%
 \centering
 \includegraphics[width=0.5\columnwidth]{graphics/pendulum/DoublePendulum.png}
 \caption{Wahadło podwójne.
@@ -387,7 +390,7 @@ Na podstawie klas C++ z poprzedniego podrozdziału stworzone zostały klasy BP.
 
 W klasie BP\_Pendulum w blueprincie do najważniejszej rzeczy którą można zrobić, jest możliwość zmiany siatki 3D i materiału z którego jest stworzone wahadło:
 
-\begin{figure}[H]%
+\begin{figure}[!ht]%
 \centering
 \includegraphics[width=0.7\columnwidth]{graphics/pendulum/PendulumBP.png}
 \caption{Ustawiony mesh i tekstura dla wahadła .
@@ -398,7 +401,7 @@ W klasie BP\_Pendulum w blueprincie do najważniejszej rzeczy którą można zro
 
 W klasie BP\_PendulumSpawn ustawiamy tylko jakie ma tworzyć wahadła oraz jaki widget ma być umieszczony do obsługi wahadeł. Po ustawieniu wszystkich potrzebnych rzeczy klasę można umieścić na poziomie:
 
-\begin{figure}[H]%
+\begin{figure}[!ht]%
 \centering
 \includegraphics[width=0.7\columnwidth]{graphics/pendulum/PendulumSpawnerBP.png}
 \caption{Ustawione wahadło do stworzenia i widget.
@@ -411,7 +414,7 @@ W klasie BP\_PendulumSpawn ustawiamy tylko jakie ma tworzyć wahadła oraz jaki 
 Klasa WBP\_PendulumControl jest klasą typu widget, czyli klasą interfejsu użytkownika. W klasie tej trzeba stworzyć odpowiednie jej elementy na podstawie bazowej klasy C++, aby móc obsługiwać wahadła stworzone przez BP\_PendulumSpawn
 
 
-\begin{figure}[H]%
+\begin{figure}[!ht]%
 \centering
 \includegraphics[width=0.7\columnwidth]{graphics/pendulum/PendulumControlBP.png}
 \caption{Wygląd widgetu w programie.
@@ -425,7 +428,7 @@ Klasa WBP\_PendulumControl jest klasą typu widget, czyli klasą interfejsu uży
 W projekcie po najechaniu wskaźnikiem z kontrolera ruchowego na panel użytkownika, możemy dodać, usunąć, uruchomić lub zresetować wahadła stworzone przez spawner. Jak pokazano na rysunku \ref{Pendulum_in_project:subref_a}, na początku symulacji wahadła są stosunkowo blisko siebie. Lecz w trakcie jej działania w pewnym momencie wahadła zaczną się zachowywać w sposób chaotyczny, tak jak to widać na rysunku \ref{Pendulum_in_project:subref_b}.
 
 
-\begin{figure}[H]%
+\begin{figure}[!ht]%
 	\centering
 	\begin{subfigure}{.5\textwidth}
 		\centering
@@ -459,7 +462,7 @@ John Conway zainteresował się problemem przedstawionym w latach 40 XX wieku pr
 
  Gra w pierwotnym założeniu rozgrywa się na 2 wymiarowej siatce składającej się z komórek. Każda komórka w danej turze (generacji) może być albo żywa, albo martwa. To czy pojedyncza komórka w kolejnej turze będzie żyć lub nie, zależy od stanu jej 8 sąsiadów i ustanowionych początkowych reguł.
 
-\begin{figure}[H]%
+\begin{figure}[!ht]%
 \centering
 \includegraphics[width=0.2\columnwidth]{graphics//gameoflife/GOL_Cell.png}
 \caption{Pojedyncza komórka i 8 sąsiadów w grze w życie.
@@ -506,15 +509,16 @@ za stworzenia interfejsu użytkownika, dzięki któremu użytkownik może włąc
 
 Na podstawie powyższych klas zostały stworzone klasy BluePrintowe które można potem umieścić w na poziomie w programie. W BP\_CellActor ustawiamy jak dana komórka ma wyglądać w świecie gry i jak się zachować kiedy najedziemy na nią kontrolerem ruchowym:
 
-\begin{figure}[H]%
+\begin{figure}[!ht]%
 	\centering
-	\begin{subfigure}{.45\textwidth}
+	\begin{subfigure}{.7\textwidth}
 		\centering
 		\includegraphics[width=0.8\linewidth]{graphics/gameoflife/CellActorInUE_1.png}
 		\caption{Ustawiony mesh w programie dla komórki.}	
 		\label{ref:subref_a}
 	\end{subfigure}%
-	\begin{subfigure}{.45\textwidth}
+	
+	\begin{subfigure}{.7\textwidth}
 		\centering
 		\includegraphics[width=0.8\linewidth]{graphics/gameoflife/CellActorInUE_2.png}
 		\caption{Ustawiony wygląd w programie podczas akcji.}
@@ -528,20 +532,19 @@ Na podstawie powyższych klas zostały stworzone klasy BluePrintowe które możn
 
 BP\_GridActor2D jest klasą BluePrint która znajdzie się na poziomie gry. W klasie ustawiamy na jaką szerokość i wysokość ma zostać stworzona siatka składająca się z BP\_CellActor oraz dodajemy widget, dzięki któremu możemy sterować symulacją:
 
-\begin{figure}[H]%
+\begin{figure}[!ht]%
 \centering
-\includegraphics[width=0.7\columnwidth]{graphics/gameoflife/GridActor2DInUE_1.png}
+\includegraphics[width=0.6\columnwidth]{graphics/gameoflife/GridActor2DInUE_1.png}
 \caption{Ustawienia BP\_GridActor2D.
 \label{BPExample}}%
 %
 \qquad
 \end{figure}  
 
-Na podobnej zasadzie działa BP\_GridActor3D, w którym dochodzi jeszcze głębokość na którą możemy ustawić siatkę.\\
 
 Klasa WBP\_GameOfLifeControll jest odpowiedzialna kontakt miedzy użytkownikiem a programem, klasa ta jest widgetem dzięki któremu poprzez najechanie kontrolerem ruchowym na odpowiednie opcje możemy włączyć symulację, przyśpieszyć lub ją spowolnić oraz zresetować do stanu początkowego:
 
-\begin{figure}[H]%
+\begin{figure}[!ht]%
 \centering
 \includegraphics[width=0.7\columnwidth]{graphics/gameoflife/GameOfLifeControllInUE_1.png}
 \caption{Wygląd widgetu w programie.
@@ -553,17 +556,17 @@ Klasa WBP\_GameOfLifeControll jest odpowiedzialna kontakt miedzy użytkownikiem 
 \subsubsection{Gra w życie - Wygląd symulacji w projekcie}
 W programie za pomocą kontrolerów możemy ustawić stan początkowy każdej komórki w poprzez najechanie na nią wskaźnikiem wystającym z kontrolerów.
 
-\begin{figure}[H]%
+\begin{figure}[!ht]%
 	\centering
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=0.95\linewidth]{graphics/gameoflife/GOLInUE_1.png}
+		\includegraphics[width=0.9\linewidth]{graphics/gameoflife/GOLInUE_1.png}
 		\caption{Ożywianie komórek z pomocą kontrolera}	
 		\label{ref:subref_a}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=0.8\linewidth]{graphics/gameoflife/GOLInUE_2.png}
+		\includegraphics[width=0.9\linewidth]{graphics/gameoflife/GOLInUE_2.png}
 		\caption{Uśmiercanie komórek z pomocą kontrolera}
 		\label{ref:subref_b}
 	\end{subfigure}%
@@ -572,17 +575,17 @@ W programie za pomocą kontrolerów możemy ustawić stan początkowy każdej ko
 
 Po lewej stronie od tablicy z komórkami znajduję się widżet, na którym możemy włączyć grę, przyśpieszyć jej działanie lub spowolnić, albo zresetować komórki do stanu początkowego. 
 
-\begin{figure}[H]%
+\begin{figure}[!ht]%
 	\centering
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=0.95\linewidth]{graphics/gameoflife/GOLInUE_1.png}
+		\includegraphics[width=0.9\linewidth]{graphics/gameoflife/GOLInUE_1.png}
 		\caption{Wygląd tablicy z komórkami i widżetu}	
 		\label{ref:subref_a}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=0.95\linewidth]{graphics/gameoflife/GOLInUE_2.png}
+		\includegraphics[width=0.9\linewidth]{graphics/gameoflife/GOLInUE_2.png}
 		\caption{Wygląd tablicy w trakcie uruchomienia gry}
 		\label{ref:subref_b}
 	\end{subfigure}%
@@ -646,20 +649,20 @@ Na podstawie powyższych klas zostały stworzone klasy BluePrintowe które możn
 
 \begin{figure}[H]%
 \centering
-\includegraphics[width=0.7\columnwidth]{graphics/butterfly/ButterflyParticleSystem.png}
-\caption{Wygląd menu do tworzenia efektów cząsteczkowych w UE4 
+\includegraphics[width=0.9\columnwidth]{graphics/butterfly/ButterflyParticleSystem.png}
+\caption{Wygląd menu do tworzenia efektów cząsteczkowych w UE4. 
 \label{BPExample}}%
 %
 \qquad
 \end{figure} 
 
 
-W BP\_ButterflySpawner ustawiamy jakiego aktora chcemy ustawić na scenie, oraz ile BP\_ButterflyActor  ma zostać stworzona.
+W BP\_ButterflySpawner w której ustawiamy ilość tworzonych atraktorów ich deltatime oraz sigma, rho i beta które są wspólne dla wszystkich stworzonych atraktorów przez BP\_ButterflySpawner
 
 \begin{figure}[H]%
 \centering
 \includegraphics[width=0.7\columnwidth]{graphics/butterfly/ButterflySpawner.png}
-\caption{Wygląd menu do tworzenia efektów cząsteczkowych w UE4 
+\caption{Ustawienia BP\_ButterflySpawner.
 \label{BPExample}}%
 %
 \qquad
@@ -671,8 +674,8 @@ W programie użytkownik może obserwować układ Lorenza z wybranymi parametrami
 
 \begin{figure}[H]%
 \centering
-\includegraphics[width=0.7\columnwidth]{graphics/butterfly/ButterflyInUE_1.png}
-\caption{Wygląd motyli w programie
+\includegraphics[width=0.9\columnwidth]{graphics/butterfly/ButterflyInUE_1.png}
+\caption{Wygląd motyli w programie.
 \label{ButterflyEffectUE4}}%
 %
 \qquad
@@ -712,7 +715,7 @@ Na podstawie kodów C++ stworzone zostały klasy BP będące dziećmi odpowiedni
 
 \begin{figure}[H]%
 \centering
-\includegraphics[width=0.4\columnwidth]{graphics//agent/BP_AgentActor.png}
+\includegraphics[width=0.5\columnwidth]{graphics//agent/BP_AgentActor.png}
 \caption{Ustawienia Agentów w UE4 
 \label{BPExample}}%
 %
@@ -725,7 +728,7 @@ Kolejną klasą jest BP\_Spawner, która zostanie umieszczona na poziomie. W nie
 \begin{figure}[H]%
 \centering
 \includegraphics[width=0.6\columnwidth]{graphics//agent/BP_SpawnerAgent.png}
-\caption{Ustawienia Spawnera w UE4 
+\caption{Ustawienia BP\_Spawner w UE4 
 \label{BPExample}}%
 %
 \qquad
@@ -735,26 +738,26 @@ Kolejną klasą jest BP\_AgentSpawnBox. Podobnie jak BP\_Spawner tworzy nowych a
 
 \begin{figure}[H]%
 \centering
-\includegraphics[width=0.50\columnwidth]{graphics//agent/BP_AgentSpawnBox.png}
-\caption{Ustawienia SpawnBox w UE4 
+\includegraphics[width=0.60\columnwidth]{graphics//agent/BP_AgentSpawnBox.png}
+\caption{Ustawienia  BP\_AgentSpawnBox w UE4 
 \label{BPExample}}%
 %
 \qquad
 \end{figure} 
 
-Ostatnie dwie klasy to BP\_AgentTable i BP\_AgentControl. Pierwsza w nim jest planszą w której ustawiamy jak plansza ma wyglądać oraz miejsce gdzie możemy położyć i zabrać agentów. Drugą klasa jest widgetem i tak jak w poprzednich modelach, poprzez najechanie kontrolerem na odpowiednią opcje symulacja startuję, albo się resetuje.
+Ostatnie dwie klasy to BP\_AgentTable i BP\_AgentControl. Pierwsza w nim jest planszą w której ustawiamy jak plansza ma wyglądać oraz miejsce gdzie możemy położyć i zabrać agentów. Drugą klasa jest widgetem i tak jak w poprzednich modelach, poprzez najechanie kontrolerem na odpowiednią opcje symulacja startuje, albo się resetuje.
 
-\begin{figure}[H]%
+\begin{figure}[!ht]%
 	\centering
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=0.8\linewidth]{graphics//agent/BP_AgentTable.png}
+		\includegraphics[width=0.9\linewidth]{graphics//agent/BP_AgentTable.png}
 		\caption{Wygląd planszy w UE4}	
 		\label{ref:subref_a}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=0.8\linewidth]{graphics//agent/BP_AgentControl.png}
+		\includegraphics[width=0.9\linewidth]{graphics//agent/BP_AgentControl.png}
 		\caption{Wygląd widgetu w UE4}
 		\label{ref:subref_b}
 	\end{subfigure}%
@@ -881,13 +884,13 @@ W BP\_BoidTarget ustawiamy tylko mesh i materiał, a następnie umieszczamy ją 
 	\centering
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=0.8\linewidth]{graphics//boids/BP_BoidTarget.png}
+		\includegraphics[width=0.9\linewidth]{graphics//boids/BP_BoidTarget.png}
 		\caption{Ustawienia BoidTarget w UE4 }	
 		\label{ref:subref_a}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=0.8\linewidth]{graphics//boids/BP_Boid.png}
+		\includegraphics[width=0.9\linewidth]{graphics//boids/BP_Boid.png}
 		\caption{Ustawienia Boid w UE4 }
 		\label{ref:subref_b}
 	\end{subfigure}%
@@ -897,17 +900,17 @@ W BP\_BoidTarget ustawiamy tylko mesh i materiał, a następnie umieszczamy ją 
 
 BP\_BoidManager i BP\_BoidSpawner też nie mają rozbudowanych opcji. W pierwszym nic nie zmieniamy, ponieważ jego ustawienia będę wykorzystywane przez w widget. W drugim natomiast ustawiamy, czy ma być aktywny, jakie ptaki ma tworzyć, w jakiej ilości i wielkość obszaru w którym mają być tworzone od niego.
 
-\begin{figure}[H]%
+\begin{figure}[!ht]%
 	\centering
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=0.8\linewidth]{graphics//boids/BP_BoidManager.png}
+		\includegraphics[width=0.9\linewidth]{graphics//boids/BP_BoidManager.png}
 		\caption{Ustawienia BoidManager w UE4 }	
 		\label{ref:subref_a}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=0.8\linewidth]{graphics//boids/BP_BoidSpawner.png}
+		\includegraphics[width=0.9\linewidth]{graphics//boids/BP_BoidSpawner.png}
 		\caption{Ustawienia BoidSpawner w UE4 }
 		\label{ref:subref_b}
 	\end{subfigure}%

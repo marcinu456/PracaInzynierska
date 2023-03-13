@@ -4,13 +4,13 @@
 VRcompare.
 \newblock {VR Devices}.
 \newblock \newline \url{https://vr-compare.com}.
-\newblock [Internet; Data wejścia: 04.04.2022].
+\newblock \newline [Internet; Data wejścia: 04.04.2022].
 
 \bibitem{popularnosc_gogli}
 Steam.
 \newblock {Ankieta używanego sprzętu na steam}.
 \newblock \newline \url{https://store.steampowered.com/hwsurvey}.
-\newblock [Internet; Data wejścia: 04.04.2022].
+\newblock \newline [Internet; Data wejścia: 04.04.2022].
 
 \bibitem{liczba_gier_quest}
 Ben Lang.
@@ -18,45 +18,45 @@ Ben Lang.
   Main Store}.
 \newblock \newline
   \url{https://www.roadtovr.com/oculus-quest-app-lab-100-apps-best-rated-most-popular/}.
-\newblock [Internet; Data wejścia: 05.11.2022].
+\newblock \newline [Internet; Data wejścia: 05.11.2022].
 
 \bibitem{liczba_gier_steam}
 Valve.
 \newblock {Steam VR Game List}.
 \newblock \newline \url{https://store.steampowered.com/vr}.
-\newblock [Internet; Data wejścia: 05.11.2022].
+\newblock \newline [Internet; Data wejścia: 05.11.2022].
 
 \bibitem{choroba_vr}
 Michał Brzeżański.
 \newblock {Choroba Symulatorowa}.
 \newblock \newline
   \url{https://vrpolska.eu/skad-sie-bierze-choroba-symulatorowa/}.
-\newblock [Internet; Data wejścia: 04.04.2022].
+\newblock \newline [Internet; Data wejścia: 04.04.2022].
 
 \bibitem{double_pendulum_book}
 James A.~Blackburn Gregory L.~Baker.
 \newblock {The Pendulum A Case Study in Physics}.
 \newblock \newline
   \url{https://www.academia.edu/34415707/The_pendulum_A_case_study_in_physics_pdf_pdf}.
-\newblock [Internet; Data wejścia: 24.07.2022].
+\newblock \newline [Internet; Data wejścia: 24.07.2022].
 
 \bibitem{double_pendulum}
 Krzysztof Jankowski.
 \newblock {Dynamics of double pendulum with parametric vertical excitation}.
 \newblock \newline
   \url{https://web.archive.org/web/*/http://www.team.kdm.p.lodz.pl/master/Jankowski.pdf/}.
-\newblock [Internet; Data wejścia: 05.05.2022].
+\newblock \newline [Internet; Data wejścia: 05.05.2022].
 
 \bibitem{game_of_life_zero_cellular_automata}
 Encyklopedia PWN.
 \newblock {Automat Komórkowy}.
 \newblock \newline \url{https://encyklopedia.pwn.pl/haslo/;3872571}.
-\newblock [Internet; Data wejścia: 31.07.2022].
+\newblock \newline [Internet; Data wejścia: 31.07.2022].
 
 \bibitem{game_of_life_story}
 {Conway's Game of Life}.
 \newblock \newline \url{https://conwaylife.com/wiki/Conway's_Game_of_Life}.
-\newblock [Internet; Data wejścia: 31.07.2022].
+\newblock \newline [Internet; Data wejścia: 31.07.2022].
 
 \bibitem{game_of_life_methematical_games}
 Martin Gardner.
@@ -64,70 +64,70 @@ Martin Gardner.
   "life"}.
 \newblock \newline
   \url{https://web.stanford.edu/class/sts145/Library/life.pdf}.
-\newblock [Internet; Data wejścia: 01.08.2022].
+\newblock \newline [Internet; Data wejścia: 01.08.2022].
 
 \bibitem{game_of_life_zero_player}
 Staffan~Björk i~Jesper~Juul.
 \newblock {Zero-Player Games}.
 \newblock \newline \url{https://www.jesperjuul.net/text/zeroplayergames/}.
-\newblock [Internet; Data wejścia: 01.08.2022].
+\newblock \newline [Internet; Data wejścia: 01.08.2022].
 
 \bibitem{game_of_life_code}
 sweyns.
 \newblock {GameOfLife}.
 \newblock \newline \url{https://github.com/sweyns/GameOfLife}.
-\newblock [Internet; Data wejścia: 11.09.2021].
+\newblock \newline [Internet; Data wejścia: 11.09.2021].
 
 \bibitem{burze_motyle}
 Paul Halpern.
 \newblock {O motylach i burzach}.
 \newblock \newline
   \url{https://web.archive.org/web/20100909161235/http://czytelnia.onet.pl/0,1161316,do_czytania.html/}.
-\newblock [Internet; Data wejścia: 19.05.2022].
+\newblock \newline [Internet; Data wejścia: 19.05.2022].
 
 \bibitem{lorenz_dziwne_atraktory}
 Jarosław Demkowski.
 \newblock {Efekt motyla i dziwne atraktory}.
 \newblock \newline
   \url{https://silo.tips/download/efekt-motyla-i-dziwne-atraktory}.
-\newblock [Internet; Data wejścia: 26.07.2022].
+\newblock \newline [Internet; Data wejścia: 26.07.2022].
 
 \bibitem{motyle_cpp}
 Maciej Matyka.
 \newblock {Jak narysować Motyle Lorenza }.
 \newblock \newline \url{https://www.youtube.com/watch?v=XZ5QKKxHTXQ/}.
-\newblock [Internet; Data wejścia: 20.05.2022].
+\newblock \newline [Internet; Data wejścia: 20.05.2022].
 
 \bibitem{agent_examples}
 Bassel Karami.
 \newblock {Intro to Agent Based Modeling}.
 \newblock \newline
   \url{https://towardsdatascience.com/intro-to-agent-based-modeling-3eea6a070b72}.
-\newblock [Internet; Data wejścia: 25.05.2022].
+\newblock \newline [Internet; Data wejścia: 25.05.2022].
 
 \bibitem{boids_name}
 DonHopkins.
 \newblock {Boids Name}.
 \newblock \newline \url{https://news.ycombinator.com/item?id=22710201}.
-\newblock [Internet; Data wejścia: 31.05.2022].
+\newblock \newline [Internet; Data wejścia: 31.05.2022].
 
 \bibitem{flocking_system}
 Wayne Carlson.
 \newblock {Flocking Systems}.
 \newblock \newline
   \url{https://ohiostate.pressbooks.pub/graphicshistory/chapter/19-2-flocking-systems/}.
-\newblock [Internet; Data wejścia: 31.05.2022].
+\newblock \newline [Internet; Data wejścia: 31.05.2022].
 
 \bibitem{boids_reynolds}
 Craig Reynolds.
 \newblock {Boids}.
 \newblock \newline \url{https://www.red3d.com/cwr/boids/}.
-\newblock [Internet; Data wejścia: 01.06.2022].
+\newblock \newline [Internet; Data wejścia: 01.06.2022].
 
 \bibitem{code_boids}
 Darman1136.
 \newblock {UE4Boids}.
 \newblock \newline \url{https://github.com/Darman1136/UE4Boids}.
-\newblock [Internet; Data wejścia: 12.08.2022].
+\newblock \newline [Internet; Data wejścia: 12.08.2022].
 
 \end{thebibliography}
