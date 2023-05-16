@@ -567,7 +567,7 @@ W załączonym filmie można zobaczyć jak model wygląda w trakcie działania \
 \subsection{Efekt Motyla}
 
 "Czy trzepot skrzydeł motyla w Brazylii może wywołać tornado w Teksasie?" Jest to pytanie Edwarda Lorenza, meteorologa, który zadał je na 139 spotkaniu American Association for the Advancement of Science w stolicy USA w 1972 roku \cite{lorenz_praca}.
-Lorenz jako pierwszy odkrył, że nie można zrobić dobrej prognozy pogody na dłużej niż kilka dni do przodu. W 1960 roku pracował on nad programem komputerowym, który miał prognozować pogodę, na podstawie zbioru równań określających zależności między prędkością wiatru, temperaturą, ciśnieniem i wilgotnością \cite{burze_motyle}. Gdy Lorenz testował swój program po wprowadzeniu danych i po wydrukowaniu wyniku w formie wykresu. Rozkład maksimów i minimów na wykresie wyglądał tak, jak się tego spodziewał Edward. Postanowił jednak ponownie zbadać wyniki, dlatego uruchomił program ponownie, wprowadzając jak myślał takie same wyniki \cite{burze_motyle}. Okazało się jednak, że wyniki wyszły na odwrót. Po sprawdzeniu danych zauważył, że podał je w postaci przybliżonej z mniejszą liczbą cyfr po przecinku. Było to dla niego tak ciekawe, że spróbował to samo z innymi zbiorami danych i zaobserwował identyczne zjawisko. Lorenz w ten sposób odkrył "efekt motyla", gdzie dla pewnych układów deterministycznych nawet minimalne zmiany wartości danych początkowych zostają bardzo szybko wzmocnione i powodują ogromne zmiany w ewolucji układu \cite{burze_motyle}.
+Lorenz jako pierwszy odkrył, że nie można przewidzieć dobrej prognozy pogody na dłużej niż kilka dni do przodu. W 1960 roku pracował on nad programem komputerowym, który miał prognozować pogodę, na podstawie zbioru równań określających zależności między prędkością wiatru, temperaturą, ciśnieniem i wilgotnością \cite{burze_motyle}. Gdy Lorenz testował swój program po wprowadzeniu danych i po wydrukowaniu wyniku w formie wykresu. Rozkład maksimów i minimów na wykresie wyglądał tak, jak się tego spodziewał Edward. Postanowił jednak ponownie zbadać wyniki, dlatego uruchomił program ponownie, wprowadzając jak myślał takie same wyniki \cite{burze_motyle}. Okazało się jednak, że wyniki wyszły na odwrót. Po sprawdzeniu danych zauważył, że podał je w postaci przybliżonej z mniejszą liczbą cyfr po przecinku. Było to dla niego tak ciekawe, że spróbował to samo z innymi zbiorami danych i zaobserwował identyczne zjawisko. Lorenz w ten sposób odkrył "efekt motyla", gdzie dla pewnych układów deterministycznych nawet minimalne zmiany wartości danych początkowych zostają bardzo szybko wzmocnione i powodują ogromne zmiany w ewolucji układu \cite{burze_motyle}.
 
 \begin{figure}[H]%
 \centering
@@ -606,9 +606,9 @@ Jednakże zwykle podaje się \cite{lorenz_dziwne_atraktory}:\\
 \subsubsection{Efekt Motyla - kod}
 
 Kod C++ składa się z dwóch klas ButterflyActor i ButterflySpawner.
-W ButterflyActor najważniejszą metodą jest Tick(float DeltaTime), w której poprzez rozwiązanie wcześniej pokazanych równań różniczkowych po przecałkowaniu. Następnie odpowiednio ustawiamy te równania dla pozycji X, Y i Z danego aktora \cite{motyle_cpp}
+W ButterflyActor najważniejszą metodą jest UpdatePosition(FVector position), w której poprzez rozwiązanie wcześniej pokazanych równań różniczkowych po przecałkowaniu. Następnie odpowiednio ustawiamy te równania dla pozycji X, Y i Z danego aktora \cite{motyle_cpp}
 
-\lstinputlisting[caption=Metoda Tick(), label={lst:listing-cpp}, language=C++]{code/butterfly/ButterflyActorTick.cpp}
+\lstinputlisting[caption=Metoda UpdatePosition(), label={lst:listing-cpp}, language=C++]{code/butterfly/ButterflyActorTick.cpp}
 
 Jedyną rolą ButterflySpawner jest utworzenie tyle ButterflyActor ile zostanie mu zadane na początku, z drobną zmianą odległości dla każdego kolejnego aktora.
 
@@ -940,7 +940,7 @@ Po kliknięciu na prawym kontrolerze spustu możemy zmienić położenie celu do
 W załączonym filmie można zobaczyć jak model wygląda w trakcie działania \url{https://youtu.be/uj8UxW5x9GQ}
 
 \newpage
-\section{Inne rzeczy tworzone do projektu}
+\section{Sterowanie postacią w grze i mapa}
 
 \subsubsection{AVRCharacter - Postać gracza}
 

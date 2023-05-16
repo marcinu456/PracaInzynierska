@@ -1,12 +1,10 @@
-void AButterflyActor::Tick(float DeltaTime)
+FVector AButterflyActor::UpdatePosition(FVector position)
 {
-	Super::Tick(DeltaTime);
-	DeltaTime = ButterflyChange;
-	auto position = GetActorLocation();
+	float LocalDeltaTime = ButterflyChange;
 
-	position.X = (position.X + sigma * (position.Y - position.X) * DeltaTime);
-	position.Y = (position.Y + (-position.X * position.Z + rho * position.X - position.Y) * DeltaTime);
-	position.Z = (position.Z + (position.X * position.Y - beta * position.Z) * DeltaTime);
+	position.X = (position.X + sigma * (position.Y - position.X) * LocalDeltaTime);
+	position.Y = (position.Y + (-position.X * position.Z + rho * position.X - position.Y) * LocalDeltaTime);
+	position.Z = (position.Z + (position.X * position.Y - beta * position.Z) * LocalDeltaTime);
 
-	SetActorLocation(position);
+	return position;
 }
